@@ -1,1 +1,63 @@
-<p>historico works!</p>
+<div class="card-dark p-4 rounded-4">
+
+    <h6 class="text-white fw-semibold mb-3">📋 Histórico de Ingressos</h6>
+
+    <div class="d-flex gap-2 mb-4">
+        <button class="btn-aba" [class.ativo]="abaAtiva === 'proximos'" (click)="trocarAba('proximos')">
+            🎫 Próximos Eventos
+        </button>
+        <button class="btn-aba" [class.ativo]="abaAtiva === 'historico'" (click)="trocarAba('historico')">
+            📋 Histórico
+        </button>
+    </div>
+
+    <div class="lista-ingressos">
+
+        <ng-container *ngIf="abaAtiva === 'proximos'">
+            <ng-container *ngIf="proximosEventos.length > 0; else vazio">
+                <div *ngFor="let ingresso of proximosEventos" class="item-ingresso">
+                    <div>
+                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <small class="text-secondary">
+                            📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
+                        </small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <span class="badge-tipo" [class.preferencial]="ingresso.tipo === 'PREFERENCIAL'">
+                            {{ ingresso.tipo === 'PREFERENCIAL' ? 'Preferencial' : 'Normal' }}
+                        </span>
+                        <span class="badge-status confirmado">Confirmado</span>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="abaAtiva === 'historico'">
+            <ng-container *ngIf="historicoPassado.length > 0; else vazio">
+                <div *ngFor="let ingresso of historicoPassado" class="item-ingresso">
+                    <div>
+                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <small class="text-secondary">
+                            📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
+                        </small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <span class="badge-tipo">
+                            {{ ingresso.tipo === 'PREFERENCIAL' ? 'Preferencial' : 'Normal' }}
+                        </span>
+                        <span class="badge-status" [class.utilizado]="ingresso.status === 'UTILIZADO'"
+                            [class.cancelado]="ingresso.status === 'CANCELADO'">
+                            {{ ingresso.status === 'UTILIZADO' ? 'Utilizado' : 'Cancelado' }}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <ng-template #vazio>
+            <p class="text-secondary text-center py-3">Nenhum ingresso encontrado.</p>
+        </ng-template>
+
+    </div>
+
+</div>

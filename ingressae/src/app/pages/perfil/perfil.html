@@ -1,1 +1,5 @@
-<p>perfil works!</p>
+<div class="container py-4">
+    <app-cabecalho-perfil [usuario]="usuario" />
+    <app-chips-fas-clubes [fasClubes]="usuario.fasClubes" />
+    <app-historico [ingressos]="ingressos" />
+</div>
