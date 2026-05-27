@@ -1,1 +1,25 @@
-<p>cabecalho-perfil works!</p>
+<div class="d-flex align-items-center gap-3 mb-4">
+
+    <div class="avatar-iniciais rounded-circle d-flex align-items-center
+              justify-content-center fs-4 fw-bold text-white">
+        <img *ngIf="usuario.fotoUrl" [src]="usuario.fotoUrl" [alt]="usuario.nome"
+            class="rounded-circle w-100 h-100 object-fit-cover" />
+        <span *ngIf="!usuario.fotoUrl">{{ iniciais }}</span>
+    </div>
+
+    <div>
+        <h4 class="fw-bold text-white mb-1">{{ usuario.nome }}</h4>
+        <p class="text-secondary mb-2">{{ usuario.idade }} anos</p>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <span class="badge badge-membro d-flex align-items-center gap-1">
+                🏆 Membro há {{ usuario.anosNaPlataforma }} anos
+            </span>
+
+            <span *ngIf="membroPreferencial" class="badge badge-preferencial d-flex align-items-center gap-1">
+                ⭐ Membro Preferencial
+            </span>
+        </div>
+    </div>
+
+</div>
