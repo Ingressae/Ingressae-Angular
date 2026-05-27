@@ -1,1 +1,33 @@
-<p>feed works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn text-light tex">
+        <i class="bi bi-arrow-left-short"></i> Todos os fãs clubs
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-banner></app-banner>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 d-flex justify-content-between">
+      <h4>Feed</h4> <button class="btn btn-primary rounded-pill"><i class="bi bi-plus"></i> Novo Post</button>
+    </div>
+  </div>
+  <div class="row mt-3 row-gap-3 overflow-auto" style="max-height: 500px;">
+    <div class="col-12">
+      <app-comentarios></app-comentarios>
+    </div>
+    <div class="col-12">
+      <app-comentarios></app-comentarios>
+    </div>
+    <div class="col-12">
+      <app-comentarios></app-comentarios>
+    </div>
+    <div class="col-12">
+      <app-comentarios></app-comentarios>
+    </div>
+  </div>
+</div>
