@@ -14,8 +14,8 @@
     <div class="lista-ingressos">
 
         <ng-container *ngIf="abaAtiva === 'proximos'">
-            <ng-container *ngIf="proximosEventos.length > 0; else vazio">
-                <div *ngFor="let ingresso of proximosEventos" class="item-ingresso">
+            <ng-container *ngIf="proximosOrdenados.length > 0; else vazio">
+                <div *ngFor="let ingresso of proximosOrdenados" class="item-ingresso">
                     <div>
                         <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
                         <small class="text-secondary">
@@ -33,8 +33,8 @@
         </ng-container>
 
         <ng-container *ngIf="abaAtiva === 'historico'">
-            <ng-container *ngIf="historicoPassado.length > 0; else vazio">
-                <div *ngFor="let ingresso of historicoPassado" class="item-ingresso">
+            <ng-container *ngIf="historicoOrdenado.length > 0; else vazio">
+                <div *ngFor="let ingresso of historicoOrdenado" class="item-ingresso">
                     <div>
                         <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
                         <small class="text-secondary">
