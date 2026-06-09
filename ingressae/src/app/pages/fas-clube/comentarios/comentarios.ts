@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Comentario } from '../../../models/comentario';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-comentarios',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './comentarios.html',
   styleUrl: './comentarios.scss',
 })
 export class Comentarios {
-
+  @Input() comentario!: Comentario;
 }

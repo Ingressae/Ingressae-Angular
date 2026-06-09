@@ -20,17 +20,14 @@ export const routes: Routes = [
   {
     path: 'fila/:showId/preferencial',
     component: Fila,
-    // canActivate: [authGuard]
   },
   {
     path: 'fila/:showId/normal',
     component: Fila,
-    // canActivate: [authGuard]
   },
   {
     path: 'perfil',
     component: Perfil,
-    // canActivate: [authGuard]
   },
   {
     path: 'fas-clubes',
