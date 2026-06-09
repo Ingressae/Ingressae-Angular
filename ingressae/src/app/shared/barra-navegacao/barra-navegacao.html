@@ -1,1 +1,59 @@
-<p>barra-navegacao works!</p>
+<nav class="navbar">
+
+  <div class="logo">
+    <div class="logo-icon">
+      ♪
+    </div>
+
+    <span class="logo-text">
+      Queue<span class="highlight">Pass</span>
+    </span>
+  </div>
+
+  <div class="nav-links">
+
+    <a
+      routerLink="/shows"
+      routerLinkActive="active"
+      class="nav-item">
+      Shows
+    </a>
+
+    <a
+      routerLink="/fa-clubes"
+      routerLinkActive="active"
+      class="nav-item">
+      Fã Clubes
+    </a>
+
+  </div>
+
+  <div class="user-area" (click)="toggleMenu()">
+
+    <div class="avatar">
+      MS
+    </div>
+
+    <span class="arrow">
+      ▼
+    </span>
+
+    @if(menuAberto){
+
+      <div class="dropdown">
+
+        <button>
+          Perfil
+        </button>
+
+        <button>
+          Sair
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</nav>

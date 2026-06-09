@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-barra-navegacao',
-  imports: [],
+  selector: 'app-navbar',
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './barra-navegacao.html',
-  styleUrl: './barra-navegacao.scss',
+  styleUrl: './barra-navegacao.scss'
 })
-export class BarraNavegacao {
+export class NavbarComponent {
+
+  menuAberto = false;
+
+  toggleMenu(): void {
+    this.menuAberto = !this.menuAberto;
+  }
 
 }
