@@ -1,15 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { RouterLink, RouterLinkActive } from '@angular/router';
-
-@Component({
-  selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: './barra-navegacao.html',
-  styleUrl: './barra-navegacao.scss'
-})
-export class NavbarComponent {
-=======
 import { Avatar } from "../avatar/avatar";
 
 @Component({
@@ -20,7 +9,6 @@ import { Avatar } from "../avatar/avatar";
   imports: [Avatar]
 })
 export class BarraNavegacaoComponent {
->>>>>>> main
 
   menuAberto = false;
 
@@ -28,8 +16,6 @@ export class BarraNavegacaoComponent {
     this.menuAberto = !this.menuAberto;
   }
 
-<<<<<<< HEAD
-=======
   fecharMenu(): void {
     this.menuAberto = false;
   }
@@ -43,5 +29,4 @@ export class BarraNavegacaoComponent {
     console.log('Logout');
     this.fecharMenu();
   }
->>>>>>> main
 }
