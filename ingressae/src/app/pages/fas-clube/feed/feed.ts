@@ -17,15 +17,16 @@ export class Feed implements OnInit {
   //vai ser usado o quick sort por motivo de ser efeciente para algoritimos grandes
   //  e não utiliza tanta memoria quanto outros tão efecientes
 
+  //usado lista por motivos de facilidade de manipulação e ordenação
+
   isEditandoNovoPost: boolean = false;
+  novoComentario = '';
 
   constructor(private fasClubeService: FasClube) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
   }
-
-  novoComentario = '';
 
   adicionarFormatacao(marcador: string): void {
     this.novoComentario += marcador;
