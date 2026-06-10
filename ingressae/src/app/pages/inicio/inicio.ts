@@ -48,7 +48,7 @@ export class Inicio {
     },
     {
       id: 6,
-      title: 'Linkin Park — From Zero Tour',
+      title: 'Falcão — Sucessão de Sucessos Que Se Sucedem Sucessivamente Sem Cessar',
       date: '05 Ago 2026',
       location: 'Allianz Parque, São Paulo',
       gradientClass: 'grad-purple' // Ajuste para o gradiente desejado
