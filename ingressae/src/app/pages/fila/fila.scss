@@ -1,0 +1,111 @@
+.link-voltar {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+  &:hover { color: #f1f5f9; }
+}
+
+.card-dark {
+  background-color: #16161f;
+  border: 1px solid #2d2d3d;
+}
+
+.badge-tipo {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  background-color: #2d2d3d;
+  color: #94a3b8;
+  white-space: nowrap;
+
+  &.preferencial {
+    background: linear-gradient(135deg, #8b5cf620, #06b6d420);
+    color: #8b5cf6;
+    border: 1px solid #8b5cf640;
+  }
+}
+
+.posicao-box {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid #2d2d3d;
+}
+
+.posicao-numero {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.progress-track {
+  height: 7px;
+  background-color: #2d2d3d;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  transition: width 0.5s ease;
+}
+
+.aviso-limite {
+  background-color: #92400e20;
+  border: 1px solid #92400e60;
+}
+
+.regra-box {
+  background-color: #1e1e2e;
+  border: 1px solid #2d2d3d;
+}
+
+.btn-sair {
+  background-color: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover { background-color: #ef444420; }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: #16161f;
+  border: 1px solid #2d2d3d;
+  width: 100%;
+  max-width: 400px;
+}
+
+.alerta-modal {
+  background-color: #92400e20;
+  border: 1px solid #92400e60;
+}
+
+.btn-cancelar {
+  background-color: #1e1e2e;
+  border: 1px solid #2d2d3d;
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover { background-color: #2d2d3d; }
+}
+
+.btn-confirmar {
+  background-color: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover { background-color: #ef444420; }
+}

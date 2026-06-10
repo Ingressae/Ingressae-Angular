@@ -1,0 +1,158 @@
+<div class="container py-3 px-3">
+
+  <a [routerLink]="['/fila', show?.id, tipo]"
+    class="link-voltar d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+    ← Voltar à fila
+  </a>
+
+  <div class="timer-box rounded-3 p-3 mb-4 d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-2">
+      <span>⏱</span>
+      <small class="text-secondary">Tempo restante para concluir a compra</small>
+    </div>
+    <span class="timer-numero fw-bold" [class.perigo]="tempoPerigoso">
+      {{ minutos }}:{{ segundos }}
+    </span>
+  </div>
+
+  <div class="row g-3">
+
+    <div class="col-12 col-lg-6">
+      <div class="card-dark p-4 rounded-4 d-flex flex-column gap-3">
+
+        <div>
+          <h5 class="text-white fw-bold mb-1">Dados Pessoais</h5>
+          <small class="text-secondary">Preencha as informações para continuar</small>
+        </div>
+
+        <div>
+          <label class="form-label text-secondary small">Nome completo</label>
+          <input
+            type="text"
+            class="input-dark w-100 rounded-3 px-3 py-2"
+            placeholder="Seu nome completo"
+            [(ngModel)]="nome"
+          />
+        </div>
+
+        <div>
+          <label class="form-label text-secondary small">CPF</label>
+          <input
+            type="text"
+            class="input-dark w-100 rounded-3 px-3 py-2"
+            placeholder="000.000.000-00"
+            [(ngModel)]="cpf"
+          />
+        </div>
+
+        <div>
+          <label class="form-label text-secondary small">E-mail</label>
+          <input
+            type="email"
+            class="input-dark w-100 rounded-3 px-3 py-2"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+          />
+        </div>
+
+        <div>
+          <label class="form-label text-secondary small">Telefone</label>
+          <input
+            type="text"
+            class="input-dark w-100 rounded-3 px-3 py-2"
+            placeholder="(00) 00000-0000"
+            [(ngModel)]="telefone"
+          />
+        </div>
+
+        @if (assentoSelecionado) {
+          <div class="assento-selecionado-box rounded-3 p-3">
+            <small class="text-secondary d-block mb-1">Assento selecionado</small>
+            <span class="text-white fw-semibold">
+              {{ assentoSelecionado.setor }} —
+              {{ assentoSelecionado.fileira }},
+              Nº {{ assentoSelecionado.numero }}
+            </span>
+          </div>
+        }
+
+        <div class="aviso-limite rounded-3 p-2 d-flex align-items-center gap-2">
+          <span>⚠️</span>
+          <small class="text-warning">
+            Limite de
+            <strong>{{ limiteIngressos }} ingresso{{ limiteIngressos > 1 ? 's' : '' }}</strong>
+            por pessoa nesta fila.
+          </small>
+        </div>
+
+        <button
+          class="btn-pagar w-100 rounded-3 py-2 mt-2"
+          [disabled]="!formularioValido"
+          (click)="realizarPagamento()">
+          💳 Realizar Pagamento
+        </button>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="card-dark p-4 rounded-4">
+
+        <div class="mb-3">
+          <h5 class="text-white fw-bold mb-1">Escolha seu Assento</h5>
+          <small class="text-secondary">Clique em um assento disponível</small>
+        </div>
+
+        <div class="d-flex gap-3 mb-3 flex-wrap">
+          <div class="d-flex align-items-center gap-2">
+            <div class="legenda-box disponivel"></div>
+            <small class="text-secondary">Disponível</small>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="legenda-box ocupado"></div>
+            <small class="text-secondary">Ocupado</small>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="legenda-box selecionado"></div>
+            <small class="text-secondary">Selecionado</small>
+          </div>
+        </div>
+
+        @for (setor of setoresUnicos; track setor) {
+          <div class="mb-3">
+            <small class="text-secondary text-uppercase mb-2 d-block"
+              style="letter-spacing: 0.1em; font-size: 0.7rem">
+              {{ setor }}
+            </small>
+            <div class="d-flex flex-wrap gap-2">
+              @for (assento of assentosPorSetor(setor); track assento.id) {
+                <button
+                  class="btn-assento rounded-2"
+                  [class.disponivel]="assento.disponivel"
+                  [class.ocupado]="!assento.disponivel"
+                  [class.selecionado]="assentoSelecionado?.id === assento.id"
+                  [disabled]="!assento.disponivel"
+                  (click)="selecionarAssento(assento)">
+                  {{ assento.numero }}
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+@if (mostrarToast) {
+  <div class="toast-box rounded-3 p-3 d-flex align-items-center gap-3">
+    <span>✅</span>
+    <div>
+      <p class="text-white fw-semibold mb-0">Compra realizada com sucesso!</p>
+      <small class="text-secondary">Redirecionando para seu perfil...</small>
+    </div>
+  </div>
+}
