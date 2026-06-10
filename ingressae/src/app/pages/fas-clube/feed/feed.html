@@ -1,1 +1,92 @@
-<p>feed works!</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn text-light mb-3">
+        <i class="bi bi-arrow-left-short"></i> Todos os fãs clubs
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-banner></app-banner>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 d-flex justify-content-between">
+      <h4>Feed</h4> <button (click)="isEditandoNovoPost = !isEditandoNovoPost" *ngIf="!isEditandoNovoPost"
+        class="btn btn-primary rounded-pill"><i class="bi bi-plus"></i>
+        Novo Post</button>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="isEditandoNovoPost">
+    <div class="col-12">
+
+      <div class="card bg-dark border-secondary shadow-lg rounded-4">
+
+        <!-- Toolbar -->
+        <div class="card-header bg-transparent border-secondary d-flex gap-2 flex-wrap">
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('*')">
+            <strong>B</strong>
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('_')">
+            <em>I</em>
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('~~')">
+            <u>U</u>
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('## ')">
+            H2
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('### ')">
+            H3
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('- ')">
+            • Lista
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('> ')">
+            ❝
+          </button>
+
+        </div>
+
+        <!-- Editor -->
+        <div class="card-body p-0">
+
+          <textarea #editor rows="8" class="form-control bg-dark text-light border-0 rounded-0 shadow-none"
+            [(ngModel)]="novoComentario" placeholder="Compartilhe algo com o clube...">
+        </textarea>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer bg-transparent border-secondary d-flex justify-content-end gap-2">
+
+          <button type="button" class="btn btn-outline-secondary" (click)="isEditandoNovoPost = false">
+            Cancelar
+          </button>
+
+          <button type="button" class="btn btn-primary px-4" (click)="publicar()">
+            Publicar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row mt-3 row-gap-3 overflow-auto" style="max-height: 500px;">
+    @for (comentario of listaComentarios; track comentario.id) {
+    <div class="col-12">
+      <app-comentarios [comentario]="comentario"></app-comentarios>
+    </div>
+    }
+  </div>
+</div>
