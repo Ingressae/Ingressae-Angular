@@ -39,8 +39,11 @@
         line-height: 1.6;
        " [innerHTML]="comentario.conteudo | markdown">
       </p>
-      <button class="btn btn-success rounded-pill" (click)="comentario.qtdlike = comentario.qtdlike + 1">
-        {{comentario.qtdlike}} <i class="bi bi-hand-thumbs-up-fill"></i>
+      <button class="btn btn-success rounded-pill" [ngClass]="{'btn-primary' : curtido,
+        'btn-success' : !curtido
+      }" (click)="curtido? curtir() : descurtir()">
+        {{comentario.qtdlike}} <i class="bi"
+          [ngClass]="{'bi-hand-thumbs-up-fill' : !curtido,'bi-hand-thumbs-up':curtido}"></i>
       </button>
     </div>
   </div>
