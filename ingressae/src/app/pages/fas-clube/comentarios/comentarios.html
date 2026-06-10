@@ -34,13 +34,10 @@
 
     </div>
 
-    <!-- TEXTO -->
     <p class="text-light mb-0 px-3" style="
         font-size: 1.1rem;
         line-height: 1.6;
-       ">
-
-      {{comentario.conteudo}}
+       " [innerHTML]="comentario.conteudo | markdown">
     </p>
 
   </div>
