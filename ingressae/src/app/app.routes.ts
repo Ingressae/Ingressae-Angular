@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { Inicio } from './pages/inicio/inicio';
+import { Fila } from './pages/fila/fila';
 import { Perfil } from './pages/perfil/perfil';
 import { Lista } from './pages/fas-clube/lista/lista';
 import { Detalhe } from './pages/fas-clube/detalhe/detalhe';
-import { Fila } from './pages/fila/fila';
-
+import { Compra } from './pages/compra/compra';
 
 export const routes: Routes = [
     {
@@ -17,11 +17,7 @@ export const routes: Routes = [
         component: Inicio
     },
     {
-        path: 'fila/:showId/preferencial',
-        component: Fila
-    },
-    {
-        path: 'fila/:showId/normal',
+        path: 'fila/:showId/:tipo',
         component: Fila
     },
     {
@@ -35,6 +31,10 @@ export const routes: Routes = [
     {
         path: 'fas-clubes/:id',
         component: Detalhe
+    },
+    {
+        path: 'compra/:showId/:tipo',
+        component: Compra
     },
     {
         path: '**',

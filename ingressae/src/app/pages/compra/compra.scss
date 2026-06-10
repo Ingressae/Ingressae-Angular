@@ -1,0 +1,151 @@
+.link-voltar {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+  &:hover { color: #f1f5f9; }
+}
+
+.timer-box {
+  background-color: #16161f;
+  border: 1px solid #2d2d3d;
+}
+
+.timer-numero {
+  font-size: 1.5rem;
+  color: #06b6d4;
+
+  &.perigo {
+    color: #ef4444;
+    animation: piscar 1s infinite;
+  }
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.card-dark {
+  background-color: #16161f;
+  border: 1px solid #2d2d3d;
+}
+
+.input-dark {
+  background-color: #1e1e2e;
+  border: 1px solid #2d2d3d;
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: #4a4a6a;
+  }
+
+  &:focus {
+    border-color: #8b5cf6;
+  }
+}
+
+.assento-selecionado-box {
+  background-color: #8b5cf620;
+  border: 1px solid #8b5cf640;
+}
+
+.aviso-limite {
+  background-color: #92400e20;
+  border: 1px solid #92400e60;
+}
+
+.btn-pagar {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+.legenda-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+
+  &.disponivel {
+    background-color: #1e1e2e;
+    border: 1px solid #8b5cf6;
+  }
+
+  &.ocupado {
+    background-color: #2d2d3d;
+    border: 1px solid #2d2d3d;
+  }
+
+  &.selecionado {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  }
+}
+
+.btn-assento {
+  width: 36px;
+  height: 36px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.disponivel {
+    background-color: #1e1e2e;
+    border: 1px solid #8b5cf6;
+    color: #f1f5f9;
+
+    &:hover {
+      background-color: #8b5cf620;
+    }
+  }
+
+  &.ocupado {
+    background-color: #2d2d3d;
+    border: 1px solid #2d2d3d;
+    color: #4a4a6a;
+    cursor: not-allowed;
+  }
+
+  &.selecionado {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    border: none;
+    color: white;
+  }
+}
+
+.toast-box {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #16161f;
+  border: 1px solid #10b98160;
+  min-width: 280px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
