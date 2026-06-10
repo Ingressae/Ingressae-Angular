@@ -1,1 +1,46 @@
-<p>barra-navegacao works!</p>
+<nav class="navbar">
+
+  <div class="logo">
+    <img src="assets/images/nome_sem_fundo.png" alt="Ingressaê Logo" class="logo-image">    
+  </div>
+
+  <div class="nav-links">
+
+    <a class="nav-item active">
+      Shows
+    </a>
+
+    <a class="nav-item">
+      Fã Clubes
+    </a>
+
+  </div>
+
+  <div class="user-area" (click)="toggleMenu()">
+
+   <app-avatar [iniciais]="'MD'">
+    
+   </app-avatar>
+    <span class="arrow">
+      ▼
+    </span>
+
+    @if (menuAberto) {
+
+      <div class="dropdown">
+
+        <button (click)="perfil()">
+          Perfil
+        </button>
+
+        <button (click)="logout()">
+          Sair
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</nav>

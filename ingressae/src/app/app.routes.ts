@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Inicio } from './pages/inicio/inicio';
-import { authGuard } from './guards/auth-guard';
 import { Perfil } from './pages/perfil/perfil';
 import { Lista } from './pages/fas-clube/lista/lista';
 import { Detalhe } from './pages/fas-clube/detalhe/detalhe';
@@ -40,6 +39,39 @@ export const routes: Routes = [
   {
     path: 'feed',
     component: Feed,
+  },
+  {
+    path: '**',
+    redirectTo: 'inicio',
+  },
+  {
+    path: '',
+    redirectTo: 'inicio',
+    pathMatch: 'full',
+  },
+  {
+    path: 'inicio',
+    component: Inicio,
+  },
+  {
+    path: 'fila/:showId/preferencial',
+    component: Fila,
+  },
+  {
+    path: 'fila/:showId/normal',
+    component: Fila,
+  },
+  {
+    path: 'perfil',
+    component: Perfil,
+  },
+  {
+    path: 'fas-clubes',
+    component: Lista,
+  },
+  {
+    path: 'fas-clubes/:id',
+    component: Detalhe,
   },
   {
     path: '**',
