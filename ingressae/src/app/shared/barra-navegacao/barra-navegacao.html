@@ -1,28 +1,16 @@
 <nav class="navbar">
 
   <div class="logo">
-    <div class="logo-icon">
-      ♪
-    </div>
-
-    <span class="logo-text">
-      Queue<span class="highlight">Pass</span>
-    </span>
+    <img src="assets/images/nome_sem_fundo.png" alt="Ingressaê Logo" class="logo-image">    
   </div>
 
   <div class="nav-links">
 
-    <a
-      routerLink="/shows"
-      routerLinkActive="active"
-      class="nav-item">
+    <a class="nav-item active">
       Shows
     </a>
 
-    <a
-      routerLink="/fa-clubes"
-      routerLinkActive="active"
-      class="nav-item">
+    <a class="nav-item">
       Fã Clubes
     </a>
 
@@ -30,23 +18,22 @@
 
   <div class="user-area" (click)="toggleMenu()">
 
-    <div class="avatar">
-      MS
-    </div>
-
+   <app-avatar [iniciais]="'MD'">
+    
+   </app-avatar>
     <span class="arrow">
       ▼
     </span>
 
-    @if(menuAberto){
+    @if (menuAberto) {
 
       <div class="dropdown">
 
-        <button>
+        <button (click)="perfil()">
           Perfil
         </button>
 
-        <button>
+        <button (click)="logout()">
           Sair
         </button>
 

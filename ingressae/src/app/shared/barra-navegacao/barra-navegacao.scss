@@ -3,7 +3,12 @@
 }
 
 .navbar {
+<<<<<<< HEAD
   height: 80px;
+=======
+  height: 70px;
+  background: #050816;
+>>>>>>> main
 
   display: flex;
   align-items: center;
@@ -11,13 +16,17 @@
 
   padding: 0 32px;
 
+<<<<<<< HEAD
   background: #050816;
+=======
+>>>>>>> main
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .logo {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   gap: 12px;
 }
 
@@ -45,6 +54,12 @@
   font-weight: 700;
   color: white;
 }
+=======
+  gap: 10px;
+}
+
+
+>>>>>>> main
 
 .highlight {
   color: #4f8cff;
@@ -52,6 +67,7 @@
 
 .nav-links {
   display: flex;
+<<<<<<< HEAD
   gap: 16px;
 }
 
@@ -64,6 +80,21 @@
 
   border-radius: 999px;
 
+=======
+  gap: 10px;
+}
+
+.nav-item {
+  padding: 15px 15px;
+
+  border-radius: 999px;
+
+  color: #a1a1aa;
+  text-decoration: none;
+
+  cursor: pointer;
+
+>>>>>>> main
   transition: 0.2s;
 }
 
@@ -83,6 +114,7 @@
   align-items: center;
   gap: 10px;
 
+<<<<<<< HEAD
   padding: 8px 12px;
 
   border-radius: 999px;
@@ -90,6 +122,15 @@
   cursor: pointer;
 
   background: rgba(255,255,255,0.04);
+=======
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.04);
+
+  cursor: pointer;
+>>>>>>> main
 }
 
 .avatar {
@@ -109,11 +150,19 @@
   );
 
   color: white;
+<<<<<<< HEAD
   font-weight: 700;
 }
 
 .arrow {
   color: #d4d4d8;
+=======
+  font-weight: bold;
+}
+
+.arrow {
+  color: white;
+>>>>>>> main
   font-size: 12px;
 }
 
@@ -123,7 +172,11 @@
   top: 60px;
   right: 0;
 
+<<<<<<< HEAD
   min-width: 160px;
+=======
+  min-width: 150px;
+>>>>>>> main
 
   background: #111827;
 
@@ -153,4 +206,12 @@
 .dropdown button:hover {
   background: rgba(255,255,255,0.08);
   border-radius: 8px;
+<<<<<<< HEAD
+=======
+}
+
+.logo-image {
+  height: 70px;
+  width: auto;
+>>>>>>> main
 }
