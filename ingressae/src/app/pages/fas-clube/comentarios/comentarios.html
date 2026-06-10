@@ -33,13 +33,16 @@
       </div>
 
     </div>
-
-    <p class="text-light mb-0 px-3" style="
+    <div class="d-flex justify-content-between align-items-end">
+      <p class="text-light mb-0 px-3" style="
         font-size: 1.1rem;
         line-height: 1.6;
        " [innerHTML]="comentario.conteudo | markdown">
-    </p>
-
+      </p>
+      <button class="btn btn-success rounded-pill" (click)="comentario.qtdlike = comentario.qtdlike + 1">
+        {{comentario.qtdlike}} <i class="bi bi-hand-thumbs-up-fill"></i>
+      </button>
+    </div>
   </div>
 
 </div>

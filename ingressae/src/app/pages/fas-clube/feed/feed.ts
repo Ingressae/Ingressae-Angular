@@ -43,6 +43,7 @@ export class Feed implements OnInit {
       fotoAutorUrl: 'https://i.pravatar.cc/150?img=10',
       conteudo: this.novoComentario,
       criadoEm: new Date(),
+      qtdlike: 0,
     };
     this.fasClubeService.adicionarComentario(comentario);
     this.isEditandoNovoPost = !this.isEditandoNovoPost;

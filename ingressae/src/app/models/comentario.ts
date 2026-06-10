@@ -1,8 +1,9 @@
 export interface Comentario {
-    id: string;
-    autorId: string;
-    nomeAutor: string;
-    fotoAutorUrl: string;
-    conteudo: string;
-    criadoEm: Date;
+  id: string;
+  autorId: string;
+  nomeAutor: string;
+  fotoAutorUrl: string;
+  conteudo: string;
+  criadoEm: Date;
+  qtdlike: number;
 }
