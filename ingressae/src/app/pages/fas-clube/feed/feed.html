@@ -24,34 +24,22 @@
       <div class="card bg-ingr shadow-lg rounded-4">
 
         <!-- Toolbar -->
-        <div class="card-header bg-dark border-secondary d-flex gap-2 flex-wrap">
+        <div class="card-header bg-dark border-secondary d-flex gap-2 flex-wrap rounded-top-3">
 
           <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('*')">
-            <strong>B</strong>
+            B
           </button>
 
           <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('_')">
-            <em>I</em>
+            I
           </button>
 
           <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('~~')">
-            <u>U</u>
-          </button>
-
-          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('## ')">
-            H2
-          </button>
-
-          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('### ')">
-            H3
+            U
           </button>
 
           <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('- ')">
             • Lista
-          </button>
-
-          <button type="button" class="btn btn-sm btn-outline-light" (click)="adicionarFormatacao('> ')">
-            ❝
           </button>
 
         </div>
@@ -59,14 +47,14 @@
         <!-- Editor -->
         <div class="card-body bg-ingr p-0">
 
-          <textarea #editor rows="8" class="form-control bg-secondary-subtle border-0 rounded-0 shadow-none"
+          <textarea #editor rows="8" id="textArea" class="form-control bg-secondary-subtle rounded-bottom-3 shadow-none"
             [(ngModel)]="novoComentario" placeholder="Compartilhe algo com o clube...">
         </textarea>
 
         </div>
 
         <!-- Footer -->
-        <div class="card-footer bg-transparent  d-flex justify-content-end gap-2">
+        <div class="card-footer bg-transparent  d-flex justify-content-end gap-2 ">
 
           <button type="button" class="btn btn-outline-secondary" (click)="isEditandoNovoPost = false">
             Cancelar

@@ -30,6 +30,7 @@ export class Feed implements OnInit {
 
   adicionarFormatacao(marcador: string): void {
     this.novoComentario += marcador;
+    document.getElementById('textArea')?.focus();
   }
 
   publicar(): void {
