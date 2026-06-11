@@ -56,13 +56,24 @@
       <!-- BADGE -->
       <div>
 
-        <span class="badge border border-success bg-success rounded-pill px-4 py-3 fs-6 fw-semibold ">
+        @if(isMembro) {
+
+        <button (click)="curtirClube()" class="btn btn-success rounded-5 fs-6 fw-semibold ">
 
           <i class="bi bi-check-lg me-2"></i>
           Membro do clube
 
-        </span>
+        </button>
+        }@else{
 
+
+        <button (click)="curtirClube()" class="btn btn-primary rounded-5 fs-6 fw-semibold ">
+
+          Vire membro
+
+        </button>
+
+        }
       </div>
 
     </div>

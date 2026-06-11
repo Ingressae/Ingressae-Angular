@@ -8,12 +8,12 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <app-banner></app-banner>
+      <app-banner [isMembro]="isUsuarioFa()" [idFaClube]="idFaClube"></app-banner>
     </div>
   </div>
   <div class="row mt-5">
     <div class="col-12 d-flex justify-content-between">
-      <h4>Feed</h4> <button (click)="isEditandoNovoPost = !isEditandoNovoPost" *ngIf="!isEditandoNovoPost"
+      <h4>Feed</h4> <button (click)="possivelNovoPost()" *ngIf="!isEditandoNovoPost"
         class="btn btn-primary rounded-pill"><i class="bi bi-plus"></i>
         Novo Post</button>
     </div>
@@ -76,5 +76,11 @@
       <app-comentarios [comentario]="comentario"></app-comentarios>
     </div>
     }
+  </div>
+</div>
+
+<div *ngIf="toastVisivel" class="toast show position-fixed top-0 end-0 m-3 text-bg-danger" role="alert">
+  <div class="toast-body">
+    Participe do fã clube para comentar
   </div>
 </div>

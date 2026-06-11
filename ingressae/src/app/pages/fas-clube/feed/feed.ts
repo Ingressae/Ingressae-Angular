@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Banner } from './banner/banner';
 import { Comentarios } from '../comentarios/comentarios';
 import { FasClube } from '../../../services/fas-clube';
+import { AuthService } from '../../../services/auth';
 import { QuickSort } from '../../../shared/estruturas/quick-sort';
 import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
@@ -21,8 +22,13 @@ export class Feed implements OnInit {
 
   isEditandoNovoPost: boolean = false;
   novoComentario = '';
+  toastVisivel = false;
+  idFaClube = '2';
 
-  constructor(private fasClubeService: FasClube) {}
+  constructor(
+    private fasClubeService: FasClube,
+    private AuthService: AuthService,
+  ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
@@ -58,5 +64,27 @@ export class Feed implements OnInit {
       this.fasClubeService.getComentarios(),
       (a, b) => b.criadoEm.getTime() - a.criadoEm.getTime(),
     );
+  }
+
+  //TODO : validar se ele pertence a algum clube
+  possivelNovoPost() {
+    console.log(this.isUsuarioFa());
+    if (this.isUsuarioFa()) {
+      this.isEditandoNovoPost = !this.isEditandoNovoPost;
+    } else {
+      this.mostrarToast();
+    }
+  }
+
+  isUsuarioFa() {
+    return this.AuthService.participaDoFasClube(this.idFaClube);
+  }
+
+  mostrarToast() {
+    this.toastVisivel = true;
+
+    setTimeout(() => {
+      this.toastVisivel = false;
+    }, 3000);
   }
 }
