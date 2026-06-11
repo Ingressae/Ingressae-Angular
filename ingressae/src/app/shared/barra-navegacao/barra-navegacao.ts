@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { Avatar } from "../avatar/avatar";
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-barra-navegacao',
   standalone: true,
+   imports: [Avatar,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './barra-navegacao.html',
   styleUrl: './barra-navegacao.scss',
-  imports: [Avatar]
+ 
 })
 export class BarraNavegacaoComponent {
 
@@ -18,15 +23,5 @@ export class BarraNavegacaoComponent {
 
   fecharMenu(): void {
     this.menuAberto = false;
-  }
-
-  perfil(): void {
-    console.log('Abrir perfil');
-    this.fecharMenu();
-  }
-
-  logout(): void {
-    console.log('Logout');
-    this.fecharMenu();
   }
 }
