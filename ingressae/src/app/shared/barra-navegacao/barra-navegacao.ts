@@ -1,16 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Avatar } from "../avatar/avatar";
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Avatar } from '../avatar/avatar';
 
 @Component({
   selector: 'app-barra-navegacao',
   standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    Avatar
+  ],
   templateUrl: './barra-navegacao.html',
-  styleUrl: './barra-navegacao.scss',
-  imports: [Avatar]
+  styleUrl: './barra-navegacao.scss'
 })
 export class BarraNavegacaoComponent {
 
   menuAberto = false;
+
+  constructor(
+    private router: Router
+  ) {}
 
   toggleMenu(): void {
     this.menuAberto = !this.menuAberto;
@@ -20,13 +31,13 @@ export class BarraNavegacaoComponent {
     this.menuAberto = false;
   }
 
-  perfil(): void {
-    console.log('Abrir perfil');
+  logout(): void {
+
+    console.log('Usuário deslogado');
+
     this.fecharMenu();
+
+    this.router.navigate(['/inicio']);
   }
 
-  logout(): void {
-    console.log('Logout');
-    this.fecharMenu();
-  }
 }
