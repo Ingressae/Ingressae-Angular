@@ -3,8 +3,7 @@
 }
 
 .navbar {
-  height: 70px;
-  background: #050816;
+  height: 75px;
 
   display: flex;
   align-items: center;
@@ -12,35 +11,35 @@
 
   padding: 0 32px;
 
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
+  background: #050816;
 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-
-
-.highlight {
-  color: #4f8cff;
+.logo-image {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-links {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 16px;
 }
 
 .nav-item {
-  padding: 15px 15px;
+  padding: 12px 20px;
 
   border-radius: 999px;
 
   color: #a1a1aa;
   text-decoration: none;
-
-  cursor: pointer;
 
   transition: 0.2s;
 }
@@ -50,7 +49,7 @@
 }
 
 .nav-item.active {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: white;
 }
 
@@ -59,35 +58,9 @@
 
   display: flex;
   align-items: center;
-  gap: 10px;
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.04);
+  gap: 8px;
 
   cursor: pointer;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: linear-gradient(
-    135deg,
-    #4f8cff,
-    #8b5cf6
-  );
-
-  color: white;
-  font-weight: bold;
 }
 
 .arrow {
@@ -95,19 +68,52 @@
   font-size: 12px;
 }
 
+.dropdown {
+  position: absolute;
+
+  top: 55px;
+  right: 0;
+
+  min-width: 160px;
+
+  padding: 8px;
+
+  border-radius: 12px;
+
+  background: #111827;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  z-index: 1000;
+}
+
 .dropdown-item {
   display: block;
-  padding: 10px;
+
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+
   color: white;
   text-decoration: none;
-  border-radius: 8px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s;
 }
 
 .dropdown-item:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.logo-image {
-  height: 70px;
-  width: auto;
+.logout-button:hover {
+  background: rgba(255, 0, 0, 0.719);
+  color: white;
 }
