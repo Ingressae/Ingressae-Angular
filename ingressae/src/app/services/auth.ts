@@ -5,18 +5,48 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root',
 })
 export class AuthService {
-  private usuarioAtual = signal<Usuario | null>({
-    id: '1',
-    nome: 'Fulano',
-    email: 'fulano@gmail.com.com',
-    idade: 23,
-    fotoUrl: 'https://i.pravatar.cc/150?img=1',
-    membroDesde: new Date('2020-01-01'),
-    anosNaPlataforma: 6,
-    fasClubes: ['1'], // Participa do fã-clube de ID 1
-    token: 'token-teste',
-  });
+  private usuarios: Usuario[] = [
+    {
+      id: '1',
+      nome: 'Fulano',
+      email: 'fulano@gmail.com',
+      senha: '123456',
+      idade: 23,
+      fotoUrl: 'https://i.pravatar.cc/150?img=1',
+      membroDesde: new Date('2020-01-01'),
+      anosNaPlataforma: 6,
+      fasClubes: ['1'],
+      token: 'token-1',
+    },
 
+    {
+      id: '2',
+      nome: 'Maria',
+      email: 'maria@gmail.com',
+      senha: '123456',
+      idade: 28,
+      fotoUrl: 'https://i.pravatar.cc/150?img=2',
+      membroDesde: new Date('2021-05-15'),
+      anosNaPlataforma: 5,
+      fasClubes: ['1', '2'],
+      token: 'token-2',
+    },
+
+    {
+      id: '3',
+      nome: 'João',
+      email: 'joao@gmail.com',
+      senha: '123456',
+      idade: 31,
+      fotoUrl: 'https://i.pravatar.cc/150?img=3',
+      membroDesde: new Date('2023-01-10'),
+      anosNaPlataforma: 2,
+      fasClubes: [],
+      token: 'token-3',
+    },
+  ];
+
+  private usuarioAtual = signal<Usuario | null>(null);
   // Leitura do usuário logado
   usuario = this.usuarioAtual.asReadonly();
 
@@ -25,10 +55,6 @@ export class AuthService {
 
   // Verifica se tem 5+ anos para fila preferencial
   elegivelFilaPreferencial = computed(() => (this.usuarioAtual()?.anosNaPlataforma ?? 0) >= 5);
-
-  login(usuario: Usuario): void {
-    this.usuarioAtual.set(usuario);
-  }
 
   logout(): void {
     this.usuarioAtual.set(null);
@@ -72,5 +98,19 @@ export class AuthService {
         fasClubes: usuario.fasClubes.filter((id) => id !== fasClubeId),
       };
     });
+  }
+
+  autenticar(email: string, senha: string): boolean {
+    const usuario = this.usuarios.find(
+      (usuario) => usuario.email === email && usuario.senha === senha,
+    );
+
+    if (!usuario) {
+      return false;
+    }
+
+    this.usuarioAtual.set(usuario);
+
+    return true;
   }
 }
