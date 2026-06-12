@@ -2,7 +2,10 @@
   color: #94a3b8;
   font-size: 0.875rem;
   transition: color 0.2s;
-  &:hover { color: #f1f5f9; }
+
+  &:hover {
+    color: #f1f5f9;
+  }
 }
 
 .timer-box {
@@ -21,8 +24,15 @@
 }
 
 @keyframes piscar {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .card-dark {
@@ -139,11 +149,58 @@
   animation: slideIn 0.3s ease;
 }
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: #16161f;
+  border: 1px solid #2d2d3d;
+  width: 100%;
+  max-width: 380px;
+}
+
+.icone-tempo {
+  font-size: 2.5rem;
+}
+
+.btn-confirmar {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-cancelar {
+  background-color: #1e1e2e;
+  border: 1px solid #2d2d3d;
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #2d2d3d;
+  }
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
