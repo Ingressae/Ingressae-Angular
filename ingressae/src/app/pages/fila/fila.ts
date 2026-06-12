@@ -77,7 +77,7 @@ export class Fila implements OnInit, OnDestroy {
       this.posicaoInicial = Math.floor(this.filaPreferencial.tamanho() / 2);
       this.posicaoAtual = this.posicaoInicial;
     } else {
-      for (let i = 1; i <= 3400; i++) {
+      for (let i = 1; i <= 3250; i++) {
         this.filaNormal.entrar({ usuarioId: `u${i}`, entradaEm: new Date() });
       }
       this.filaNormal.entrar({ usuarioId: 'atual', entradaEm: new Date() });
