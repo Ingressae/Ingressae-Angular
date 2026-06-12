@@ -9,7 +9,7 @@ export interface MensagemToast {
   providedIn: 'root',
 })
 
-export class Toast {
+export class ToastService {
 
   private mensagem = signal<MensagemToast | null>(null);
 

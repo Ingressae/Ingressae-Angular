@@ -5,6 +5,10 @@ import { ShowService } from '../../services/show';
 import { Show } from '../../models/show';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../services/toast';
+import { StatusIngresso } from '../../enums/status-ingresso';
+import { TipoIngresso } from '../../enums/tipo-ingresso';
+import { IngressoService } from '../../services/ingresso';
 
 @Component({
   selector: 'app-compra',
@@ -18,6 +22,9 @@ export class Compra implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private showService = inject(ShowService);
+  private toast = inject(ToastService);
+  private ingressoService = inject(IngressoService);
+
 
   show: Show | undefined;
   tipo = '';
@@ -26,8 +33,8 @@ export class Compra implements OnInit, OnDestroy {
   tempoRestante = 15 * 60;
   private timerInterval: any;
 
-  // Toast
-  mostrarToast = false;
+  // Modal de tempo esgotado
+  mostrarModalTempoEsgotado = false;
 
   // Formulário
   nome = '';
@@ -37,7 +44,7 @@ export class Compra implements OnInit, OnDestroy {
 
   // Assentos mock
   assentos: Assento[] = [];
-  assentoSelecionado: Assento | null = null;
+  assentosSelecionados: Assento[] = [];
 
   get isPreferencial(): boolean {
     return this.tipo === 'preferencial';
@@ -60,7 +67,7 @@ export class Compra implements OnInit, OnDestroy {
   }
 
   get formularioValido(): boolean {
-    return !!this.nome && !!this.cpf && !!this.email && !!this.telefone && !!this.assentoSelecionado;
+    return !!this.nome && !!this.cpf && !!this.email && !!this.telefone && this.assentosSelecionados.length > 0;
   }
 
   ngOnInit(): void {
@@ -96,26 +103,62 @@ export class Compra implements OnInit, OnDestroy {
         this.tempoRestante--;
       } else {
         clearInterval(this.timerInterval);
-        this.router.navigate(['/inicio']);
+        this.mostrarModalTempoEsgotado = true;
       }
     }, 1000);
   }
 
   selecionarAssento(assento: Assento): void {
     if (!assento.disponivel) return;
-    this.assentoSelecionado = assento;
+
+    const jaSelecionado = this.assentosSelecionados.find(a => a.id === assento.id);
+
+    if (jaSelecionado) {
+      this.assentosSelecionados = this.assentosSelecionados.filter(a => a.id !== assento.id);
+      return;
+    }
+
+    if (this.assentosSelecionados.length >= this.limiteIngressos) {
+      return;
+    }
+
+    this.assentosSelecionados.push(assento);
+  }
+
+  isSelecionado(assento: Assento): boolean {
+    return this.assentosSelecionados.some(a => a.id === assento.id);
   }
 
   realizarPagamento(): void {
     if (!this.formularioValido) return;
 
     clearInterval(this.timerInterval);
-    this.mostrarToast = true;
+
+    // Cria um ingresso para cada assento selecionado
+    this.assentosSelecionados.forEach((assento, index) => {
+      this.ingressoService.adicionar({
+        id: crypto.randomUUID(),
+        showId: this.show?.nome ?? '',
+        usuarioId: '1',
+        tipo: this.isPreferencial ? TipoIngresso.PREFERENCIAL : TipoIngresso.NORMAL,
+        compradoEm: this.show?.dataEvento ?? new Date(),
+        status: StatusIngresso.CONFIRMADO,
+      });
+    });
+
+    this.toast.sucesso('Compra realizada com sucesso!');
 
     setTimeout(() => {
-      this.mostrarToast = false;
       this.router.navigate(['/perfil']);
-    }, 3000);
+    }, 2000);
+  }
+
+  entrarNaFilaNovamente(): void {
+    this.router.navigate(['/fila', this.show?.id, this.tipo]);
+  }
+
+  voltarParaInicio(): void {
+    this.router.navigate(['/inicio']);
   }
 
   get setoresUnicos(): string[] {
