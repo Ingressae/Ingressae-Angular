@@ -77,8 +77,10 @@
   align-items: center;
   gap: 8px;
   font-size: 0.85rem;
-  color: #a0a0a8;
+  color: #808080;
   margin-bottom: 10px;
+  font-weight: 100;
+  
 
   // Ícone de Calendário (Ciano Neon)
   .bi-calendar4 {
@@ -100,7 +102,7 @@
 
   .btn-outline {
     flex: 1;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
     padding: 10px;
@@ -114,7 +116,13 @@
     gap: 6px;
     transition: background 0.2s;
 
-    &:hover { background: rgba(255, 255, 255, 0.08); }
+    &:hover { background: rgba(255, 255, 255, 0.05); } 
+
+    &.btn-saibaMais{
+      &:hover { border-color: rgba(45, 156, 219, 0.6);} }
+
+    &.btn-faClube{
+      &:hover { border-color: rgba(181, 80, 171, 0.6); } }
   }
 }
 

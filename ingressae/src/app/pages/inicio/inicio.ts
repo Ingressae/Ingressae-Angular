@@ -58,7 +58,7 @@ export class Inicio {
     },
     {
       id: 6,
-      title: 'Falcão — Show Joiado',
+      title: 'Falcão — Lindo, Bonito e Joiado',
       date: '05 Ago 2026',
       location: 'Allianz Parque, São Paulo',
       gradientClass: 'grad-orange',
