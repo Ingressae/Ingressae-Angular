@@ -7,33 +7,39 @@
     <h3 class="title">{{ show.title }}</h3>
     
     <div class="info-row">
-      <i class="icon-calendar">📅</i> 
+      <i class="bi bi-calendar4"></i> 
       <span>{{ show.date }}</span>
     </div>
     
     <div class="info-row">
-      <i class="icon-location">📍</i> 
+      <i class="bi bi-geo-alt"></i> 
       <span>{{ show.location }}</span>
     </div>
 
     <div class="action-buttons">
-      <button class="btn-outline"><i class="icon-search">🔍</i> Saiba Mais</button>
-      <button class="btn-outline"><i class="icon-star">⭐</i> Fã Clube</button>
+      <button class="btn-outline"><i class="bi bi-search"></i> Saiba Mais</button>
+      <button class="btn-outline"><i class="bi bi-star"></i> Fã Clube</button>
     </div>
+
+    <br>
 
     <div class="divider"></div>
 
     <div class="queue-section">
       <span class="queue-label">ENTRAR NA FILA</span>
       
-      <button class="btn-queue btn-pref">
-        <span class="queue-name"><i class="icon-crown">👑</i> Fila Preferencial</span>
-        <span class="badge-status">Disponível</span>
+      <button class="btn-queue btn-pref" [disabled]="!show.prefAvailable">
+        <span class="queue-name"><i class="bi bi-gem"></i> Fila Preferencial</span>
+        <span class="badge-status">
+          {{ show.prefAvailable ? 'Disponível' : 'Indisponível' }}
+        </span>
       </button>
 
-      <button class="btn-queue btn-normal">
-        <span class="queue-name"><i class="icon-ticket">🎟️</i> Fila Normal</span>
-        <span class="badge-status">Disponível</span>
+      <button class="bi-queue btn-queue btn-normal" [disabled]="!show.normalAvailable">
+        <span class="queue-name"><i class="bi bi-ticket-perforated"></i> Fila Normal</span>
+        <span class="badge-status">
+          {{ show.normalAvailable ? 'Disponível' : 'Indisponível' }}
+        </span>
       </button>
     </div>
   </div>

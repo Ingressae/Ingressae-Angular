@@ -17,6 +17,8 @@ export class Inicio {
       date: '15 Mar 2026',
       location: 'Allianz Parque, São Paulo',
       gradientClass: 'grad-purple',
+      prefAvailable: true,
+      normalAvailable: true,
     },
     {
       id: 2,
@@ -24,13 +26,17 @@ export class Inicio {
       date: '22 Abr 2026',
       location: 'Estádio do Morumbi, SP',
       gradientClass: 'grad-blue',
+      prefAvailable: true,
+      normalAvailable: false, // Indisponível
     },
     {
       id: 3,
       title: 'Taylor Swift — Eras Tour Brasil',
       date: '10 Mai 2026',
       location: 'Engenhão, Rio de Janeiro',
-      gradientClass: 'grad-orange',
+      gradientClass: 'grad-redPurple',
+      prefAvailable: false,   // Indisponível
+      normalAvailable: false, // Indisponível
     },
     {
       id: 4,
@@ -38,6 +44,8 @@ export class Inicio {
       date: '02 Jun 2026',
       location: 'Arena MRV, Belo Horizonte',
       gradientClass: 'grad-cyan',
+      prefAvailable: true,  
+      normalAvailable: false, // Indisponível
     },
     {
       id: 5,
@@ -45,13 +53,17 @@ export class Inicio {
       date: '18 Jul 2026',
       location: 'Jeunesse Arena, RJ',
       gradientClass: 'grad-purple',
+      prefAvailable: true,
+      normalAvailable: true,
     },
     {
       id: 6,
-      title: 'Falcão — Sucessão de Sucessos Que Se Sucedem Sucessivamente Sem Cessar',
+      title: 'Falcão — Show Joiado',
       date: '05 Ago 2026',
       location: 'Allianz Parque, São Paulo',
-      gradientClass: 'grad-purple', // Ajuste para o gradiente desejado
+      gradientClass: 'grad-orange',
+      prefAvailable: true,
+      normalAvailable: true,
     },
   ];
 }

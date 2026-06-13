@@ -1,23 +1,21 @@
 <main class="inicio-container">
-  
-  <section class="hero">
+
+<section class="hero">
     <div class="hero-badge">
-      <i class="icon-sparkle">✨</i> Fila justa, ingressos garantidos
+      <i class="bi bi-stars icon-sparkle"></i> Fila justa, ingressos garantidos
     </div>
-    
+
     <h1 class="hero-title">
-      Os melhores shows, <span class="highlight">sem stress</span>
+      Os melhores shows <br><span class="highlight">sem stress</span>
     </h1>
-    
+
     <p class="hero-subtitle">
       Entre na fila preferencial ou normal e acompanhe sua posição em tempo real.
     </p>
   </section>
 
   <section class="shows-grid">
-    <app-card-show 
-      *ngFor="let show of shows" 
-      [show]="show">
+    <app-card-show *ngFor="let show of shows" [show]="show">
     </app-card-show>
   </section>
 

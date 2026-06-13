@@ -2,7 +2,7 @@
 
 .inicio-container {
   min-height: 100vh;
-  background-color: #0B0C10; // Fundo geral bem escuro
+  background-color: rgb(11, 10, 20); // Fundo geral bem escuro
   color: #ffffff;
   padding: 40px 20px;
   font-family: 'Inter', sans-serif; // Substitua pela fonte do seu projeto
@@ -16,7 +16,7 @@
   margin-bottom: 60px;
   padding-top: 40px;
 
-  .hero-badge {
+.hero-badge {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6px 16px;
@@ -27,6 +27,16 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
+    /* Nova classe para o ícone */
+    .icon-sparkle {
+      color: transparent;
+      color: #00c6ff; /* Azul neon (cyan) */
+      font-size: 1rem; 
+      -webkit-text-stroke: 1px #00c6ff;
+      text-shadow: 0 0 6px rgba(0, 198, 255, 0.6),
+                   0 0 12px rgba(0, 198, 255, 0.3);
+    }
   }
 
   .hero-title {
