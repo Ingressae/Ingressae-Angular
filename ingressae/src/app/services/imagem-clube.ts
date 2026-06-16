@@ -12,8 +12,9 @@ export class ImagemClubeService {
     '4': 'assets/images/fa-clubes/bts.jpg',
     '5': 'assets/images/fa-clubes/iron-maiden.jpg',
     '6': 'assets/images/fa-clubes/linkin-park.jpg',
-    '7': 'assets/images/fa-clubes/twice.jpg',
+    '7': 'assets/images/fa-clubes/twicee.jpg',
     '8': 'assets/images/fa-clubes/billie-eilish.jpg',
+    '9': 'assets/images/fa-clubes/falcao.jpg',
   };
 
   /**

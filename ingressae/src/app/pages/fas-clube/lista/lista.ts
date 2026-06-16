@@ -66,10 +66,11 @@ export class Lista implements OnInit {
         { id: '2', nome: 'Coldplayers BR', nomeArtista: 'Coldplay', imagemCapaUrl: 'coldplay.jpg', totalMembros: 814521, showId: 's2' },
         { id: '3', nome: 'Swifties Brasil', nomeArtista: 'Taylor Swift', imagemCapaUrl: '', totalMembros: 268301, showId: 's3' },
         { id: '4', nome: 'ARMYS', nomeArtista: 'BTS', imagemCapaUrl: '', totalMembros: 561272, showId: 's4' },
-        { id: '5', nome: 'Maiden Maniacs', nomeArtista: 'Iron Maiden', imagemCapaUrl: '', totalMembros: 412033, showId: 's5' },
-        { id: '6', nome: 'LP Soldiers', nomeArtista: 'Linkin Park', imagemCapaUrl: '', totalMembros: 178340, showId: 's6' },
-        { id: '7', nome: 'Onces Brasil', nomeArtista: 'Twice', imagemCapaUrl: '', totalMembros: 671888, showId: 's7' },
         { id: '8', nome: 'Avocados', nomeArtista: 'Billie Eilish', imagemCapaUrl: '', totalMembros: 923440, showId: 's8' },
+        { id: '6', nome: 'LP Soldiers', nomeArtista: 'Linkin Park', imagemCapaUrl: '', totalMembros: 178340, showId: 's6' },
+        { id: '5', nome: 'Maiden Maniacs', nomeArtista: 'Iron Maiden', imagemCapaUrl: '', totalMembros: 412033, showId: 's5' },
+        { id: '7', nome: 'Onces Brasil', nomeArtista: 'Twice', imagemCapaUrl: '', totalMembros: 671888, showId: 's7' },
+        { id: '9', nome: 'Falcãonáticos', nomeArtista: 'Falcão', imagemCapaUrl: '', totalMembros: 321456, showId: 's9' },
       ]);
       this.carregando.set(false);
     }, 500);
@@ -79,7 +80,7 @@ export class Lista implements OnInit {
     return this.fasClubesDoUsuario().includes(clubeId);
   }
 
-// No arquivo lista.ts, substitua a função entrarClube por esta:
+
 entrarClube(clube: FasClubeModel): void {
   const usuario = this.usuarioAtual();
   if (!usuario) return;
