@@ -9,7 +9,7 @@ import { Show } from '../../models/show';
 
 @Component({
   selector: 'app-fila',
-  imports: [CommonModule, Jogo, RouterLink],
+  imports: [CommonModule, RouterLink, Jogo],
   templateUrl: './fila.html',
   styleUrl: './fila.scss',
 })

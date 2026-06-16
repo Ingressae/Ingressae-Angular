@@ -1,1 +1,41 @@
-<p>jogo works!</p>
+<div class="game-header">
+
+  <span>
+    Movimentos: {{ movimentos }}
+  </span>
+
+  <button
+    type="button"
+    (click)="reiniciar()">
+
+    Reiniciar
+
+  </button>
+
+</div>
+
+<div class="board">
+
+  @for (torre of torres; track $index) {
+
+    <div
+      class="tower"
+      [class.selected]="torreSelecionada === $index"
+      (click)="selecionarTorre($index)">
+
+      <div class="pole"></div>
+
+      @for (disco of torre; track disco) {
+
+        <div
+          class="disk"
+          [style.width.px]="40 + (disco * 25)">
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>
