@@ -1,0 +1,118 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css' );
+
+.inicio-container {
+  min-height: 100vh;
+  background-color: rgb(11, 10, 20);
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 20px;
+
+  .hero-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #a0a0a8;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .icon-sparkle {
+      color: #00c6ff;
+      text-shadow: 0 0 6px rgba(0, 198, 255, 0.6);
+    }
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
+    .highlight {
+      background: linear-gradient(90deg, #8e2de2, #4a00e0, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: #8c8d96;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .search-box {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.3s;
+
+    &:focus-within {
+      border-color: #4a00e0;
+    }
+
+    i { color: #8c8d96; }
+
+    .search-input {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
+
+      &::placeholder { color: #4b5563; }
+    }
+  }
+}
+
+.limit-indicator {
+  .limit-label { font-size: 0.75rem; color: #8c8d96; font-weight: 600; text-transform: uppercase; }
+  .limit-value { font-size: 0.85rem; color: #fff; font-weight: 700; }
+  
+  .progress-bar-bg {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8e2de2, #00c6ff);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+}
+
+.shows-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -1,1 +1,63 @@
-<p>card-postagem works!</p>
+<div class="card" [class.card-membro]="isMembro">
+  <!-- Imagem de Capa -->
+  <div class="card-image-container">
+    <img 
+      *ngIf="obterImagemClube(); else imagemPadrao"
+      [src]="obterImagemClube()" 
+      [alt]="clube.nome"
+      class="card-image"
+    >
+    <ng-template #imagemPadrao>
+      <div class="card-image-placeholder">
+        <i class="bi bi-images"></i>
+      </div>
+    </ng-template>
+    <!-- Gradiente overlay sobre a imagem -->
+    <div class="card-image-gradient"></div>
+  </div>
+
+  <!-- Conteúdo do Card -->
+  <div class="card-content">
+    <!-- Nome do Clube -->
+    <h3 class="title">{{ clube.nome }}</h3>
+
+    <!-- Nome do Artista -->
+    <p class="badge-show">{{ clube.nomeArtista }}</p>
+
+    <!-- Total de Membros -->
+    <div class="info-row">
+      <i class="bi bi-people"></i>
+      <span>{{ formatarNumero(clube.totalMembros) }} membros</span>
+    </div>
+
+    <!-- Divisor -->
+    <div class="divider"></div>
+
+    <!-- Botões de Ação -->
+    <div class="action-buttons">
+      <!-- Se é membro -->
+      <ng-container *ngIf="isMembro">
+        <button class="btn-outline btn-ver" (click)="onVer($event)">
+          <i class="bi bi-eye"></i>
+          Ver Clube
+        </button>
+      </ng-container>
+
+      <!-- Se não é membro -->
+      <ng-container *ngIf="!isMembro">
+        <button class="btn-outline btn-ver me-2" (click)="onVer($event)">
+          <i class="bi bi-eye"></i>
+          Visualizar
+        </button>
+        <button 
+          class="btn-outline btn-entrar" 
+          (click)="onEntrar($event)"
+          [disabled]="limiteAtingido"
+        >
+          <i class="bi bi-plus-circle"></i>
+          {{ limiteAtingido ? 'Limite atingido' : 'Entrar' }}
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>
