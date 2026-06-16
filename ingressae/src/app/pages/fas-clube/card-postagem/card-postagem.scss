@@ -1,0 +1,176 @@
+// 1. FAZ O ANGULAR COMPREENDER QUE O CARD DEVE OCUPAR 100% DA ALTURA DO GRID
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card {
+  background-color: rgb(11, 10, 20); /* Fundo escuro do card */
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%; // <-- Garante o preenchimento total do espaço vertical
+  transition: transform 0.2s ease;
+  font-family: 'Inter', sans-serif;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(89, 42, 147, 0.811);
+  }
+
+  &.card-membro {
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+}
+
+/* Container da imagem do clube */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.card-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Gradiente overlay sobre a imagem */
+.card-image-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(11, 10, 20, 0) 0%, rgba(11, 10, 20, 0.8) 100%);
+  pointer-events: none;
+}
+
+.card-content {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  margin-top: -10px; 
+  flex: 1; // <-- Faz o bloco de conteúdo expandir para ocupar a área livre
+}
+
+.card-content i {
+  font-size: 0.95rem; /* Ajusta o tamanho dos ícones vetoriais uniformemente */
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-show {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #8c8d96;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+  min-height: 2.8rem; /* Mantém a proporção e tamanho idêntico dos cards */
+  
+  // SOLUÇÃO: Transforma em flex para centralizar verticalmente títulos menores
+  display: flex;
+  align-items: center; 
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #808080;
+  margin-bottom: 10px;
+  font-weight: 100;
+
+  .bi-people {
+    color: #2d9cdb;
+    text-shadow: 0 0 6px rgba(45, 156, 219, 0.6);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+
+  .btn-outline {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px;
+    border-radius: 20px; 
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) { 
+      background: rgba(255, 255, 255, 0.05); 
+    }
+
+    &:disabled {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.05) !important;
+      color: #4b5563 !important; 
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+
+    &.btn-entrar {
+      &:hover:not(:disabled) { 
+        border-color: rgba(181, 80, 171, 0.6);
+      }
+    }
+
+    &.btn-ver {
+      &:hover { 
+        border-color: rgba(45, 156, 219, 0.6);
+      }
+    }
+  }
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 24px 0 16px 0;
+  margin-top: auto; // <-- EMPURRA O DIVISOR E OS BOTÕES PERFEITAMENTE PARA O RODAPÉ
+}

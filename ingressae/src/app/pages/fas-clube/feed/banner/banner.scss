@@ -1,0 +1,24 @@
+.banner-capa {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.banner-capa-imagem {
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/images/fa-clubes/coldplay-capa-2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-capa-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 196, 230, 0.15);
+}
+
+.banner-capa > .position-absolute {
+  position: absolute;
+  inset: 0;
+}
