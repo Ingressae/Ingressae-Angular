@@ -138,7 +138,7 @@ export class Compra implements OnInit, OnDestroy {
     this.assentosSelecionados.forEach((assento, index) => {
       this.ingressoService.adicionar({
         id: crypto.randomUUID(),
-        showId: this.show?.nome ?? '',
+        showId: this.show?.id ?? '', // usa o ID, não o nome
         usuarioId: '1',
         tipo: this.isPreferencial ? TipoIngresso.PREFERENCIAL : TipoIngresso.NORMAL,
         compradoEm: this.show?.dataEvento ?? new Date(),
