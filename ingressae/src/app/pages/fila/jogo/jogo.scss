@@ -1,0 +1,140 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  color: white;
+}
+
+.game-header button {
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #7c3aed;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.game-header button:hover {
+  opacity: 0.9;
+}
+
+.board {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
+  height: 260px;
+}
+
+.tower {
+  position: relative;
+
+  width: 140px;
+  height: 220px;
+
+  border-bottom: 4px solid #475569;
+
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.tower.selected {
+  background: rgba(124, 58, 237, 0.15);
+  border-radius: 12px;
+}
+
+.pole {
+  position: absolute;
+
+  bottom: 0;
+
+  width: 8px;
+  height: 170px;
+
+  background: #64748b;
+}
+
+.disk {
+  height: 18px;
+
+  margin-bottom: 4px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,
+    #3b82f6
+  );
+
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+
+  .board {
+    height: 220px;
+  }
+
+  .tower {
+    width: 90px;
+    height: 180px;
+  }
+
+  .pole {
+    height: 130px;
+  }
+
+}
+
+.difficulty-selector {
+
+  display: flex;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+
+  flex-wrap: wrap;
+}
+
+.difficulty-selector button {
+
+  border: none;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #1e293b;
+
+  color: white;
+
+  transition: 0.2s;
+}
+
+.difficulty-selector button:hover {
+
+  background: #334155;
+}
