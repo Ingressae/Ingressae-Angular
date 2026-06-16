@@ -9,18 +9,19 @@ import { Ingresso } from '../models/ingresso';
 
 export class IngressoService {
 
+
   private ingressos = signal<Ingresso[]>([
     {
       id: '1',
-      showId: 'BTS — Map of the Soul Tour',
+      showId: '1', // The Weeknd World Tour
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
-      compradoEm: new Date('2026-04-22'),
+      compradoEm: new Date('2026-03-15'),
       status: StatusIngresso.CONFIRMADO,
     },
     {
       id: '2',
-      showId: 'Taylor Swift — Eras Tour',
+      showId: '3', // Taylor Swift — Eras Tour
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2026-05-10'),
@@ -28,15 +29,15 @@ export class IngressoService {
     },
     {
       id: '3',
-      showId: 'The Weeknd — After Hours',
+      showId: '2', // Coldplay Music Of The Spheres
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
-      compradoEm: new Date('2026-06-15'),
+      compradoEm: new Date('2026-04-22'),
       status: StatusIngresso.CONFIRMADO,
     },
     {
       id: '4',
-      showId: 'Imagine Dragons — Loom Tour',
+      showId: '4', // Imagine Dragons — Loom Tour
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2025-11-20'),
@@ -44,7 +45,7 @@ export class IngressoService {
     },
     {
       id: '5',
-      showId: 'Dua Lipa — Radical Optimism',
+      showId: '5', // Dua Lipa — Radical Optimism
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2025-09-05'),
@@ -52,7 +53,7 @@ export class IngressoService {
     },
     {
       id: '6',
-      showId: 'Linkin Park — From Zero Tour',
+      showId: '6', // Linkin Park — From Zero Tour
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
       compradoEm: new Date('2025-08-18'),
@@ -60,14 +61,11 @@ export class IngressoService {
     }
   ]);
 
-  // Leitura de todos os ingressos
   buscarTodos() {
     return this.ingressos.asReadonly();
   }
 
-  // Adiciona um novo ingresso
   adicionar(novoIngresso: Ingresso): void {
     this.ingressos.update(lista => [...lista, novoIngresso]);
   }
-
 }
