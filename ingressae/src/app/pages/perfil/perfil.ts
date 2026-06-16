@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Ingresso } from '../../models/ingresso';
 import { Usuario } from '../../models/usuario';
 import { CabecalhoPerfil } from './cabecalho-perfil/cabecalho-perfil';
 import { ChipsFasClubes } from './chips-fas-clubes/chips-fas-clubes';
 import { Historico } from './historico/historico';
+import { IngressoService } from '../../services/ingresso';
 
 @Component({
   selector: 'app-perfil',
@@ -12,6 +13,7 @@ import { Historico } from './historico/historico';
   styleUrl: './perfil.scss',
 })
 export class Perfil {
+  private ingressoService = inject(IngressoService);
   usuario: Usuario = {
     id: '1',
     nome: 'Maria Silva',

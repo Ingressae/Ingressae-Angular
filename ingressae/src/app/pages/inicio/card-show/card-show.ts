@@ -7,6 +7,8 @@ export interface Show {
   date: string;
   location: string;
   gradientClass: string;
+  prefAvailable: boolean;
+  normalAvailable: boolean;
 }
 
 @Component({

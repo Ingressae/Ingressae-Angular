@@ -1,34 +1,31 @@
 <div class="card bg-dark border-secondary rounded-5 overflow-hidden shadow-lg text-white">
   <!-- BANNER -->
-  <div class="position-relative" style="
-        height: 150px;
-        background: linear-gradient(
-          90deg,
-          #20c4e6,
-          #3d8cff
-        );
-      ">
-
-    <!-- FOTO PERFIL -->
-    <div
-      class="position-absolute start-0 translate-middle-y ms-5 rounded-4 overflow-hidden border border-5 border-dark shadow"
-      style="
-          width: 80px;
-          height: 80px;
-          bottom: -30px;
-          background: linear-gradient(135deg,#1dcfff,#3d8cff);
-        ">
-
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Coldplay_logo.svg"
-        class="w-100 h-100 object-fit-cover p-3" alt="Coldplay">
-
-    </div>
+  <div class="position-relative banner-capa">
+    <div class="banner-capa-imagem"></div>
+    <div class="banner-capa-overlay"></div>
   </div>
 
   <!-- CONTEÚDO -->
   <div class="card-body px-5 py-4">
 
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+    <!-- FOTO PERFIL -->
+    <div
+      class="rounded-4 overflow-hidden border border-5 border-dark shadow ms-5"
+      style="
+          width: 100px;
+          height: 100px;
+          margin-top: -75px;
+          position: relative;
+          z-index: 10;
+          background: linear-gradient(135deg,#1dcfff,#3d8cff);
+        ">
+
+      <img src="assets/images/fa-clubes/coldplay.jpg"
+        class="w-100 h-100 object-fit-cover" alt="Coldplay">
+
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-4 mt-3">
 
       <!-- INFO -->
       <div class="ms-5">

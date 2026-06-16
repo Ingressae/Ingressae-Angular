@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { inject } from '@angular/core';
+import { ToastService } from '../../services/toast';
 
 @Component({
   selector: 'app-toast',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './toast.html',
   styleUrl: './toast.scss',
 })
 export class Toast {
+
+  toast = inject(ToastService);
 
 }

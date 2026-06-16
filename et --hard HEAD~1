@@ -1,0 +1,35 @@
+[33ma52951f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix tamanho do feed arrumado
+[33m1d44a1a[m feat : adicionada padrão a barra de navegação
+[33m834b659[m Merge branch 'barra-navegacao'
+[33mdbb4585[m fix : arrumado o markdown
+[33m9db1017[m fix : Padronizada a cor go bg e text, arrumada no feed
+[33ma79fb35[m fix: alguem apagou as rotas
+[33m7112a87[m Merge branch 'main' of https://github.com/Ingressae/Ingressae-Angular
+[33me6c283b[m fix : like melhorado
+[33md18139d[m Merge branch 'inicio-v1'
+[33mbdd5600[m Merge pull request #4 from Ingressae/tela-fila
+[33mc2846df[m[33m ([m[1;31morigin/tela-fila[m[33m)[m Merge branch 'main' into tela-fila
+[33mf7b9ed0[m Feat: criação das filas e formulário de compra
+[33m053a791[m[33m ([m[1;31morigin/inicio-v1[m[33m)[m Fix: Adicionado como exemplo o show do melhor cantor forever Marcondes Falcão
+[33m5cc60e4[m Feat: Tela de Inicio e Card de Shows
+[33m1b8c7e0[m[33m ([m[1;31morigin/barra-navegacao[m[33m, [m[1;32mbarra-navegacao[m[33m)[m Fix: Correção do código
+[33mcca16af[m Merge branch 'main' of https://github.com/Ingressae/Ingressae-Angular into barra-navegacao
+[33m2618113[m[33m ([m[1;31morigin/feed-postagens[m[33m)[m Merge branch 'main' into feed-postagens
+[33mf47b818[m fix : add o motivo da lista
+[33mb3f7c6d[m feat : like em comentarios
+[33m8e23be3[m fix : arrumada a formatação para pegar do começo se precisar
+[33m2e59233[m feat : novo post funcionando
+[33m1da6fa0[m Fix: Troca de imagem
+[33m0b942c7[m feat: comentarios estilizados
+[33mccda56b[m Feat: Criação da navbar
+[33m3cec27d[m Fix: remoção do guards (desnecessário)
+[33m9e81449[m feat : visual dos feeds
+[33m044ece9[m feat: icons bootstrap e text light padrão
+[33ma03d8ba[m Merge pull request #3 from Ingressae/tela-perfil
+[33m0e42d6c[m[33m ([m[1;31morigin/tela-perfil[m[33m)[m Feat: inserção do fivicon
+[33m334e7da[m Merge pull request #2 from Ingressae/tela-perfil
+[33mc382f4b[m Feat: Ordenação com Insertion Sort
+[33md4d46b0[m Merge pull request #1 from Ingressae/tela-perfil
+[33m617bada[m Feat: criação tela-perfil + toast + bootstrap
+[33m7a56a6a[m[33m ([m[1;32mFRONT-02[m[33m)[m Feat: criação inicial o projeto
+[33mb7ce6d4[m Initial commit

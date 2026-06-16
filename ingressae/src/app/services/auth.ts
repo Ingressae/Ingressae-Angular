@@ -47,7 +47,7 @@ export class AuthService {
   ];
 
   private usuarioAtual = signal<Usuario | null>(null);
-  // Leitura do usuário logado
+  // Leitura do usuário logado (Somente Leitura)
   usuario = this.usuarioAtual.asReadonly();
 
   estaLogado = computed(() => !!this.usuarioAtual());
@@ -60,18 +60,42 @@ export class AuthService {
 
   participaDoFasClube(fasClubeId: string): boolean {
     const usuario = this.usuarioAtual();
-
     if (!usuario) {
       return false;
     }
-
     return usuario.fasClubes.includes(fasClubeId);
+  }
+
+  // NOVA FUNÇÃO CORRIGIDA: Valida o limite de 6
+  atualizarInscricoes(novasInscricoes: string[]) {
+    const usuario = this.usuarioAtual();
+
+    if (!usuario) return;
+
+    // Se a nova lista for maior que 6, bloqueia
+    if (novasInscricoes.length > 6) {
+      // Substitua pelo seu serviço de Toast real, ex: this.toast.warning('...');
+      alert('Limite de 6 fã-clubes atingido!');
+      return;
+    }
+
+    // Atualiza o sinal PRIVADO (o que permite escrita)
+    this.usuarioAtual.set({
+      ...usuario,
+      fasClubes: novasInscricoes,
+    });
   }
 
   adicionarAoFasClube(fasClubeId: string): void {
     this.usuarioAtual.update((usuario) => {
       if (!usuario) {
         return null;
+      }
+
+      // Validação extra aqui também para garantir o limite
+      if (usuario.fasClubes.length >= 6) {
+        alert('Você já atingiu o limite de 6 fã-clubes!');
+        return usuario;
       }
 
       if (usuario.fasClubes.includes(fasClubeId)) {
