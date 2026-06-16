@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Ingresso } from '../../../models/ingresso';
 import { insertionSort } from '../../../shared/estruturas/insertion-sort';
+import { ShowService } from '../../../services/show';
 
 @Component({
   selector: 'app-historico',
@@ -14,6 +15,8 @@ export class Historico {
 
   @Input() ingressos: Ingresso[] = [];
 
+  private showService = inject(ShowService);
+
   abaAtiva: 'proximos' | 'historico' = 'proximos';
 
   proximosOrdenados: Ingresso[] = [];
@@ -24,10 +27,14 @@ export class Historico {
     this.ordenarHistorico();
   }
 
+  // Busca o nome do show pelo id, usado direto no HTML
+  nomeShow(showId: string): string {
+    return this.showService.buscarPorId(showId)?.nome ?? 'Show não encontrado';
+  }
+
   private ordenarProximos(): void {
     const confirmados = this.ingressos.filter(i => i.status === 'CONFIRMADO');
 
-    // Ordena do show mais próximo ao mais distante pela data do show
     this.proximosOrdenados = insertionSort(confirmados, (a, b) =>
       new Date(a.compradoEm).getTime() - new Date(b.compradoEm).getTime()
     );
@@ -36,7 +43,6 @@ export class Historico {
   private ordenarHistorico(): void {
     const passados = this.ingressos.filter(i => i.status !== 'CONFIRMADO');
 
-    // Ordena do evento mais recente ao mais antigo
     this.historicoOrdenado = insertionSort(passados, (a, b) =>
       new Date(b.compradoEm).getTime() - new Date(a.compradoEm).getTime()
     );
@@ -45,5 +51,4 @@ export class Historico {
   trocarAba(aba: 'proximos' | 'historico'): void {
     this.abaAtiva = aba;
   }
-
 }

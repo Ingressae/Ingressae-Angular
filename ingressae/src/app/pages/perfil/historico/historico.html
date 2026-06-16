@@ -17,7 +17,7 @@
             <ng-container *ngIf="proximosOrdenados.length > 0; else vazio">
                 <div *ngFor="let ingresso of proximosOrdenados" class="item-ingresso">
                     <div>
-                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <p class="text-white fw-semibold mb-1">Show {{ nomeShow(ingresso.showId) }}</p>
                         <small class="text-secondary">
                             📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
                         </small>
@@ -36,7 +36,7 @@
             <ng-container *ngIf="historicoOrdenado.length > 0; else vazio">
                 <div *ngFor="let ingresso of historicoOrdenado" class="item-ingresso">
                     <div>
-                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <p class="text-white fw-semibold mb-1">Show {{ nomeShow(ingresso.showId) }}</p>
                         <small class="text-secondary">
                             📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
                         </small>
