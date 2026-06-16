@@ -50,10 +50,8 @@ export class AuthService {
   // Leitura do usuário logado
   usuario = this.usuarioAtual.asReadonly();
 
-  // Verifica se tem alguém logado
   estaLogado = computed(() => !!this.usuarioAtual());
 
-  // Verifica se tem 5+ anos para fila preferencial
   elegivelFilaPreferencial = computed(() => (this.usuarioAtual()?.anosNaPlataforma ?? 0) >= 5);
 
   logout(): void {

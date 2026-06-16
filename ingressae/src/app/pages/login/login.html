@@ -1,5 +1,4 @@
-<div class="container bg-ingr">
-
+<div class="container bg-ingr ">
   <div class="row justify-content-center mt-5">
 
     <div class="col-md-5">
@@ -20,7 +19,8 @@
                 E-mail
               </label>
 
-              <input type="email" class="form-control" formControlName="email">
+              <input type="email" class="form-control text-light bg-dark border border-secondary rounded-4"
+                formControlName="email">
 
               @if (email?.touched && email?.invalid) {
 
@@ -46,7 +46,8 @@
                 Senha
               </label>
 
-              <input type="password" class="form-control" formControlName="senha">
+              <input type="password" class="form-control text-light bg-dark border border-secondary rounded-4"
+                formControlName="senha">
 
               @if (senha?.touched && senha?.invalid) {
 

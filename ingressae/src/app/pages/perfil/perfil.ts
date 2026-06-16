@@ -12,17 +12,17 @@ import { Historico } from './historico/historico';
   styleUrl: './perfil.scss',
 })
 export class Perfil {
-
   usuario: Usuario = {
     id: '1',
     nome: 'Maria Silva',
     email: 'maria@email.com',
+    senha: 'senha',
     idade: 28,
     fotoUrl: '',
     membroDesde: new Date('2018-01-01'),
     anosNaPlataforma: 7,
     fasClubes: ['XO Family', 'Coldplayers BR', 'Swifties Brasil', 'Firebreathers'],
-    token: ''
+    token: '',
   };
 
   ingressos: Ingresso[] = [
@@ -73,7 +73,6 @@ export class Perfil {
       tipo: 'PREFERENCIAL' as any,
       compradoEm: new Date('2025-08-18'),
       status: 'CANCELADO' as any,
-    }
+    },
   ];
-
 }

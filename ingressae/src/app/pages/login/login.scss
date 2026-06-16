@@ -6,3 +6,9 @@
     linear-gradient(#1a1a1a, #1a1a1a) padding-box,
     linear-gradient(90deg, #20c4e6, #3d8cff) border-box;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
