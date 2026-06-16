@@ -70,6 +70,7 @@ export class Lista implements OnInit {
         { id: '6', nome: 'LP Soldiers', nomeArtista: 'Linkin Park', imagemCapaUrl: '', totalMembros: 178340, showId: 's6' },
         { id: '7', nome: 'Onces Brasil', nomeArtista: 'Twice', imagemCapaUrl: '', totalMembros: 671888, showId: 's7' },
         { id: '8', nome: 'Avocados', nomeArtista: 'Billie Eilish', imagemCapaUrl: '', totalMembros: 923440, showId: 's8' },
+        { id: '9', nome: 'Falcãonáticos', nomeArtista: 'Falcão', imagemCapaUrl: '', totalMembros: 321456, showId: 's9' },
       ]);
       this.carregando.set(false);
     }, 500);
@@ -79,7 +80,7 @@ export class Lista implements OnInit {
     return this.fasClubesDoUsuario().includes(clubeId);
   }
 
-// No arquivo lista.ts, substitua a função entrarClube por esta:
+
 entrarClube(clube: FasClubeModel): void {
   const usuario = this.usuarioAtual();
   if (!usuario) return;
