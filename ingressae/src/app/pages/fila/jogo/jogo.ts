@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ToastService } from '../../../services/toast';
 
 @Component({
   selector: 'app-jogo',
@@ -10,15 +11,66 @@ import { Component } from '@angular/core';
 })
 export class Jogo {
 
-  torres: number[][] = [
-    [4, 3, 2, 1],
-    [],
-    []
-  ];
+  dificuldade = 'facil';
+
+  quantidadeDiscos = 4;
+
+  torres: number[][] = [];
 
   torreSelecionada: number | null = null;
 
   movimentos = 0;
+
+  constructor(
+    private toast: ToastService
+  ) {
+    this.criarTorres();
+  }
+
+  criarTorres(): void {
+
+    this.torres = [
+      Array.from(
+        { length: this.quantidadeDiscos },
+        (_, i) => this.quantidadeDiscos - i
+      ),
+      [],
+      []
+    ];
+
+  }
+
+  alterarDificuldade(dificuldade: string): void {
+
+    this.dificuldade = dificuldade;
+
+    switch (dificuldade) {
+
+      case 'facil':
+        this.quantidadeDiscos = 4;
+        this.toast.aviso('Dificuldade: Fácil');
+        break;
+
+      case 'medio':
+        this.quantidadeDiscos = 5;
+        this.toast.aviso('Dificuldade: Médio');
+        break;
+
+      case 'dificil':
+        this.quantidadeDiscos = 6;
+        this.toast.aviso('Dificuldade: Difícil');
+        break;
+
+      case 'hardcore':
+        this.quantidadeDiscos = 7;
+        this.toast.aviso('Dificuldade: Hardcore');
+        break;
+
+    }
+
+    this.reiniciar();
+
+  }
 
   selecionarTorre(indice: number): void {
 
@@ -76,15 +128,26 @@ export class Jogo {
 
   verificarVitoria(): void {
 
-    if (this.torres[2].length === 4) {
+    if (
+      this.torres[2].length === this.quantidadeDiscos
+    ) {
 
-      setTimeout(() => {
+      const minimo =
+        Math.pow(2, this.quantidadeDiscos) - 1;
 
-        alert(
+      if (this.movimentos === minimo) {
+
+        this.toast.sucesso(
+          `🏆 Solução perfeita! ${this.movimentos} movimentos.`
+        );
+
+      } else {
+
+        this.toast.sucesso(
           `🎉 Você venceu em ${this.movimentos} movimentos!`
         );
 
-      }, 100);
+      }
 
     }
 
@@ -92,14 +155,12 @@ export class Jogo {
 
   reiniciar(): void {
 
-    this.torres = [
-      [4, 3, 2, 1],
-      [],
-      []
-    ];
+    this.criarTorres();
 
     this.movimentos = 0;
+
     this.torreSelecionada = null;
+
   }
 
 }

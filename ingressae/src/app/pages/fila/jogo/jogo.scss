@@ -105,3 +105,36 @@
   }
 
 }
+
+.difficulty-selector {
+
+  display: flex;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+
+  flex-wrap: wrap;
+}
+
+.difficulty-selector button {
+
+  border: none;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #1e293b;
+
+  color: white;
+
+  transition: 0.2s;
+}
+
+.difficulty-selector button:hover {
+
+  background: #334155;
+}

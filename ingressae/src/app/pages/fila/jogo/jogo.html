@@ -1,3 +1,27 @@
+<div class="difficulty-selector">
+
+  <button
+    (click)="alterarDificuldade('facil')">
+    Fácil
+  </button>
+
+  <button
+    (click)="alterarDificuldade('medio')">
+    Médio
+  </button>
+
+  <button
+    (click)="alterarDificuldade('dificil')">
+    Difícil
+  </button>
+
+  <button
+    (click)="alterarDificuldade('hardcore')">
+    Hardcore
+  </button>
+
+</div>
+
 <div class="game-header">
 
   <span>
@@ -29,7 +53,7 @@
 
         <div
           class="disk"
-          [style.width.px]="40 + (disco * 25)">
+          [style.width.px]="30 + (disco * 18)">
         </div>
 
       }
