@@ -18,6 +18,7 @@ import { Avatar } from '../avatar/avatar';
 export class BarraNavegacaoComponent {
 
   menuAberto = false;
+  mobileMenuAberto = false;
 
   constructor(
     private router: Router
@@ -25,6 +26,10 @@ export class BarraNavegacaoComponent {
 
   toggleMenu(): void {
     this.menuAberto = !this.menuAberto;
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuAberto = !this.mobileMenuAberto;
   }
 
   fecharMenu(): void {
