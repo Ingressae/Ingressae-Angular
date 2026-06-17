@@ -33,8 +33,7 @@
     </div>
   </div>
 
-  <!-- Loading -->
-  <app-loading *ngIf="carregando()"></app-loading>
+ 
 
   <!-- Grid de Cards -->
   <div class="shows-grid" *ngIf="!carregando() && temResultados()">
@@ -49,10 +48,5 @@
     ></app-card-postagem>
   </div>
 
-  <!-- Estado Vazio -->
-  <app-estado-vazio 
-    *ngIf="!carregando() && !temResultados()"
-    titulo="Nenhum fã clube encontrado"
-    mensagem="Tente buscar por outro nome ou artista."
-  ></app-estado-vazio>
+  
 </div>

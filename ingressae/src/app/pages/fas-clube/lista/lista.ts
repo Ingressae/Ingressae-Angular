@@ -60,7 +60,6 @@ export class Lista implements OnInit {
   }
 
   carregarFasClubes(): void {
-    setTimeout(() => {
       this.fasClubes.set([
         { id: '1', nome: 'XO Family', nomeArtista: 'The Weeknd', imagemCapaUrl: '', totalMembros: 524585, showId: 's1' },
         { id: '2', nome: 'Coldplayers BR', nomeArtista: 'Coldplay', imagemCapaUrl: 'coldplay.jpg', totalMembros: 814521, showId: 's2' },
@@ -73,7 +72,6 @@ export class Lista implements OnInit {
         { id: '9', nome: 'Falcãonáticos', nomeArtista: 'Falcão', imagemCapaUrl: '', totalMembros: 321456, showId: 's9' },
       ]);
       this.carregando.set(false);
-    }, 500);
   }
 
   isMembro(clubeId: string): boolean {
