@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Ingresso } from '../../models/ingresso';
 import { Usuario } from '../../models/usuario';
 import { CabecalhoPerfil } from './cabecalho-perfil/cabecalho-perfil';
 import { ChipsFasClubes } from './chips-fas-clubes/chips-fas-clubes';
 import { Historico } from './historico/historico';
 import { IngressoService } from '../../services/ingresso';
+import { AuthService } from '../../services/auth';
+import { FasClubeService } from '../../services/fas-clube';
 
 @Component({
   selector: 'app-perfil',
@@ -15,19 +17,23 @@ import { IngressoService } from '../../services/ingresso';
 export class Perfil {
 
   private ingressoService = inject(IngressoService);
+  private authService = inject(AuthService);
+  private fasClubeService = inject(FasClubeService);
 
-  usuario: Usuario = {
-    id: '1',
-    nome: 'Maria Silva',
-    email: 'maria@email.com',
-    idade: 28,
-    fotoUrl: '',
-    membroDesde: new Date('2018-01-01'),
-    anosNaPlataforma: 7,
-    fasClubes: ['XO Family', 'Coldplayers BR', 'Swifties Brasil', 'Firebreathers'],
-    token: ''
-  };
+  usuario = this.authService.usuario;
 
-  // Pega os ingressos direto do serviço, sempre atualizado
   ingressos = this.ingressoService.buscarTodos();
+
+  nomesFasClubes = computed(() => {
+    const usuario = this.usuario();
+
+    if (!usuario) {
+      return [];
+    }
+
+    return usuario.fasClubes
+      .map(id => this.fasClubeService.buscarPorId(id)?.nome)
+      .filter((nome): nome is string => !!nome);
+  });
+
 }

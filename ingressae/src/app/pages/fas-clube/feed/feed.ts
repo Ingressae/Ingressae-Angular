@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Banner } from './banner/banner';
 import { Comentarios } from '../comentarios/comentarios';
-import { FasClube } from '../../../services/fas-clube';
 import { AuthService } from '../../../services/auth';
 import { QuickSort } from '../../../shared/estruturas/quick-sort';
 import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FasClubeService } from '../../../services/fas-clube';
 
 @Component({
   selector: 'app-feed',
@@ -26,7 +26,7 @@ export class Feed implements OnInit {
   idFaClube = '2';
 
   constructor(
-    private fasClubeService: FasClube,
+    private fasClubeService: FasClubeService,
     private AuthService: AuthService,
   ) {}
   listaComentarios: Comentario[] = [];

@@ -33,11 +33,8 @@
     </div>
   </div>
 
-  <!-- Loading -->
-  <app-loading *ngIf="carregando()"></app-loading>
-
   <!-- Grid de Cards -->
-  <div class="shows-grid" *ngIf="!carregando() && temResultados()">
+  <div class="shows-grid" *ngIf="temResultados()">
     <!-- AQUI ESTÁ A CHAVE: Passamos o limiteAtingido() para cada card -->
     <app-card-postagem 
       *ngFor="let clube of fasClubesFiltrados()" 
@@ -51,7 +48,7 @@
 
   <!-- Estado Vazio -->
   <app-estado-vazio 
-    *ngIf="!carregando() && !temResultados()"
+    *ngIf="!temResultados()"
     titulo="Nenhum fã clube encontrado"
     mensagem="Tente buscar por outro nome ou artista."
   ></app-estado-vazio>

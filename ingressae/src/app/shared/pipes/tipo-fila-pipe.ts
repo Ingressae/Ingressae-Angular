@@ -5,8 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TipoFilaPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(tipo: string): string {
+    return tipo.toUpperCase() === 'PREFERENCIAL' ? 'Preferencial' : 'Normal';
   }
-
-}
+} 

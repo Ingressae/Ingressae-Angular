@@ -12,8 +12,8 @@ export class AuthService {
     idade: 23,
     fotoUrl: 'https://i.pravatar.cc/150?img=1',
     membroDesde: new Date('2020-01-01' ),
-    anosNaPlataforma: 6,
-    fasClubes: ['1'], // Participa do fã-clube de ID 1
+    anosNaPlataforma: 7,
+    fasClubes: ['2', '1'], // Participa do fã-clube
     token: 'token-teste',
   });
 
