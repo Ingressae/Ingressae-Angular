@@ -23,17 +23,11 @@
 }
 
 /* O Gradiente do topo */
-.card-gradient {
+.card-banner {
   height: 140px;
   width: 100%;
-  flex-shrink: 0; // Evita que o gradiente achate se faltar espaço
-  
-  &.grad-purple { background: linear-gradient(to bottom, #ff00e6, rgb(11, 10, 20)); }
-  &.grad-blue { background: linear-gradient(to bottom, #00a2ff, rgb(11, 10, 20)); }
-  &.grad-orange { background: linear-gradient(to bottom, #ff811b, rgb(11, 10, 20)); }
-  &.grad-cyan { background: linear-gradient(to bottom, #00ffd0, rgb(11, 10, 20)); }
-  &.grad-redPurple { background: linear-gradient(to bottom, #ff3083, rgb(11, 10, 20)); }
-
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+  flex-shrink: 0;
 }
 
 .card-content {
@@ -61,17 +55,12 @@
 }
 
 .title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-  min-height: 2.8rem; /* Mantém a proporção e tamanho idêntico dos cards */
-  
-  // SOLUÇÃO: Transforma em flex para centralizar verticalmente títulos menores
-  display: flex;
-  align-items: center; 
+  .artista {
+    font-size: 1.05rem;
+    color: #8c8d96;
+    font-weight: 400;
+  }
 }
-
 .info-row {
   display: flex;
   align-items: center;

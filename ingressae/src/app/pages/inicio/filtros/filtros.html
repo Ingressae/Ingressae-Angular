@@ -1,1 +1,51 @@
-<p>filtros works!</p>
+<div class="filtros-container">
+  
+  <div class="filtro-box">
+    <button class="filtro-btn" 
+            (click)="toggleMenu('localizacao')" 
+            [class.ativo]="selecionado().localizacao || menuAberto() === 'localizacao'">
+      {{ selecionado().localizacao || 'Localização' }}
+    </button>
+
+    <ul class="dropdown-menu" *ngIf="menuAberto() === 'localizacao'">
+      <li *ngFor="let estado of estados" 
+          (click)="selecionarItem('localizacao', estado)" 
+          [class.selected]="selecionado().localizacao === estado">
+        {{ estado }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="filtro-box">
+    <button class="filtro-btn" 
+            (click)="toggleMenu('genero')" 
+            [class.ativo]="selecionado().genero || menuAberto() === 'genero'">
+      {{ selecionado().genero || 'Gênero' }}
+    </button>
+
+    <ul class="dropdown-menu" *ngIf="menuAberto() === 'genero'">
+      <li *ngFor="let genero of generos" 
+          (click)="selecionarItem('genero', genero)" 
+          [class.selected]="selecionado().genero === genero">
+        {{ genero }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="filtro-box">
+    <button class="filtro-btn" 
+            (click)="toggleMenu('data')" 
+            [class.ativo]="selecionado().data || menuAberto() === 'data'">
+      {{ selecionado().data || 'Data' }}
+    </button>
+
+    <ul class="dropdown-menu" *ngIf="menuAberto() === 'data'">
+      <li *ngFor="let data of datas" 
+          (click)="selecionarItem('data', data)" 
+          [class.selected]="selecionado().data === data">
+        {{ data }}
+      </li>
+    </ul>
+  </div>
+
+</div>

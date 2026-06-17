@@ -1,0 +1,85 @@
+.filtros-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 10; // Garante que o dropdown fique sobreposto aos cards de shows
+}
+
+.filtro-box {
+  position: relative;
+}
+
+.filtro-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15); // Borda neutra sutil
+  color: #ffffff;
+  padding: 10px 28px;
+  border-radius: 30px; // Formato de pílula
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+  outline: none;
+
+  // Efeito idêntico ao print da UI (Magenta Neon)
+  &:hover, &.ativo {
+    border-color: #e91e63; // Rosa vivo
+    box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
+    background: rgba(233, 30, 99, 0.05);
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); // Centraliza o menu relativo ao botão
+  margin-top: 8px;
+  background-color: rgb(18, 17, 28); // Pouco mais claro que o fundo geral
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  width: 100%;
+  min-width: 160px;
+  list-style: none;
+  padding: 8px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  
+  // Limita a altura e cria scroll caso a lista seja longa
+  max-height: 220px;
+  overflow-y: auto;
+
+  // Estilização do Scrollbar para manter a imersão Dark Mode
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  li {
+    padding: 10px 20px;
+    color: #8c8d96;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+    }
+
+    // Estilo quando o item está marcado
+    &.selected {
+      color: #e91e63;
+      font-weight: 600;
+      background-color: rgba(233, 30, 99, 0.08);
+    }
+  }
+}

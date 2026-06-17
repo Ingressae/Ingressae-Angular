@@ -9,4 +9,5 @@ export interface Show {
     dataFilaNormal: Date;
     fasClubeId: string;
     descricao: string;
+    genero: string;
 }
