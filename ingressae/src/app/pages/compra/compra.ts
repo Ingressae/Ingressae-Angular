@@ -9,10 +9,11 @@ import { ToastService } from '../../services/toast';
 import { StatusIngresso } from '../../enums/status-ingresso';
 import { TipoIngresso } from '../../enums/tipo-ingresso';
 import { IngressoService } from '../../services/ingresso';
+import { TipoFilaPipe } from '../../shared/pipes/tipo-fila-pipe';
 
 @Component({
   selector: 'app-compra',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, TipoFilaPipe],
   templateUrl: './compra.html',
   styleUrl: './compra.scss',
 })

@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Usuario } from '../../../models/usuario';
+import { AnosMembroPipe } from '../../../shared/pipes/anos-membro-pipe';
 
 @Component({
   selector: 'app-cabecalho-perfil',
-  imports: [CommonModule],
+  imports: [CommonModule, AnosMembroPipe],
   templateUrl: './cabecalho-perfil.html',
   styleUrl: './cabecalho-perfil.scss',
 })

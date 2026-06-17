@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Ingresso } from '../../models/ingresso';
 import { Usuario } from '../../models/usuario';
 import { CabecalhoPerfil } from './cabecalho-perfil/cabecalho-perfil';
 import { ChipsFasClubes } from './chips-fas-clubes/chips-fas-clubes';
 import { Historico } from './historico/historico';
 import { IngressoService } from '../../services/ingresso';
+import { AuthService } from '../../services/auth';
+import { FasClubeService } from '../../services/fas-clube';
 
 @Component({
   selector: 'app-perfil',
@@ -13,68 +15,25 @@ import { IngressoService } from '../../services/ingresso';
   styleUrl: './perfil.scss',
 })
 export class Perfil {
-  private ingressoService = inject(IngressoService);
-  usuario: Usuario = {
-    id: '1',
-    nome: 'Maria Silva',
-    email: 'maria@email.com',
-    senha: 'senha',
-    idade: 28,
-    fotoUrl: '',
-    membroDesde: new Date('2018-01-01'),
-    anosNaPlataforma: 7,
-    fasClubes: ['XO Family', 'Coldplayers BR', 'Swifties Brasil', 'Firebreathers'],
-    token: '',
-  };
 
-  ingressos: Ingresso[] = [
-    {
-      id: '1',
-      showId: 'Coldplay — Music Of The Spheres',
-      usuarioId: '1',
-      tipo: 'PREFERENCIAL' as any,
-      compradoEm: new Date('2026-04-22'),
-      status: 'CONFIRMADO' as any,
-    },
-    {
-      id: '2',
-      showId: 'Taylor Swift — Eras Tour',
-      usuarioId: '1',
-      tipo: 'NORMAL' as any,
-      compradoEm: new Date('2026-03-10'),
-      status: 'CONFIRMADO' as any,
-    },
-    {
-      id: '3',
-      showId: 'The Weeknd — After Hours',
-      usuarioId: '1',
-      tipo: 'PREFERENCIAL' as any,
-      compradoEm: new Date('2026-06-15'),
-      status: 'CONFIRMADO' as any,
-    },
-    {
-      id: '4',
-      showId: 'Imagine Dragons — Loom Tour',
-      usuarioId: '1',
-      tipo: 'NORMAL' as any,
-      compradoEm: new Date('2025-11-20'),
-      status: 'CONFIRMADO' as any,
-    },
-    {
-      id: '5',
-      showId: 'Dua Lipa — Radical Optimism',
-      usuarioId: '1',
-      tipo: 'NORMAL' as any,
-      compradoEm: new Date('2025-09-05'),
-      status: 'UTILIZADO' as any,
-    },
-    {
-      id: '6',
-      showId: 'Linkin Park — From Zero Tour',
-      usuarioId: '1',
-      tipo: 'PREFERENCIAL' as any,
-      compradoEm: new Date('2025-08-18'),
-      status: 'CANCELADO' as any,
-    },
-  ];
+  private ingressoService = inject(IngressoService);
+  private authService = inject(AuthService);
+  private fasClubeService = inject(FasClubeService);
+
+  usuario = this.authService.usuario;
+
+  ingressos = this.ingressoService.buscarTodos();
+
+  nomesFasClubes = computed(() => {
+    const usuario = this.usuario();
+
+    if (!usuario) {
+      return [];
+    }
+
+    return usuario.fasClubes
+      .map(id => this.fasClubeService.buscarPorId(id)?.nome)
+      .filter((nome): nome is string => !!nome);
+  });
+
 }
