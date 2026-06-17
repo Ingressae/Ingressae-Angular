@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FasClube } from './fas-clube';
+import { FasClubeService } from './fas-clube';
 
-describe('FasClube', () => {
-  let service: FasClube;
+describe('FasClubeService', () => {
+  let service: FasClubeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FasClube);
+    service = TestBed.inject(FasClubeService);
   });
 
   it('should be created', () => {

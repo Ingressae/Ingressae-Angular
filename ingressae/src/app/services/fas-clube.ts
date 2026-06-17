@@ -1,10 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Comentario } from '../models/comentario';
+import { FasClube } from '../models/fas-clube';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FasClube {
+export class FasClubeService {
+
+  private clubes = signal<FasClube[]>([
+    {
+      id: '1',
+      nome: 'XO Family',
+      nomeArtista: 'The Weeknd',
+      imagemCapaUrl: '',
+      totalMembros: 524585,
+      showId: 's1'
+    },
+    {
+      id: '2',
+      nome: 'Coldplayers BR',
+      nomeArtista: 'Coldplay',
+      imagemCapaUrl: '',
+      totalMembros: 814521,
+      showId: 's2'
+    },
+    {
+      id: '3',
+      nome: 'Swifties Brasil',
+      nomeArtista: 'Taylor Swift',
+      imagemCapaUrl: '',
+      totalMembros: 268301,
+      showId: 's3'
+    },
+    {
+      id: '4',
+      nome: 'ARMYS',
+      nomeArtista: 'BTS',
+      imagemCapaUrl: '',
+      totalMembros: 561272,
+      showId: 's4'
+    }
+  ]);
+
+  buscarTodos() {
+    return this.clubes.asReadonly();
+  }
+
+  buscarPorId(id: string): FasClube | undefined {
+    return this.clubes().find(c => c.id === id);
+  }
+
   private comentarios: Comentario[] = [
     {
       id: '1',
@@ -75,6 +120,7 @@ export class FasClube {
       qtdlike: 203,
     },
   ];
+  
   getComentarios(): Comentario[] {
     return this.comentarios;
   }

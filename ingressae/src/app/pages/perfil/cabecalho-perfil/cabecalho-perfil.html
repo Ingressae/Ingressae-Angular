@@ -12,8 +12,8 @@
         <p class="text-secondary mb-2">{{ usuario.idade }} anos</p>
 
         <div class="d-flex gap-2 flex-wrap">
-            <span class="badge badge-membro d-flex align-items-center gap-1">
-                🏆 Membro há {{ usuario.anosNaPlataforma }} anos
+            <span class="badge-membro d-flex align-items-center gap-1">
+                🏆 {{ usuario.anosNaPlataforma | anosMembro }}
             </span>
 
             <span *ngIf="membroPreferencial" class="badge badge-preferencial d-flex align-items-center gap-1">

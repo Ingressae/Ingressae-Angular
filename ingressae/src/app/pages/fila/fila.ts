@@ -6,10 +6,11 @@ import { FilaPreferencial } from '../../shared/estruturas/fila-preferencial';
 import { FilaNormal } from '../../shared/estruturas/fila-normal';
 import { ShowService } from '../../services/show';
 import { Show } from '../../models/show';
+import { TipoFilaPipe } from '../../shared/pipes/tipo-fila-pipe';
 
 @Component({
   selector: 'app-fila',
-  imports: [CommonModule, RouterLink, Jogo],
+  imports: [CommonModule, Jogo, RouterLink, TipoFilaPipe],
   templateUrl: './fila.html',
   styleUrl: './fila.scss',
 })

@@ -17,11 +17,7 @@
                         </small>
                     </div>
                     <span class="badge-tipo ms-2 flex-shrink-0" [class.preferencial]="isPreferencial">
-                        @if (isPreferencial) {
-                        👑 Preferencial
-                        } @else {
-                        🎟️ Normal
-                        }
+                        {{ isPreferencial ? '👑' : '🎟️' }} {{ tipo | tipoFila }}
                     </span>
                 </div>
 

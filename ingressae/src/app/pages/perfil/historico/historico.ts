@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { Ingresso } from '../../../models/ingresso';
 import { insertionSort } from '../../../shared/estruturas/insertion-sort';
 import { ShowService } from '../../../services/show';
+import { TipoFilaPipe } from '../../../shared/pipes/tipo-fila-pipe';
 
 @Component({
   selector: 'app-historico',
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe, TipoFilaPipe],
   templateUrl: './historico.html',
   styleUrl: './historico.scss',
 })
