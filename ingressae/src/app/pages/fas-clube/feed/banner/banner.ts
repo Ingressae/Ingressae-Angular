@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth';
+import { FasClube } from '../../../../models/fas-clube';
 
 @Component({
   selector: 'app-banner',
@@ -9,16 +10,16 @@ import { AuthService } from '../../../../services/auth';
 })
 export class Banner {
   @Input({ required: true }) isMembro: boolean = false;
-  @Input({ required: true }) idFaClube: string = '1';
+  @Input() clube!: FasClube;
 
-  constructor(private AuthService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   curtirClube() {
     if (!this.isMembro) {
-      this.AuthService.adicionarAoFasClube(this.idFaClube);
+      this.authService.adicionarAoFasClube(this.clube?.id);
       this.isMembro = true;
     } else {
-      this.AuthService.removerDoFasClube(this.idFaClube);
+      this.authService.removerDoFasClube(this.clube?.id);
       this.isMembro = false;
     }
   }

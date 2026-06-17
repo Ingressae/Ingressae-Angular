@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Banner } from './banner/banner';
 import { Comentarios } from '../comentarios/comentarios';
-import { FasClube } from '../../../services/fas-clube';
 import { AuthService } from '../../../services/auth';
 import { QuickSort } from '../../../shared/estruturas/quick-sort';
 import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FasClubeService } from '../../../services/fas-clube';
+import { FasClube } from '../../../models/fas-clube';
+import { RouterLink } from '@angular/router';
+import { ToastService } from '../../../services/toast';
 
 @Component({
   selector: 'app-feed',
-  imports: [Banner, Comentarios, NgIf, FormsModule],
+  imports: [Banner, Comentarios, NgIf, FormsModule, RouterLink],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })
@@ -20,14 +23,16 @@ export class Feed implements OnInit {
 
   //usado lista por motivos de facilidade de manipulação e ordenação
 
+  @Input({ required: true }) clube!: FasClube;
+
   isEditandoNovoPost: boolean = false;
   novoComentario = '';
   toastVisivel = false;
-  idFaClube = '2';
 
   constructor(
-    private fasClubeService: FasClube,
+    private fasClubeService: FasClubeService,
     private AuthService: AuthService,
+    private toast: ToastService,
   ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
@@ -66,7 +71,6 @@ export class Feed implements OnInit {
     );
   }
 
-  //TODO : validar se ele pertence a algum clube
   possivelNovoPost() {
     console.log(this.isUsuarioFa());
     if (this.isUsuarioFa()) {
@@ -77,14 +81,10 @@ export class Feed implements OnInit {
   }
 
   isUsuarioFa() {
-    return this.AuthService.participaDoFasClube(this.idFaClube);
+    return this.AuthService.participaDoFasClube(this.clube?.id ?? '0');
   }
 
   mostrarToast() {
-    this.toastVisivel = true;
-
-    setTimeout(() => {
-      this.toastVisivel = false;
-    }, 3000);
+    this.toast.erro('Participe do fã clube para comentar');
   }
 }

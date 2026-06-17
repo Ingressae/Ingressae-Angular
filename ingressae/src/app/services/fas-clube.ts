@@ -4,7 +4,7 @@ import { Comentario } from '../models/comentario';
 @Injectable({
   providedIn: 'root',
 })
-export class FasClube {
+export class FasClubeService {
   private comentarios: Comentario[] = [
     {
       id: '1',
