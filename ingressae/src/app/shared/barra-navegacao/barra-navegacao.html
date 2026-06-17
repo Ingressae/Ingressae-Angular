@@ -1,24 +1,34 @@
 <nav class="navbar">
 
-<a
-  routerLink="/inicio"
-  class="logo">
+  <a
+    routerLink="/inicio"
+    class="logo">
 
-  <img
-    src="assets/images/nome_sem_fundo.png"
-    alt="Ingressaê"
-    class="logo-image"
-  />
+    <img
+      src="assets/images/nome_sem_fundo.png"
+      alt="Ingressaê"
+      class="logo-image"
+    />
 
-</a>
+  </a>
 
-  <div class="nav-links">
+  <button
+    class="hamburger"
+    (click)="toggleMobileMenu()">
+
+    ☰
+
+  </button>
+
+  <div
+    class="nav-links"
+    [class.mobile-open]="mobileMenuAberto">
 
     <a
       routerLink="/inicio"
       routerLinkActive="active"
       class="nav-item">
-     Shows
+      Shows
     </a>
 
     <a
@@ -32,10 +42,11 @@
 
   <div
     class="user-area"
+    [class.mobile-open]="mobileMenuAberto"
     (click)="toggleMenu()">
 
     <app-avatar
-      [iniciais]="'MD'">
+      [iniciais]="'MS'">
     </app-avatar>
 
     <span class="arrow">

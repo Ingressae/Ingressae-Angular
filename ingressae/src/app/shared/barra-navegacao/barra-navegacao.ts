@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Avatar } from '../avatar/avatar';
+import { ToastService } from '../../services/toast';
 
 @Component({
   selector: 'app-barra-navegacao',
@@ -18,13 +19,21 @@ import { Avatar } from '../avatar/avatar';
 export class BarraNavegacaoComponent {
 
   menuAberto = false;
+  mobileMenuAberto = false;
+
+  
 
   constructor(
-    private router: Router
+    private router: Router,
+     private toast: ToastService
   ) {}
 
   toggleMenu(): void {
     this.menuAberto = !this.menuAberto;
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuAberto = !this.mobileMenuAberto;
   }
 
   fecharMenu(): void {
@@ -33,7 +42,7 @@ export class BarraNavegacaoComponent {
 
   logout(): void {
 
-    console.log('Usuário deslogado');
+    this.toast.aviso('Usuário deslogado');
 
     this.fecharMenu();
 

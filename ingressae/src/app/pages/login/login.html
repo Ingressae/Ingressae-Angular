@@ -1,0 +1,86 @@
+<div class="container bg-ingr ">
+  <div class="row justify-content-center mt-5">
+
+    <div class="col-md-5">
+
+      <div class="card shadow bg-ingr rounded-3 text-white border-gradient">
+
+        <div class="card-body">
+
+          <h3 class="text-center mb-4">
+            Login
+          </h3>
+
+          <form [formGroup]="loginForm" (ngSubmit)="entrar()">
+
+            <div class="mb-3">
+
+              <label class="form-label">
+                E-mail
+              </label>
+
+              <input type="email" class="form-control text-light bg-dark border border-secondary rounded-2"
+                formControlName="email">
+
+              @if (email?.touched && email?.invalid) {
+
+              <small class="text-danger">
+
+                @if (email?.errors?.['required']) {
+                E-mail obrigatório.
+                }
+
+                @if (email?.errors?.['email']) {
+                E-mail inválido.
+                }
+
+              </small>
+
+              }
+
+            </div>
+
+            <div class="mb-3">
+
+              <label class="form-label">
+                Senha
+              </label>
+
+              <input type="password" class="form-control text-light bg-dark border border-secondary rounded-2"
+                formControlName="senha">
+
+              @if (senha?.touched && senha?.invalid) {
+
+              <small class="text-danger">
+
+                @if (senha?.errors?.['required']) {
+                Senha obrigatória.
+                }
+
+                @if (senha?.errors?.['minlength']) {
+                A senha deve ter pelo menos 6 caracteres.
+                }
+
+              </small>
+
+              }
+
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+
+              Entrar
+
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

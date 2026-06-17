@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import * as jogo from './jogo';
+import { Login } from './login';
 
-describe('Jogo', () => {
-  let component: any;
-  let fixture: ComponentFixture<any>;
+describe('Login', () => {
+  let component: Login;
+  let fixture: ComponentFixture<Login>;
 
   beforeEach(async () => {
-    const Comp: any = (jogo as any).Jogo || (jogo as any).JogoComponent || (jogo as any).default;
-
     await TestBed.configureTestingModule({
-      declarations: [Comp]
+      imports: [Login]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Comp);
+    fixture = TestBed.createComponent(Login);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
