@@ -5,13 +5,12 @@ import { CardShow, Show } from './card-show/card-show';
 import { AuthService } from '../../services/auth';
 import { ToastService } from '../../services/toast';
 import { EstadoVazio } from '../../shared/estado-vazio/estado-vazio';
-import { Loading } from '../../shared/loading/loading';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, CardShow, FormsModule, EstadoVazio, Loading],
+  imports: [CommonModule, CardShow, FormsModule, EstadoVazio],
   templateUrl: './inicio.html',
   styleUrls: ['./inicio.scss'],
 })
