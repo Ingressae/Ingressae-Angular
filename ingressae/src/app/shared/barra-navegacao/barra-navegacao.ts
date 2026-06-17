@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Avatar } from '../avatar/avatar';
 import { ToastService } from '../../services/toast';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-barra-navegacao',
@@ -11,7 +12,8 @@ import { ToastService } from '../../services/toast';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    Avatar
+    Avatar,
+    
   ],
   templateUrl: './barra-navegacao.html',
   styleUrl: './barra-navegacao.scss'
@@ -25,9 +27,32 @@ export class BarraNavegacaoComponent {
 
   constructor(
     private router: Router,
-     private toast: ToastService
+     private toast: ToastService,
+     private authService: AuthService
   ) {}
 
+  get iniciaisUsuario(): string {
+
+  const usuario = this.authService.usuario();
+
+  if (!usuario) {
+    return '??';
+  }
+
+  return usuario.nome
+    .split(' ')
+    .map(nome => nome[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+
+}
+
+get nomeUsuario(): string {
+
+  return this.authService.usuario()?.nome ?? 'Usuário';
+
+}
   toggleMenu(): void {
     this.menuAberto = !this.menuAberto;
   }

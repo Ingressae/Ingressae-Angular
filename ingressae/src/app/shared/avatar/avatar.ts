@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './avatar.scss',
 })
 export class Avatar {
-  @Input() iniciais ='MD';
+  @Input() iniciais ='MS';
 
 }
