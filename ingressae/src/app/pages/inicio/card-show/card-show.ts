@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 export interface Show {
   id: number;
@@ -14,7 +15,7 @@ export interface Show {
 @Component({
   selector: 'app-card-show',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './card-show.html',
   styleUrls: ['./card-show.scss']
 })

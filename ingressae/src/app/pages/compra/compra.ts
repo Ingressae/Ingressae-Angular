@@ -9,10 +9,11 @@ import { ToastService } from '../../services/toast';
 import { StatusIngresso } from '../../enums/status-ingresso';
 import { TipoIngresso } from '../../enums/tipo-ingresso';
 import { IngressoService } from '../../services/ingresso';
+import { TipoFilaPipe } from '../../shared/pipes/tipo-fila-pipe';
 
 @Component({
   selector: 'app-compra',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, TipoFilaPipe],
   templateUrl: './compra.html',
   styleUrl: './compra.scss',
 })
@@ -138,7 +139,7 @@ export class Compra implements OnInit, OnDestroy {
     this.assentosSelecionados.forEach((assento, index) => {
       this.ingressoService.adicionar({
         id: crypto.randomUUID(),
-        showId: this.show?.nome ?? '',
+        showId: this.show?.id ?? '', // usa o ID, não o nome
         usuarioId: '1',
         tipo: this.isPreferencial ? TipoIngresso.PREFERENCIAL : TipoIngresso.NORMAL,
         compradoEm: this.show?.dataEvento ?? new Date(),

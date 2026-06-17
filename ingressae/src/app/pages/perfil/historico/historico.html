@@ -17,14 +17,14 @@
             <ng-container *ngIf="proximosOrdenados.length > 0; else vazio">
                 <div *ngFor="let ingresso of proximosOrdenados" class="item-ingresso">
                     <div>
-                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <p class="text-white fw-semibold mb-1">Show {{ nomeShow(ingresso.showId) }}</p>
                         <small class="text-secondary">
                             📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
                         </small>
                     </div>
                     <div class="d-flex gap-2">
                         <span class="badge-tipo" [class.preferencial]="ingresso.tipo === 'PREFERENCIAL'">
-                            {{ ingresso.tipo === 'PREFERENCIAL' ? 'Preferencial' : 'Normal' }}
+                            {{ ingresso.tipo | tipoFila }}
                         </span>
                         <span class="badge-status confirmado">Confirmado</span>
                     </div>
@@ -36,7 +36,7 @@
             <ng-container *ngIf="historicoOrdenado.length > 0; else vazio">
                 <div *ngFor="let ingresso of historicoOrdenado" class="item-ingresso">
                     <div>
-                        <p class="text-white fw-semibold mb-1">Show {{ ingresso.showId }}</p>
+                        <p class="text-white fw-semibold mb-1">Show {{ nomeShow(ingresso.showId) }}</p>
                         <small class="text-secondary">
                             📅 {{ ingresso.compradoEm | date: 'dd MMM yyyy' }}
                         </small>

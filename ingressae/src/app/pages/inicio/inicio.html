@@ -1,6 +1,6 @@
 <main class="inicio-container">
 
-<section class="hero">
+  <section class="hero">
     <div class="hero-badge">
       <i class="bi bi-stars icon-sparkle"></i> Fila justa, ingressos garantidos
     </div>
@@ -14,9 +14,29 @@
     </p>
   </section>
 
-  <section class="shows-grid">
-    <app-card-show *ngFor="let show of shows" [show]="show">
-    </app-card-show>
-  </section>
+  <!-- Barra de Busca -->
+  <div class="search-container mb-5">
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input type="text" [(ngModel)]="termoBusca" placeholder="Buscar evento por nome ou artista..."
+        class="search-input">
+    </div>
+
+    <!-- Estado Vazio -->
+<app-estado-vazio *ngIf="!carregando() && !temResultados()" titulo="Nenhum evento encontrado"
+      mensagem="Tente buscar por outro nome ou artista."></app-estado-vazio>
+
+    <br>
+
+  </div>
+
+    <section class="shows-grid" *ngIf="!carregando()">
+      
+      <app-card-show *ngFor="let show of showsFiltrados()" [show]="show">
+      </app-card-show>
+      
+    </section>
+
+
 
 </main>

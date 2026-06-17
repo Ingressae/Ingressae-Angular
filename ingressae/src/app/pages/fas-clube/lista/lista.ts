@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,58 +6,73 @@ import { FasClube as FasClubeModel } from '../../../models/fas-clube';
 import { AuthService } from '../../../services/auth';
 import { ToastService } from '../../../services/toast';
 import { EstadoVazio } from '../../../shared/estado-vazio/estado-vazio';
-import { Loading } from '../../../shared/loading/loading';
 import { BuscaSequencial } from '../../../shared/estruturas/busca-sequencial';
 import { CardPostagem } from '../card-postagem/card-postagem';
+import { FasClubeService } from '../../../services/fas-clube';
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule, FormsModule, EstadoVazio, Loading, CardPostagem],
+  imports: [CommonModule, FormsModule, EstadoVazio, CardPostagem],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',
 })
-export class Lista implements OnInit {
-  fasClubes = signal<FasClubeModel[]>([]);
-  termoBusca = signal<string>('');
-  carregando = signal<boolean>(true);
+export class Lista{
 
-  // Forçamos a reatividade criando um sinal para as inscrições
-  inscricoesAtualizadas = signal<number>(0);
+  private authService = inject(AuthService);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+  private fasClubeService = inject(FasClubeService);
+
+  fasClubes = this.fasClubeService.buscarTodos();
+
+  termoBusca = signal(''); carregando = signal(false);
+
+  usuarioAtual = computed(() => this.authService.usuario());
+
+  fasClubesDoUsuario = computed(() => { return this.usuarioAtual()?.fasClubes ?? []; });
+
+  quantidadeInscricoes = computed(() => this.fasClubesDoUsuario().length);
+
+  atingiuLimiteInscricoes = computed(() => this.quantidadeInscricoes() >= 6);
 
   fasClubesFiltrados = computed(() => {
     const termo = this.termoBusca();
-    if (!termo) return this.fasClubes();
-    const porArtista = BuscaSequencial.filtrar(this.fasClubes(), termo, 'nomeArtista');
-    const porNome = BuscaSequencial.filtrar(this.fasClubes(), termo, 'nome');
+
+    if (!termo) {
+      return this.fasClubes();
+    }
+
+    const porArtista = BuscaSequencial.filtrar(
+      this.fasClubes(),
+      termo,
+      'nomeArtista'
+    );
+
+    const porNome = BuscaSequencial.filtrar(
+      this.fasClubes(),
+      termo,
+      'nome'
+    );
+
     const todos = [...porArtista];
-    porNome.forEach((clube: any) => {
-      if (!todos.some((c) => c.id === clube.id)) todos.push(clube);
+
+    porNome.forEach((clube: FasClubeModel) => {
+      if (!todos.some(c => c.id === clube.id)) {
+        todos.push(clube);
+      }
     });
+
     return todos;
+
   });
 
-  usuarioAtual = computed(() => this.authService.usuario());
-  
-  // Aqui garantimos que o Angular veja a mudança no array
-  fasClubesDoUsuario = computed(() => {
-    this.inscricoesAtualizadas(); // Dependência para forçar atualização
-    return this.usuarioAtual()?.fasClubes || [];
-  });
-
-  quantidadeInscricoes = computed(() => this.fasClubesDoUsuario().length);
-  atingiuLimiteInscricoes = computed(() => this.quantidadeInscricoes() >= 6);
   temResultados = computed(() => this.fasClubesFiltrados().length > 0);
 
-  constructor(
-    private authService: AuthService,
-    private toastService: ToastService,
-    private router: Router
-  ) {}
+  isMembro(clubeId: string): boolean { return this.fasClubesDoUsuario().includes(clubeId); }
 
-  ngOnInit(): void {
-    this.carregarFasClubes();
-  }
+  entrarClube(clube: FasClubeModel): void {
+    const usuario = this.usuarioAtual();
 
   carregarFasClubes(): void {
       this.fasClubes.set([
@@ -77,36 +92,33 @@ export class Lista implements OnInit {
   isMembro(clubeId: string): boolean {
     return this.fasClubesDoUsuario().includes(clubeId);
   }
+    if (!usuario) return;
 
+    const inscricoesAtuais = [...usuario.fasClubes];
 
-entrarClube(clube: FasClubeModel): void {
-  const usuario = this.usuarioAtual();
-  if (!usuario) return;
-
-  const inscricoesAtuais = [...usuario.fasClubes];
-
-  // 1. Verifica se já é membro
-  if (inscricoesAtuais.includes(clube.id)) return;
-
-  // 2. Verifica o limite de 6
-  if (inscricoesAtuais.length >= 6) {
-    this.toastService.erro('Limite de 6 fã-clubes atingido!');
-    return;
-  }
-
-  // 3. Adiciona e avisa o serviço para salvar
-  inscricoesAtuais.push(clube.id);
-  this.authService.atualizarInscricoes(inscricoesAtuais);
-  this.toastService.sucesso(`Você entrou no fã-clube ${clube.nome}!`);
-}
-
-
-  verClube(clube: FasClubeModel): void {
-    if (clube.id === '2') {
-      this.router.navigate(['/feed']);
+    if (inscricoesAtuais.includes(clube.id)) {
       return;
     }
 
+    if (inscricoesAtuais.length >= 6) {
+      this.toastService.erro('Limite de 6 fã-clubes atingido!');
+      return;
+    }
+
+    inscricoesAtuais.push(clube.id);
+
+    this.authService.atualizarInscricoes(inscricoesAtuais);
+
+    this.toastService.sucesso(
+      `Você entrou no fã-clube ${clube.nome}!`
+    );
+
+  }
+
+  verClube(clube: FasClubeModel): void {
+    if (clube.id === '2') { this.router.navigate(['/feed']); return; }
+
     this.router.navigate(['/fas-clubes', clube.id]);
+
   }
 }

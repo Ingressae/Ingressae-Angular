@@ -6,11 +6,12 @@ import { Lista } from './pages/fas-clube/lista/lista';
 import { Detalhe } from './pages/fas-clube/detalhe/detalhe';
 import { Compra } from './pages/compra/compra';
 import { Feed } from './pages/fas-clube/feed/feed';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -40,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'compra/:showId/:tipo',
     component: Compra,
+  },
+  {
+    path: 'login',
+    component: Login,
   },
   {
     path: '**',

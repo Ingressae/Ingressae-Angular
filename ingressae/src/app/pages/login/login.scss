@@ -1,0 +1,14 @@
+.border-gradient {
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+
+  background:
+    linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+    linear-gradient(90deg, #7513ca, #4a00e0);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
