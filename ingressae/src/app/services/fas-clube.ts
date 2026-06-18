@@ -46,8 +46,6 @@ export class FasClubeService {
   }
 
   buscarPorId(id: string): FasClube | undefined {
-    console.log(id);
-    console.log(this.clubes().find((c) => c.id === id));
     return this.clubes().find((c) => c.id === id);
   }
 

@@ -21,7 +21,6 @@ export class Banner implements OnInit {
 
   ngOnInit(): void {
     this.clube = this.faClubleService.buscarPorId(this.idFaClube) ?? null;
-    console.log(this.clube);
   }
 
   curtirClube() {
