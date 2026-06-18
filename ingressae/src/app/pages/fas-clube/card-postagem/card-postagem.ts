@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FasClube } from '../../../models/fas-clube';
 import { ImagemClubeService } from '../../../services/imagem-clube';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-card-postagem',
   standalone: true,
@@ -18,7 +18,10 @@ export class CardPostagem {
   @Output() entrar = new EventEmitter<FasClube>();
   @Output() ver = new EventEmitter<FasClube>();
 
-  constructor(private imagemClubeService: ImagemClubeService) {}
+  constructor(
+    private imagemClubeService: ImagemClubeService,
+    private router: Router,
+  ) {}
 
   obterImagemClube(): string | undefined {
     return this.imagemClubeService.obterImagemClube(this.clube.id);

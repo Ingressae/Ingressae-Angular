@@ -6,7 +6,6 @@ import { FasClube } from '../models/fas-clube';
   providedIn: 'root',
 })
 export class FasClubeService {
-
   private clubes = signal<FasClube[]>([
     {
       id: '1',
@@ -14,7 +13,7 @@ export class FasClubeService {
       nomeArtista: 'The Weeknd',
       imagemCapaUrl: '',
       totalMembros: 524585,
-      showId: 's1'
+      showId: 's1',
     },
     {
       id: '2',
@@ -22,7 +21,7 @@ export class FasClubeService {
       nomeArtista: 'Coldplay',
       imagemCapaUrl: '',
       totalMembros: 814521,
-      showId: 's2'
+      showId: 's2',
     },
     {
       id: '3',
@@ -30,7 +29,7 @@ export class FasClubeService {
       nomeArtista: 'Taylor Swift',
       imagemCapaUrl: '',
       totalMembros: 268301,
-      showId: 's3'
+      showId: 's3',
     },
     {
       id: '4',
@@ -38,8 +37,8 @@ export class FasClubeService {
       nomeArtista: 'BTS',
       imagemCapaUrl: '',
       totalMembros: 561272,
-      showId: 's4'
-    }
+      showId: 's4',
+    },
   ]);
 
   buscarTodos() {
@@ -47,7 +46,9 @@ export class FasClubeService {
   }
 
   buscarPorId(id: string): FasClube | undefined {
-    return this.clubes().find(c => c.id === id);
+    console.log(id);
+    console.log(this.clubes().find((c) => c.id === id));
+    return this.clubes().find((c) => c.id === id);
   }
 
   private comentarios: Comentario[] = [
@@ -120,7 +121,7 @@ export class FasClubeService {
       qtdlike: 203,
     },
   ];
-  
+
   getComentarios(): Comentario[] {
     return this.comentarios;
   }

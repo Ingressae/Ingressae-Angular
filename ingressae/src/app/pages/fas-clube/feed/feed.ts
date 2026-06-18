@@ -7,6 +7,7 @@ import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FasClubeService } from '../../../services/fas-clube';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -23,15 +24,17 @@ export class Feed implements OnInit {
   isEditandoNovoPost: boolean = false;
   novoComentario = '';
   toastVisivel = false;
-  idFaClube = '2';
+  idFaClube = '1';
 
   constructor(
     private fasClubeService: FasClubeService,
     private AuthService: AuthService,
+    private route: ActivatedRoute,
   ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
+    this.idFaClube = this.route.snapshot.paramMap.get('id') ?? '0';
   }
 
   adicionarFormatacao(marcador: string): void {
@@ -66,7 +69,6 @@ export class Feed implements OnInit {
     );
   }
 
-  //TODO : validar se ele pertence a algum clube
   possivelNovoPost() {
     console.log(this.isUsuarioFa());
     if (this.isUsuarioFa()) {
@@ -79,7 +81,7 @@ export class Feed implements OnInit {
   isUsuarioFa() {
     return this.AuthService.participaDoFasClube(this.idFaClube);
   }
-
+  //TODO : arrumar o toast
   mostrarToast() {
     this.toastVisivel = true;
 

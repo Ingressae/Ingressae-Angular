@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth';
+import { FasClubeService } from '../../../../services/fas-clube';
+import { FasClube } from '../../../../models/fas-clube';
 
 @Component({
   selector: 'app-banner',
@@ -7,11 +9,20 @@ import { AuthService } from '../../../../services/auth';
   templateUrl: './banner.html',
   styleUrl: './banner.scss',
 })
-export class Banner {
+export class Banner implements OnInit {
   @Input({ required: true }) isMembro: boolean = false;
-  @Input({ required: true }) idFaClube: string = '1';
+  @Input({ required: true }) idFaClube: string = '0';
+  clube!: FasClube | null;
 
-  constructor(private AuthService: AuthService) {}
+  constructor(
+    private AuthService: AuthService,
+    private faClubleService: FasClubeService,
+  ) {}
+
+  ngOnInit(): void {
+    this.clube = this.faClubleService.buscarPorId(this.idFaClube) ?? null;
+    console.log(this.clube);
+  }
 
   curtirClube() {
     if (!this.isMembro) {

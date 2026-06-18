@@ -1,12 +1,7 @@
 <div class="card" [class.card-membro]="isMembro">
   <!-- Imagem de Capa -->
   <div class="card-image-container">
-    <img 
-      *ngIf="obterImagemClube(); else imagemPadrao"
-      [src]="obterImagemClube()" 
-      [alt]="clube.nome"
-      class="card-image"
-    >
+    <img *ngIf="obterImagemClube(); else imagemPadrao" [src]="obterImagemClube()" [alt]="clube.nome" class="card-image">
     <ng-template #imagemPadrao>
       <div class="card-image-placeholder">
         <i class="bi bi-images"></i>
@@ -49,11 +44,7 @@
           <i class="bi bi-eye"></i>
           Visualizar
         </button>
-        <button 
-          class="btn-outline btn-entrar" 
-          (click)="onEntrar($event)"
-          [disabled]="limiteAtingido"
-        >
+        <button class="btn-outline btn-entrar" (click)="onEntrar($event)" [disabled]="limiteAtingido">
           <i class="bi bi-plus-circle"></i>
           {{ limiteAtingido ? 'Limite atingido' : 'Entrar' }}
         </button>

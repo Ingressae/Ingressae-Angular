@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: Inicio,
   },
   {
-    path: 'feed',
+    path: 'feed/:id',
     component: Feed,
   },
   {
