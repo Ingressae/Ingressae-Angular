@@ -23,20 +23,18 @@
     </div>
 
     <!-- Estado Vazio -->
-<app-estado-vazio *ngIf="!carregando() && !temResultados()" titulo="Nenhum evento encontrado"
+    <app-estado-vazio *ngIf="!carregando() && !temResultados()" titulo="Nenhum evento encontrado"
       mensagem="Tente buscar por outro nome ou artista."></app-estado-vazio>
 
     <br>
 
   </div>
 
-    <section class="shows-grid" *ngIf="!carregando()">
-      
-      <app-card-show *ngFor="let show of showsFiltrados()" [show]="show">
-      </app-card-show>
-      
-    </section>
+  <section class="shows-grid" *ngIf="!carregando()">
 
+    <app-card-show *ngFor="let show of showsFiltrados()" [show]="show">
+    </app-card-show>
 
+  </section>
 
 </main>

@@ -13,7 +13,7 @@ export class IngressoService {
   private ingressos = signal<Ingresso[]>([
     {
       id: '1',
-      showId: '1', // The Weeknd World Tour
+      showId: '1', // BTS
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
       compradoEm: new Date('2026-03-15'),
@@ -21,7 +21,7 @@ export class IngressoService {
     },
     {
       id: '2',
-      showId: '3', // Taylor Swift — Eras Tour
+      showId: '2', // Twice
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2026-05-10'),
@@ -29,7 +29,7 @@ export class IngressoService {
     },
     {
       id: '3',
-      showId: '2', // Coldplay Music Of The Spheres
+      showId: '3', // Iron Maiden
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
       compradoEm: new Date('2026-04-22'),
@@ -37,7 +37,7 @@ export class IngressoService {
     },
     {
       id: '4',
-      showId: '4', // Imagine Dragons — Loom Tour
+      showId: '4', // Coldplay
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2025-11-20'),
@@ -45,7 +45,7 @@ export class IngressoService {
     },
     {
       id: '5',
-      showId: '5', // Dua Lipa — Radical Optimism
+      showId: '5', // Falcão
       usuarioId: '1',
       tipo: TipoIngresso.NORMAL,
       compradoEm: new Date('2025-09-05'),
@@ -53,7 +53,7 @@ export class IngressoService {
     },
     {
       id: '6',
-      showId: '6', // Linkin Park — From Zero Tour
+      showId: '6', // Taylor Swift
       usuarioId: '1',
       tipo: TipoIngresso.PREFERENCIAL,
       compradoEm: new Date('2025-08-18'),

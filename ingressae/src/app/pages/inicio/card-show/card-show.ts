@@ -1,16 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-export interface Show {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-  gradientClass: string;
-  prefAvailable: boolean;
-  normalAvailable: boolean;
-}
+import { Show } from '../../../models/show';
 
 @Component({
   selector: 'app-card-show',
@@ -20,5 +11,29 @@ export interface Show {
   styleUrls: ['./card-show.scss']
 })
 export class CardShow {
-  @Input() show!: Show;
+  @Input({ required: true }) show!: Show;
+
+  // Lista de gradientes para alternar visualmente entre os cards
+  private gradientes = ['grad-purple', 'grad-blue', 'grad-redPurple', 'grad-cyan', 'grad-orange'];
+
+  get gradientClass(): string {
+    const indice = parseInt(this.show.id, 10) % this.gradientes.length;
+    return this.gradientes[indice];
+  }
+
+  get dataFormatada(): string {
+    return this.show.dataEvento.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+  }
+
+  get prefAvailable(): boolean {
+    return new Date() >= this.show.dataFilaPreferencial;
+  }
+
+  get normalAvailable(): boolean {
+    return new Date() >= this.show.dataFilaNormal;
+  }
 }

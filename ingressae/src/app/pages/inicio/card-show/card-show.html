@@ -1,24 +1,24 @@
 <div class="card">
-  <div class="card-gradient" [ngClass]="show.gradientClass"></div>
+  <div class="card-gradient" [ngClass]="gradientClass"></div>
 
   <div class="card-content">
     <span class="badge-show">SHOW</span>
 
-    <h3 class="title">{{ show.title }}</h3>
+    <h3 class="title">{{ show.nome }}</h3>
 
     <div class="info-row">
       <i class="bi bi-calendar4"></i>
-      <span>{{ show.date }}</span>
+      <span>{{ dataFormatada }}</span>
     </div>
 
     <div class="info-row">
       <i class="bi bi-geo-alt"></i>
-      <span>{{ show.location }}</span>
+      <span>{{ show.local }}</span>
     </div>
 
     <div class="action-buttons">
       <button class="btn-outline btn-saibaMais"><i class="bi bi-search"></i> Saiba Mais</button>
-      <button class="btn-outline btn-faClube" [routerLink]="['/fas-clubes', show.id]">
+      <button class="btn-outline btn-faClube" [routerLink]="['/fas-clubes', show.fasClubeId]">
         <i class="bi bi-star"></i> Fã Clube
       </button>
     </div>
@@ -29,22 +29,19 @@
 
     <div class="queue-section">
       <span class="queue-label">ENTRAR NA FILA</span>
-      
-      <button class="btn-queue btn-pref" 
-              [disabled]="!show.prefAvailable"
-              [routerLink]="['/fila', show.id, 'preferencial']">
+
+      <button class="btn-queue btn-pref" [disabled]="!prefAvailable" [routerLink]="['/fila', show.id, 'preferencial']">
         <span class="queue-name"><i class="bi bi-gem"></i> Fila Preferencial</span>
         <span class="badge-status">
-          {{ show.prefAvailable ? 'Disponível' : 'Indisponível' }}
+          {{ prefAvailable ? 'Disponível' : 'Indisponível' }}
         </span>
       </button>
 
-      <button class="bi-queue btn-queue btn-normal" 
-              [disabled]="!show.normalAvailable"
-              [routerLink]="['/fila', show.id, 'normal']">
+      <button class="bi-queue btn-queue btn-normal" [disabled]="!normalAvailable"
+        [routerLink]="['/fila', show.id, 'normal']">
         <span class="queue-name"><i class="bi bi-ticket-perforated"></i> Fila Normal</span>
         <span class="badge-status">
-          {{ show.normalAvailable ? 'Disponível' : 'Indisponível' }}
+          {{ normalAvailable ? 'Disponível' : 'Indisponível' }}
         </span>
       </button>
     </div>
