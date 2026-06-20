@@ -71,7 +71,7 @@ get nomeUsuario(): string {
 
     this.fecharMenu();
 
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/login']);
   }
 
 }
