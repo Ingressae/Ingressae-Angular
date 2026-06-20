@@ -74,4 +74,9 @@ get nomeUsuario(): string {
     this.router.navigate(['/login']);
   }
 
+
+  get estaLogado(): boolean {
+  return this.authService.estaLogado();
+}
+
 }
