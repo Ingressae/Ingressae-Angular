@@ -12,6 +12,7 @@ export class FasClubeService {
       nome: 'Armys',
       nomeArtista: 'BTS',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(53, 0, 122, 0.95), rgba(56, 32, 66, 0.85))',
       totalMembros: 524585,
       showId: '1',
     },
@@ -20,6 +21,7 @@ export class FasClubeService {
       nome: 'Once',
       nomeArtista: 'Twice',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(242, 122, 153, 0.95), rgba(255, 218, 200, 0.85))',
       totalMembros: 814521,
       showId: '2',
     },
@@ -28,6 +30,7 @@ export class FasClubeService {
       nome: 'Maiden Maniacs',
       nomeArtista: 'Iron Maiden',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(26, 26, 68, 0.95), rgba(103, 11, 11, 0.85))',
       totalMembros: 268301,
       showId: '3',
     },
@@ -36,6 +39,7 @@ export class FasClubeService {
       nome: 'Coldplayers BR',
       nomeArtista: 'Coldplay',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(28, 133, 243, 0.95), rgba(129, 201, 242, 0.85))',
       totalMembros: 561272,
       showId: '4',
     },
@@ -44,6 +48,7 @@ export class FasClubeService {
       nome: 'Falcãonaticos',
       nomeArtista: 'Falcão',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(251, 161, 37, 0.95), rgba(255, 221, 146, 0.85))',
       totalMembros: 561272,
       showId: '5',
     },
@@ -52,6 +57,7 @@ export class FasClubeService {
       nome: 'Swifties Brasil',
       nomeArtista: 'Taylor Swift',
       imagemCapaUrl: '',
+      bannerGradient: 'linear-gradient(135deg, rgba(255, 135, 178, 0.95), rgba(147, 51, 153, 0.85))',
       totalMembros: 268301,
       showId: '6',
     },
@@ -63,6 +69,26 @@ export class FasClubeService {
 
   buscarPorId(id: string): FasClube | undefined {
     return this.clubes().find((c) => c.id === id);
+  }
+
+  adicionarMembro(clubeId: string): void {
+    this.clubes.update((clubes) =>
+      clubes.map((clube) =>
+        clube.id === clubeId
+          ? { ...clube, totalMembros: clube.totalMembros + 1 }
+          : clube,
+      ),
+    );
+  }
+
+  removerMembro(clubeId: string): void {
+    this.clubes.update((clubes) =>
+      clubes.map((clube) =>
+        clube.id === clubeId
+          ? { ...clube, totalMembros: Math.max(clube.totalMembros - 1, 0) }
+          : clube,
+      ),
+    );
   }
 
   private comentarios: Comentario[] = [

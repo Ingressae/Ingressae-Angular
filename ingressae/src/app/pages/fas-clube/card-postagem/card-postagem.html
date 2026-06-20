@@ -32,9 +32,13 @@
     <div class="action-buttons">
       <!-- Se é membro -->
       <ng-container *ngIf="isMembro">
-        <button class="btn-outline btn-ver" (click)="onVer($event)">
+        <button class="btn-outline btn-ver me-2" (click)="onVer($event)">
           <i class="bi bi-eye"></i>
           Ver Clube
+        </button>
+        <button class="btn-outline btn-sair" (click)="onSair($event)">
+          <i class="bi bi-box-arrow-right"></i>
+          Sair do clube
         </button>
       </ng-container>
 

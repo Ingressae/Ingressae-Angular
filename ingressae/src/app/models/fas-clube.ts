@@ -3,6 +3,7 @@ export interface FasClube {
     nome: string;
     nomeArtista: string;
     imagemCapaUrl: string;
+    bannerGradient: string;
     totalMembros: number;
     showId: string;
 }
