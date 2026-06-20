@@ -8,12 +8,13 @@ import { AuthService } from '../../../services/auth';
 import { ToastService } from '../../../services/toast';
 import { BuscaSequencial } from '../../../shared/estruturas/busca-sequencial';
 import { CardPostagem } from '../card-postagem/card-postagem';
+import { EstadoVazio } from '../../../shared/estado-vazio/estado-vazio';
 import { FasClubeService } from '../../../services/fas-clube';
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardPostagem],
+  imports: [CommonModule, FormsModule, CardPostagem, EstadoVazio],
   templateUrl: './lista.html',
   styleUrl: './lista.scss',
 })

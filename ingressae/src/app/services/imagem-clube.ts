@@ -6,15 +6,13 @@ import { Injectable } from '@angular/core';
 export class ImagemClubeService {
   // Mapa de IDs dos clubes para imagens
   private mapeamentoImagens: { [key: string]: string } = {
-    '1': 'assets/images/fa-clubes/the-weeknd.jpg',
-    '2': 'assets/images/fa-clubes/coldplay.jpg',
-    '3': 'assets/images/fa-clubes/taylor-swift.jpg',
-    '4': 'assets/images/fa-clubes/bts.jpg',
-    '5': 'assets/images/fa-clubes/iron-maiden.jpg',
-    '6': 'assets/images/fa-clubes/linkin-park.jpg',
-    '7': 'assets/images/fa-clubes/twicee.jpg',
-    '8': 'assets/images/fa-clubes/billie-eilish.jpg',
-    '9': 'assets/images/fa-clubes/falcao.jpg',
+    '1': 'assets/images/fa-clubes/bts.jpg',
+    '2': 'assets/images/fa-clubes/twicee.jpg',
+    '3': 'assets/images/fa-clubes/iron-maiden.jpg',
+    '4': 'assets/images/fa-clubes/coldplay.jpg',
+    '5': 'assets/images/fa-clubes/falcao.jpg',
+    '6': 'assets/images/fa-clubes/taylor-swift.jpg',
+
   };
 
   /**
