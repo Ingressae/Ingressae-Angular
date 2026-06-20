@@ -11,7 +11,7 @@ export class FasClubeService {
       id: '1',
       nome: 'Armys',
       nomeArtista: 'BTS',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/bts.jpg',
       totalMembros: 524585,
       showId: '1',
     },
@@ -19,7 +19,7 @@ export class FasClubeService {
       id: '2',
       nome: 'Once',
       nomeArtista: 'Twice',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/twice.jpg',
       totalMembros: 814521,
       showId: '2',
     },
@@ -27,7 +27,7 @@ export class FasClubeService {
       id: '3',
       nome: 'Maiden Maniacs',
       nomeArtista: 'Iron Maiden',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/iron-maiden.jpg',
       totalMembros: 268301,
       showId: '3',
     },
@@ -35,7 +35,7 @@ export class FasClubeService {
       id: '4',
       nome: 'Coldplayers BR',
       nomeArtista: 'Coldplay',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/coldplay.jpg',
       totalMembros: 561272,
       showId: '4',
     },
@@ -43,7 +43,7 @@ export class FasClubeService {
       id: '5',
       nome: 'Falcãonaticos',
       nomeArtista: 'Falcão',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/falcao.jpg',
       totalMembros: 561272,
       showId: '5',
     },
@@ -51,7 +51,7 @@ export class FasClubeService {
       id: '6',
       nome: 'Swifties Brasil',
       nomeArtista: 'Taylor Swift',
-      imagemCapaUrl: '',
+      imagemCapaUrl: 'assets/images/fa-clubes/taylorswift.jpg',
       totalMembros: 268301,
       showId: '6',
     },
@@ -142,5 +142,20 @@ export class FasClubeService {
 
   adicionarComentario(comentario: Comentario): void {
     this.comentarios.unshift(comentario);
+  }
+
+  adicionarMembro(id: string) {
+    this.clubes.update((clubes) =>
+      clubes.map((clube) =>
+        clube.id === id ? { ...clube, totalMembros: clube.totalMembros + 1 } : clube,
+      ),
+    );
+  }
+  removerMembro(id: string) {
+    this.clubes.update((clubes) =>
+      clubes.map((clube) =>
+        clube.id === id ? { ...clube, totalMembros: clube.totalMembros - 1 } : clube,
+      ),
+    );
   }
 }
