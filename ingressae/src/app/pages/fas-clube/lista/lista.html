@@ -37,7 +37,7 @@
     <!-- AQUI ESTÁ A CHAVE: Passamos o limiteAtingido() para cada card -->
     <app-card-postagem d-postagem *ngFor="let clube of fasClubesFiltrados()" [clube]="clube"
       [isMembro]="isMembro(clube.id)" [limiteAtingido]="atingiuLimiteInscricoes()" (entrar)="entrarClube($event)"
-      (ver)="verClube($event)"></app-card-postagem>
+      (sair)="sairClube($event)" (ver)="verClube($event)"></app-card-postagem>
   </div>
 
 
