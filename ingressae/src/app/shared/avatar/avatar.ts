@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './avatar.scss',
 })
 export class Avatar {
-  @Input() iniciais ='MS';
+
+  @Input() iniciais = 'MS';
+
+  @Input() fotoUrl?: string;
 
 }

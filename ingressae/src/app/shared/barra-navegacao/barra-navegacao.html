@@ -46,30 +46,43 @@
     (click)="toggleMenu()">
 
     <app-avatar
-  [iniciais]="iniciaisUsuario">
-</app-avatar>
-
+      [iniciais]="iniciaisUsuario">
+        [fotoUrl]="fotoUsuario">
+    </app-avatar>
 
     <span class="arrow">
       ▼
     </span>
 
-    @if (estaLogado) {
+    @if (menuAberto) {
 
       <div class="dropdown">
 
-        <a
-          routerLink="/perfil"
-          class="dropdown-item"
-          (click)="fecharMenu()">
-          Perfil
-        </a>
+        @if (estaLogado) {
 
-        <button
-          class="dropdown-item logout-button"
-          (click)="logout()">
-          Sair
-        </button>
+          <a
+            routerLink="/perfil"
+            class="dropdown-item"
+            (click)="fecharMenu()">
+            Perfil
+          </a>
+
+          <button
+            class="dropdown-item logout-button"
+            (click)="logout()">
+            Sair
+          </button>
+
+        } @else {
+
+          <a
+            routerLink="/login"
+            class="dropdown-item"
+            (click)="fecharMenu()">
+            Login
+          </a>
+
+        }
 
       </div>
 
