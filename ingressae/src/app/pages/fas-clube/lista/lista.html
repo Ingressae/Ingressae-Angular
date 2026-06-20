@@ -18,8 +18,6 @@
         class="search-input">
     </div>
 
-    <app-estado-vazio *ngIf="!carregando() && !temResultados()"></app-estado-vazio>
-
     <!-- Indicador de Limite (0/6) -->
     <div class="limit-indicator mt-3" *ngIf="usuarioAtual()">
       <div class="d-flex justify-content-between mb-1">
@@ -30,6 +28,8 @@
         <div class="progress-bar-fill" [style.width.%]="(quantidadeInscricoes() / 6) * 100"></div>
       </div>
     </div>
+
+    <app-estado-vazio *ngIf="!carregando() && !temResultados()"></app-estado-vazio>
   </div>
 
   <!-- Grid de Cards -->

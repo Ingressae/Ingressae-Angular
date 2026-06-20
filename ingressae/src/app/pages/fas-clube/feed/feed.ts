@@ -7,8 +7,7 @@ import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FasClubeService } from '../../../services/fas-clube';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ToastService } from '../../../services/toast';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -31,12 +30,16 @@ export class Feed implements OnInit {
     private fasClubeService: FasClubeService,
     private AuthService: AuthService,
     private route: ActivatedRoute,
-    private toast: ToastService,
+    private router: Router,
   ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
     this.idFaClube = this.route.snapshot.paramMap.get('id') ?? '0';
+  }
+
+  voltarParaTodos(): void {
+    this.router.navigate(['/fas-clubes']);
   }
 
   adicionarFormatacao(marcador: string): void {
