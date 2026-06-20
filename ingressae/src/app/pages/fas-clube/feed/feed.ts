@@ -86,7 +86,8 @@ export class Feed implements OnInit {
   isUsuarioFa() {
     return this.AuthService.participaDoFasClube(this.idFaClube);
   }
-  //TODO : arrumar o toast
+
+  // TODO: arrumar o toast funcional
   mostrarToast() {
     this.toast.erro('    Participe do fã clube para comentar');
   }
