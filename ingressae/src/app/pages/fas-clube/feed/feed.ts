@@ -7,11 +7,11 @@ import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FasClubeService } from '../../../services/fas-clube';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
-  imports: [Banner, Comentarios, NgIf, FormsModule],
+  imports: [Banner, Comentarios, NgIf, FormsModule, RouterLink],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })
@@ -30,11 +30,16 @@ export class Feed implements OnInit {
     private fasClubeService: FasClubeService,
     private AuthService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
     this.idFaClube = this.route.snapshot.paramMap.get('id') ?? '0';
+  }
+
+  voltarParaTodos(): void {
+    this.router.navigate(['/fas-clubes']);
   }
 
   adicionarFormatacao(marcador: string): void {
@@ -83,10 +88,6 @@ export class Feed implements OnInit {
   }
   //TODO : arrumar o toast
   mostrarToast() {
-    this.toastVisivel = true;
-
-    setTimeout(() => {
-      this.toastVisivel = false;
-    }, 3000);
+    this.toast.erro('    Participe do fã clube para comentar');
   }
 }

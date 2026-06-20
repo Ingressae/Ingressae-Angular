@@ -16,6 +16,7 @@ export class CardPostagem {
   @Input({ required: true }) limiteAtingido: boolean = false; // Este cara precisa receber o valor da lista
 
   @Output() entrar = new EventEmitter<FasClube>();
+  @Output() sair = new EventEmitter<FasClube>();
   @Output() ver = new EventEmitter<FasClube>();
 
   constructor(
@@ -36,6 +37,11 @@ export class CardPostagem {
   onEntrar(event: Event): void {
     event.stopPropagation();
     this.entrar.emit(this.clube);
+  }
+
+  onSair(event: Event): void {
+    event.stopPropagation();
+    this.sair.emit(this.clube);
   }
 
   onVer(event: Event): void {
