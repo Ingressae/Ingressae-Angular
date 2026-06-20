@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ToastService } from '../../../services/toast';
+import { Pilha } from '../../../shared/estruturas/pilha';
 
 @Component({
   selector: 'app-jogo',
@@ -9,13 +10,13 @@ import { ToastService } from '../../../services/toast';
   templateUrl: './jogo.html',
   styleUrl: './jogo.scss'
 })
-export class Jogo {
+export class JogoComponent {
 
   dificuldade = 'facil';
 
   quantidadeDiscos = 4;
 
-  torres: number[][] = [];
+  torres: Pilha<number>[] = [];
 
   torreSelecionada: number | null = null;
 
@@ -29,18 +30,31 @@ export class Jogo {
 
   criarTorres(): void {
 
+    const torre1 = new Pilha<number>();
+    const torre2 = new Pilha<number>();
+    const torre3 = new Pilha<number>();
+
+    for (
+      let i = this.quantidadeDiscos;
+      i >= 1;
+      i--
+    ) {
+
+      torre1.empilhar(i);
+
+    }
+
     this.torres = [
-      Array.from(
-        { length: this.quantidadeDiscos },
-        (_, i) => this.quantidadeDiscos - i
-      ),
-      [],
-      []
+      torre1,
+      torre2,
+      torre3
     ];
 
   }
 
-  alterarDificuldade(dificuldade: string): void {
+  alterarDificuldade(
+    dificuldade: string
+  ): void {
 
     this.dificuldade = dificuldade;
 
@@ -48,22 +62,30 @@ export class Jogo {
 
       case 'facil':
         this.quantidadeDiscos = 4;
-        this.toast.aviso('Dificuldade: Fácil');
+        this.toast.aviso(
+          'Dificuldade: Fácil'
+        );
         break;
 
       case 'medio':
         this.quantidadeDiscos = 5;
-        this.toast.aviso('Dificuldade: Médio');
+        this.toast.aviso(
+          'Dificuldade: Médio'
+        );
         break;
 
       case 'dificil':
         this.quantidadeDiscos = 6;
-        this.toast.aviso('Dificuldade: Difícil');
+        this.toast.aviso(
+          'Dificuldade: Difícil'
+        );
         break;
 
       case 'hardcore':
         this.quantidadeDiscos = 7;
-        this.toast.aviso('Dificuldade: Hardcore');
+        this.toast.aviso(
+          'Dificuldade: Hardcore'
+        );
         break;
 
     }
@@ -72,15 +94,22 @@ export class Jogo {
 
   }
 
-  selecionarTorre(indice: number): void {
+  selecionarTorre(
+    indice: number
+  ): void {
 
-    if (this.torreSelecionada === null) {
+    if (
+      this.torreSelecionada === null
+    ) {
 
-      if (this.torres[indice].length === 0) {
+      if (
+        this.torres[indice].vazia()
+      ) {
         return;
       }
 
       this.torreSelecionada = indice;
+
       return;
     }
 
@@ -90,52 +119,84 @@ export class Jogo {
     );
 
     this.torreSelecionada = null;
+
   }
 
-  moverDisco(origem: number, destino: number): void {
+  moverDisco(
+    origem: number,
+    destino: number
+  ): void {
 
     if (origem === destino) {
       return;
     }
 
-    const torreOrigem = this.torres[origem];
-    const torreDestino = this.torres[destino];
+    const torreOrigem =
+      this.torres[origem];
 
-    if (torreOrigem.length === 0) {
-      return;
-    }
-
-    const disco =
-      torreOrigem[torreOrigem.length - 1];
-
-    const topoDestino =
-      torreDestino[torreDestino.length - 1];
+    const torreDestino =
+      this.torres[destino];
 
     if (
-      topoDestino !== undefined &&
-      topoDestino < disco
+      torreOrigem.vazia()
     ) {
       return;
     }
 
-    torreOrigem.pop();
-    torreDestino.push(disco);
+    const disco =
+      torreOrigem.topo();
+
+    const topoDestino =
+      torreDestino.topo();
+
+    if (
+      topoDestino !== undefined &&
+      disco !== undefined &&
+      topoDestino < disco
+    ) {
+
+      this.toast.aviso(
+        'Não é permitido colocar um disco maior sobre um menor.'
+      );
+
+      return;
+    }
+
+    const discoMovido =
+      torreOrigem.desempilhar();
+
+    if (
+      discoMovido !== undefined
+    ) {
+
+      torreDestino.empilhar(
+        discoMovido
+      );
+
+    }
 
     this.movimentos++;
 
     this.verificarVitoria();
+
   }
 
   verificarVitoria(): void {
 
     if (
-      this.torres[2].length === this.quantidadeDiscos
+      this.torres[2].tamanho() ===
+      this.quantidadeDiscos
     ) {
 
       const minimo =
-        Math.pow(2, this.quantidadeDiscos) - 1;
+        Math.pow(
+          2,
+          this.quantidadeDiscos
+        ) - 1;
 
-      if (this.movimentos === minimo) {
+      if (
+        this.movimentos === minimo
+      ) {
 
         this.toast.sucesso(
           `🏆 Solução perfeita! ${this.movimentos} movimentos.`
@@ -160,6 +221,10 @@ export class Jogo {
     this.movimentos = 0;
 
     this.torreSelecionada = null;
+
+    this.toast.aviso(
+      'Jogo reiniciado.'
+    );
 
   }
 

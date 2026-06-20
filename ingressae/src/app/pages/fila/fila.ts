@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Jogo } from './jogo/jogo';
+import {  JogoComponent } from './jogo/jogo';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FilaPreferencial } from '../../shared/estruturas/fila-preferencial';
 import { FilaNormal } from '../../shared/estruturas/fila-normal';
@@ -10,7 +10,7 @@ import { TipoFilaPipe } from '../../shared/pipes/tipo-fila-pipe';
 
 @Component({
   selector: 'app-fila',
-  imports: [CommonModule, Jogo, RouterLink, TipoFilaPipe],
+  imports: [CommonModule, JogoComponent, RouterLink, TipoFilaPipe],
   templateUrl: './fila.html',
   styleUrl: './fila.scss',
 })
