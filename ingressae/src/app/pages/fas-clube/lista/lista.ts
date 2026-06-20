@@ -86,8 +86,22 @@ export class Lista {
     inscricoesAtuais.push(clube.id);
 
     this.authService.atualizarInscricoes(inscricoesAtuais);
+    this.fasClubeService.adicionarMembro(clube.id);
 
     this.toastService.sucesso(`Você entrou no fã-clube ${clube.nome}!`);
+  }
+
+  sairClube(clube: FasClubeModel): void {
+    const usuario = this.usuarioAtual();
+
+    if (!usuario) {
+      return;
+    }
+
+    this.authService.removerDoFasClube(clube.id);
+    this.fasClubeService.removerMembro(clube.id);
+
+    this.toastService.sucesso(`Você saiu do fã-clube ${clube.nome}.`);
   }
 
   verClube(clube: FasClubeModel): void {
