@@ -32,7 +32,7 @@
     .icon-sparkle {
       color: transparent;
       color: #00c6ff; /* Azul neon (cyan) */
-      font-size: 1rem; 
+      font-size: 1rem;
       -webkit-text-stroke: 1px #00c6ff;
       text-shadow: 0 0 6px rgba(0, 198, 255, 0.6),
                    0 0 12px rgba(0, 198, 255, 0.3);
@@ -48,7 +48,7 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
 
     display: inline-block; // Obrigatório para o transform funcionar em textos
-    transform: scaleX(1.20); 
+    transform: scaleX(1.20);
     transform-origin: middle; // Mantém o alinhamento à esquerda
 
     .highlight {
@@ -97,6 +97,88 @@
       font-size: 1rem;
 
       &::placeholder { color: #4b5563; }
+    }
+  }
+
+  .filtros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      .filter-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #8c8d96;
+        white-space: nowrap;
+        min-width: 80px;
+      }
+
+      .chips-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        .chip {
+          padding: 8px 16px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.05);
+          color: #a0a0a8;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+
+          &:hover {
+            border-color: #4a00e0;
+            background: rgba(74, 0, 224, 0.1);
+            color: #e0e0e8;
+          }
+
+          &.active {
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            border-color: #00c6ff;
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
+          }
+        }
+      }
+
+      .select-ordenacao {
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 150px;
+
+        &:hover {
+          border-color: #4a00e0;
+          background: rgba(74, 0, 224, 0.1);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #4a00e0;
+          background: rgba(74, 0, 224, 0.1);
+          box-shadow: 0 0 10px rgba(74, 0, 224, 0.3);
+        }
+
+        option {
+          background: rgb(11, 10, 20);
+          color: white;
+        }
+      }
     }
   }
 }

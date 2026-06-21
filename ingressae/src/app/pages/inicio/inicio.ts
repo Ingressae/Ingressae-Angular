@@ -9,6 +9,9 @@ import { Show } from '../../models/show';
 import { EstadoVazio } from '../../shared/estado-vazio/estado-vazio';
 import { Router } from '@angular/router';
 
+type FiltroData = 'todos' | 'semana' | 'mes' | 'tres-meses';
+type OrdenacaoShow = 'data' | 'nome';
+
 @Component({
   selector: 'app-inicio',
   standalone: true,
@@ -26,16 +29,60 @@ export class Inicio implements OnInit {
   shows = signal<Show[]>([]);
   termoBusca = signal<string>('');
   carregando = signal<boolean>(true);
+  filtroData = signal<FiltroData>('todos');
+  ordenacao = signal<OrdenacaoShow>('data');
 
   showsFiltrados = computed(() => {
-    const termo = this.termoBusca().toLowerCase().trim();
-    if (!termo) return this.shows();
+    let resultado = this.shows();
 
-    return this.shows().filter(show =>
-      show.nome.toLowerCase().includes(termo) ||
-      show.local.toLowerCase().includes(termo) ||
-      show.artista.toLowerCase().includes(termo)
-    );
+    // Filtro por busca
+    const termo = this.termoBusca().toLowerCase().trim();
+    if (termo) {
+      resultado = resultado.filter(show =>
+        show.nome.toLowerCase().includes(termo) ||
+        show.local.toLowerCase().includes(termo) ||
+        show.artista.toLowerCase().includes(termo)
+      );
+    }
+
+    // Filtro por data
+    resultado = resultado.filter(show => {
+      const dataEvento = new Date(show.dataEvento);
+      const hoje = new Date();
+      hoje.setHours(0, 0, 0, 0);
+
+      switch (this.filtroData()) {
+        case 'semana':
+          const fimSemana = new Date(hoje);
+          fimSemana.setDate(fimSemana.getDate() + 7);
+          return dataEvento >= hoje && dataEvento <= fimSemana;
+
+        case 'mes':
+          const fimMes = new Date(hoje);
+          fimMes.setMonth(fimMes.getMonth() + 1);
+          return dataEvento >= hoje && dataEvento <= fimMes;
+
+        case 'tres-meses':
+          const fimTresMeses = new Date(hoje);
+          fimTresMeses.setMonth(fimTresMeses.getMonth() + 3);
+          return dataEvento >= hoje && dataEvento <= fimTresMeses;
+
+        case 'todos':
+        default:
+          return true;
+      }
+    });
+
+    // Ordenação
+    resultado.sort((a, b) => {
+      if (this.ordenacao() === 'data') {
+        return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
+      } else {
+        return a.nome.localeCompare(b.nome);
+      }
+    });
+
+    return resultado;
   });
 
   temResultados = computed(() => this.showsFiltrados().length > 0);
