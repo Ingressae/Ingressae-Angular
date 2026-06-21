@@ -22,47 +22,25 @@
         class="search-input">
     </div>
 
-    <!-- Filtros e Ordenação -->
-    <div class="filtros-container mt-4">
-      <!-- Chips de Filtro por Data -->
-      <div class="filter-group">
-        <label class="filter-label">Quando:</label>
-        <div class="chips-container">
-          <button
-            class="chip"
-            [class.active]="filtroData() === 'todos'"
-            (click)="filtroData.set('todos')">
-            Todos
-          </button>
-          <button
-            class="chip"
-            [class.active]="filtroData() === 'semana'"
-            (click)="filtroData.set('semana')">
-            Esta semana
-          </button>
-          <button
-            class="chip"
-            [class.active]="filtroData() === 'mes'"
-            (click)="filtroData.set('mes')">
-            Este mês
-          </button>
-          <button
-            class="chip"
-            [class.active]="filtroData() === 'tres-meses'"
-            (click)="filtroData.set('tres-meses')">
-            Próximos 3 meses
-          </button>
-        </div>
-      </div>
+    <!-- Filtros em Dropdowns -->
+    <div class="filtros-dropdowns mt-4">
+      <!-- Localização -->
+      <select [(ngModel)]="filtroLocalizacao" class="select-filtro">
+        <option value="">Localização</option>
+        <option *ngFor="let estado of estados()" [value]="estado">{{ estado }}</option>
+      </select>
 
-      <!-- Dropdown de Ordenação -->
-      <div class="filter-group">
-        <label class="filter-label">Ordenar por:</label>
-        <select [(ngModel)]="ordenacao" class="select-ordenacao">
-          <option value="data">Data</option>
-          <option value="nome">Nome</option>
-        </select>
-      </div>
+      <!-- Gênero -->
+      <select [(ngModel)]="filtroGenero" class="select-filtro">
+        <option value="">Gênero</option>
+        <option *ngFor="let genero of generos()" [value]="genero">{{ genero }}</option>
+      </select>
+
+      <!-- Período (Mês/Ano) -->
+      <select [(ngModel)]="filtroMes" class="select-filtro">
+        <option value="">Período</option>
+        <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
+      </select>
     </div>
 
     <!-- Estado Vazio -->

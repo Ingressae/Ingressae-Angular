@@ -9,9 +9,6 @@ import { Show } from '../../models/show';
 import { EstadoVazio } from '../../shared/estado-vazio/estado-vazio';
 import { Router } from '@angular/router';
 
-type FiltroData = 'todos' | 'semana' | 'mes' | 'tres-meses';
-type OrdenacaoShow = 'data' | 'nome';
-
 @Component({
   selector: 'app-inicio',
   standalone: true,
@@ -29,8 +26,36 @@ export class Inicio implements OnInit {
   shows = signal<Show[]>([]);
   termoBusca = signal<string>('');
   carregando = signal<boolean>(true);
-  filtroData = signal<FiltroData>('todos');
-  ordenacao = signal<OrdenacaoShow>('data');
+  filtroLocalizacao = signal<string>('');
+  filtroGenero = signal<string>('');
+  filtroMes = signal<string>('');
+
+  estados = computed(() => {
+    const estadosSet = new Set<string>();
+    this.shows().forEach(show => {
+      if (show.estado) estadosSet.add(show.estado);
+    });
+    return Array.from(estadosSet).sort();
+  });
+
+  generos = computed(() => {
+    const generosSet = new Set<string>();
+    this.shows().forEach(show => {
+      if (show.genero) generosSet.add(show.genero);
+    });
+    return Array.from(generosSet).sort();
+  });
+
+  mesesDisponiveis = computed(() => {
+    const mesesSet = new Set<string>();
+    this.shows().forEach(show => {
+      const data = new Date(show.dataEvento);
+      const mes = String(data.getMonth() + 1).padStart(2, '0');
+      const ano = data.getFullYear();
+      mesesSet.add(`${mes}/${ano}`);
+    });
+    return Array.from(mesesSet).sort().reverse();
+  });
 
   showsFiltrados = computed(() => {
     let resultado = this.shows();
@@ -45,41 +70,30 @@ export class Inicio implements OnInit {
       );
     }
 
-    // Filtro por data
-    resultado = resultado.filter(show => {
-      const dataEvento = new Date(show.dataEvento);
-      const hoje = new Date();
-      hoje.setHours(0, 0, 0, 0);
+    // Filtro por localização
+    if (this.filtroLocalizacao()) {
+      resultado = resultado.filter(show => show.estado === this.filtroLocalizacao());
+    }
 
-      switch (this.filtroData()) {
-        case 'semana':
-          const fimSemana = new Date(hoje);
-          fimSemana.setDate(fimSemana.getDate() + 7);
-          return dataEvento >= hoje && dataEvento <= fimSemana;
+    // Filtro por gênero
+    if (this.filtroGenero()) {
+      resultado = resultado.filter(show => show.genero === this.filtroGenero());
+    }
 
-        case 'mes':
-          const fimMes = new Date(hoje);
-          fimMes.setMonth(fimMes.getMonth() + 1);
-          return dataEvento >= hoje && dataEvento <= fimMes;
+    // Filtro por mês/ano
+    if (this.filtroMes()) {
+      const [mes, ano] = this.filtroMes().split('/');
+      resultado = resultado.filter(show => {
+        const data = new Date(show.dataEvento);
+        const showMes = String(data.getMonth() + 1).padStart(2, '0');
+        const showAno = data.getFullYear();
+        return showMes === mes && showAno === parseInt(ano);
+      });
+    }
 
-        case 'tres-meses':
-          const fimTresMeses = new Date(hoje);
-          fimTresMeses.setMonth(fimTresMeses.getMonth() + 3);
-          return dataEvento >= hoje && dataEvento <= fimTresMeses;
-
-        case 'todos':
-        default:
-          return true;
-      }
-    });
-
-    // Ordenação
+    // Ordenar por data
     resultado.sort((a, b) => {
-      if (this.ordenacao() === 'data') {
-        return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
-      } else {
-        return a.nome.localeCompare(b.nome);
-      }
+      return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
     });
 
     return resultado;

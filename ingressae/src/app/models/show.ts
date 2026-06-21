@@ -3,6 +3,8 @@ export interface Show {
     nome: string;
     artista: string;
     local: string;
+    estado: string;
+    genero: string;
     dataEvento: Date;
     imagemCapaUrl: string;
     dataFilaPreferencial: Date;

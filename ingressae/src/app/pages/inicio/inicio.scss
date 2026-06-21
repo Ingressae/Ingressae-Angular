@@ -2,10 +2,10 @@
 
 .inicio-container {
   min-height: 100vh;
-  background-color: rgb(11, 10, 20); // Fundo geral bem escuro
+  background-color: rgb(11, 10, 20);
   color: #ffffff;
   padding: 40px 20px;
-  font-family: 'Inter', sans-serif; // Substitua pela fonte do seu projeto
+  font-family: 'Inter', sans-serif;
 }
 
 .hero {
@@ -16,7 +16,7 @@
   margin-bottom: 60px;
   padding-top: 40px;
 
-.hero-badge {
+  .hero-badge {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6px 16px;
@@ -28,10 +28,9 @@
     align-items: center;
     gap: 8px;
 
-    /* Nova classe para o ícone */
     .icon-sparkle {
       color: transparent;
-      color: #00c6ff; /* Azul neon (cyan) */
+      color: #00c6ff;
       font-size: 1rem;
       -webkit-text-stroke: 1px #00c6ff;
       text-shadow: 0 0 6px rgba(0, 198, 255, 0.6),
@@ -46,10 +45,9 @@
     letter-spacing: -0.04em;
     line-height: 1.1;
     font-family: 'Plus Jakarta Sans', sans-serif;
-
-    display: inline-block; // Obrigatório para o transform funcionar em textos
+    display: inline-block;
     transform: scaleX(1.20);
-    transform-origin: middle; // Mantém o alinhamento à esquerda
+    transform-origin: middle;
 
     .highlight {
       background: linear-gradient(90deg, #8e2de2, #4a00e0, #00c6ff);
@@ -68,7 +66,7 @@
 }
 
 .search-container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 
   .search-box {
@@ -86,7 +84,9 @@
       border-color: #4a00e0;
     }
 
-    i { color: #8c8d96; }
+    i {
+      color: #8c8d96;
+    }
 
     .search-input {
       background: transparent;
@@ -96,93 +96,50 @@
       outline: none;
       font-size: 1rem;
 
-      &::placeholder { color: #4b5563; }
+      &::placeholder {
+        color: #4b5563;
+      }
     }
   }
 
-  .filtros-container {
+  .filtros-dropdowns {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    .filter-group {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
+    .select-filtro {
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 180px;
+      flex: 1;
+      min-height: 40px;
 
-      .filter-label {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #8c8d96;
-        white-space: nowrap;
-        min-width: 80px;
+      &:hover {
+        border-color: #4a00e0;
+        background: rgba(74, 0, 224, 0.1);
       }
 
-      .chips-container {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-
-        .chip {
-          padding: 8px 16px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 20px;
-          background: rgba(255, 255, 255, 0.05);
-          color: #a0a0a8;
-          font-size: 0.9rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          white-space: nowrap;
-
-          &:hover {
-            border-color: #4a00e0;
-            background: rgba(74, 0, 224, 0.1);
-            color: #e0e0e8;
-          }
-
-          &.active {
-            background: linear-gradient(135deg, #8e2de2, #4a00e0);
-            border-color: #00c6ff;
-            color: white;
-            box-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
-          }
-        }
+      &:focus {
+        outline: none;
+        border-color: #4a00e0;
+        background: rgba(74, 0, 224, 0.1);
+        box-shadow: 0 0 10px rgba(74, 0, 224, 0.3);
       }
 
-      .select-ordenacao {
-        padding: 8px 12px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.05);
+      option {
+        background: rgb(11, 10, 20);
         color: white;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        min-width: 150px;
-
-        &:hover {
-          border-color: #4a00e0;
-          background: rgba(74, 0, 224, 0.1);
-        }
-
-        &:focus {
-          outline: none;
-          border-color: #4a00e0;
-          background: rgba(74, 0, 224, 0.1);
-          box-shadow: 0 0 10px rgba(74, 0, 224, 0.3);
-        }
-
-        option {
-          background: rgb(11, 10, 20);
-          color: white;
-        }
       }
     }
   }
 }
-
 
 .shows-grid {
   display: grid;
