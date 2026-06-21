@@ -69,7 +69,7 @@ export class ShowService {
       artista: 'Falcão',
       local: 'Arena BRB, Brasília',
       estado: 'DF',
-      genero: 'Sertanejo',
+      genero: 'Brega',
       dataEvento: new Date('2026-08-05'),
       imagemCapaUrl: '',
       dataFilaPreferencial: new Date('2026-06-01'),
