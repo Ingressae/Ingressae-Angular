@@ -33,36 +33,27 @@
     <div class="filtros-dropdowns mt-4">
       <!-- Localização -->
       <div class="filtro-wrapper">
-        <label class="filtro-label">
-          <i class="bi bi-geo-alt-fill"></i>
-          <span>Localização</span>
-        </label>
+        <i class="bi bi-geo-alt-fill"></i>
         <select [(ngModel)]="filtroLocalizacao" class="select-filtro">
-          <option value="">Todos os estados</option>
+          <option value="">Localização</option>
           <option *ngFor="let estado of estados()" [value]="estado">{{ estado }}</option>
         </select>
       </div>
 
       <!-- Gênero -->
       <div class="filtro-wrapper">
-        <label class="filtro-label">
-          <i class="bi bi-music-note-beamed"></i>
-          <span>Gênero</span>
-        </label>
+        <i class="bi bi-music-note-beamed"></i>
         <select [(ngModel)]="filtroGenero" class="select-filtro">
-          <option value="">Todos os gêneros</option>
+          <option value="">Gênero</option>
           <option *ngFor="let genero of generos()" [value]="genero">{{ genero }}</option>
         </select>
       </div>
 
       <!-- Período (Mês/Ano) -->
       <div class="filtro-wrapper">
-        <label class="filtro-label">
-          <i class="bi bi-calendar-event"></i>
-          <span>Período</span>
-        </label>
+        <i class="bi bi-calendar-event"></i>
         <select [(ngModel)]="filtroMes" class="select-filtro">
-          <option value="">Todos os períodos</option>
+          <option value="">Período</option>
           <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
         </select>
       </div>
