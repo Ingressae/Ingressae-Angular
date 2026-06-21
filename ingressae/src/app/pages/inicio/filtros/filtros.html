@@ -1,1 +1,57 @@
-<p>filtros works!</p>
+<div class="search-container mb-5">
+  <div class="search-box">
+    <i class="bi bi-search"></i>
+    <input
+      type="text"
+      [(ngModel)]="termoBusca"
+      (change)="onFiltroChange()"
+      placeholder="Buscar evento por nome ou artista..."
+      class="search-input">
+    <button
+      *ngIf="temFiltrosAtivos()"
+      class="btn-limpar-filtros"
+      (click)="limparFiltros()"
+      title="Limpar filtros">
+      <i class="bi bi-x-circle"></i>
+    </button>
+  </div>
+
+  <!-- Filtros em Dropdowns -->
+  <div class="filtros-dropdowns mt-4">
+    <!-- Localização -->
+    <div class="filtro-wrapper">
+      <i class="bi bi-geo-alt-fill"></i>
+      <select [(ngModel)]="filtroLocalizacao" (change)="onFiltroChange()" class="select-filtro">
+        <option value="">Localização</option>
+        <option *ngFor="let estado of estados()" [value]="estado">{{ estado }}</option>
+      </select>
+    </div>
+
+    <!-- Gênero -->
+    <div class="filtro-wrapper">
+      <i class="bi bi-music-note-beamed"></i>
+      <select [(ngModel)]="filtroGenero" (change)="onFiltroChange()" class="select-filtro">
+        <option value="">Gênero</option>
+        <option *ngFor="let genero of generos()" [value]="genero">{{ genero }}</option>
+      </select>
+    </div>
+
+    <!-- Período (Mês/Ano) -->
+    <div class="filtro-wrapper">
+      <i class="bi bi-calendar-event"></i>
+      <select [(ngModel)]="filtroMes" (change)="onFiltroChange()" class="select-filtro">
+        <option value="">Período</option>
+        <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
+      </select>
+    </div>
+
+    <!-- Ordenação -->
+    <div class="filtro-wrapper">
+      <i class="bi bi-arrow-down-up"></i>
+      <select [(ngModel)]="ordenacao" (change)="onFiltroChange()" class="select-filtro">
+        <option value="data">Por Data</option>
+        <option value="nome">Por Nome</option>
+      </select>
+    </div>
+  </div>
+</div>

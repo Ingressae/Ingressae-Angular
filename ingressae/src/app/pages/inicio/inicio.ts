@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { CardShow } from './card-show/card-show';
+import { Filtros } from './filtros/filtros';
 import { AuthService } from '../../services/auth';
 import { ToastService } from '../../services/toast';
 import { ShowService } from '../../services/show';
@@ -9,10 +9,18 @@ import { Show } from '../../models/show';
 import { EstadoVazio } from '../../shared/estado-vazio/estado-vazio';
 import { Router } from '@angular/router';
 
+interface FiltrosState {
+  termo: string;
+  localizacao: string;
+  genero: string;
+  mes: string;
+  ordenacao: 'data' | 'nome';
+}
+
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, CardShow, FormsModule, EstadoVazio],
+  imports: [CommonModule, CardShow, Filtros, EstadoVazio],
   templateUrl: './inicio.html',
   styleUrls: ['./inicio.scss'],
 })
@@ -24,50 +32,22 @@ export class Inicio implements OnInit {
   private router = inject(Router);
 
   shows = signal<Show[]>([]);
-  termoBusca = signal<string>('');
   carregando = signal<boolean>(true);
-  filtroLocalizacao = signal<string>('');
-  filtroGenero = signal<string>('');
-  filtroMes = signal<string>('');
-  ordenacao = signal<'data' | 'nome'>('data');
-
-  temFiltrosAtivos = computed(() => {
-    return !!this.termoBusca() || !!this.filtroLocalizacao() || !!this.filtroGenero() || !!this.filtroMes();
-  });
-
-  estados = computed(() => {
-    const estadosSet = new Set<string>();
-    this.shows().forEach(show => {
-      if (show.estado) estadosSet.add(show.estado);
-    });
-    return Array.from(estadosSet).sort();
-  });
-
-  generos = computed(() => {
-    const generosSet = new Set<string>();
-    this.shows().forEach(show => {
-      if (show.genero) generosSet.add(show.genero);
-    });
-    return Array.from(generosSet).sort();
-  });
-
-  mesesDisponiveis = computed(() => {
-    const mesesSet = new Set<string>();
-    this.shows().forEach(show => {
-      const data = new Date(show.dataEvento);
-      const mes = String(data.getMonth() + 1).padStart(2, '0');
-      const ano = data.getFullYear();
-      mesesSet.add(`${mes}/${ano}`);
-    });
-    return Array.from(mesesSet).sort().reverse();
+  filtrosAtivos = signal<FiltrosState>({
+    termo: '',
+    localizacao: '',
+    genero: '',
+    mes: '',
+    ordenacao: 'data',
   });
 
   showsFiltrados = computed(() => {
     let resultado = this.shows();
+    const filtros = this.filtrosAtivos();
 
     // Filtro por busca
-    const termo = this.termoBusca().toLowerCase().trim();
-    if (termo) {
+    if (filtros.termo) {
+      const termo = filtros.termo.toLowerCase().trim();
       resultado = resultado.filter(show =>
         show.nome.toLowerCase().includes(termo) ||
         show.local.toLowerCase().includes(termo) ||
@@ -76,18 +56,18 @@ export class Inicio implements OnInit {
     }
 
     // Filtro por localização
-    if (this.filtroLocalizacao()) {
-      resultado = resultado.filter(show => show.estado === this.filtroLocalizacao());
+    if (filtros.localizacao) {
+      resultado = resultado.filter(show => show.estado === filtros.localizacao);
     }
 
     // Filtro por gênero
-    if (this.filtroGenero()) {
-      resultado = resultado.filter(show => show.genero === this.filtroGenero());
+    if (filtros.genero) {
+      resultado = resultado.filter(show => show.genero === filtros.genero);
     }
 
     // Filtro por mês/ano
-    if (this.filtroMes()) {
-      const [mes, ano] = this.filtroMes().split('/');
+    if (filtros.mes) {
+      const [mes, ano] = filtros.mes.split('/');
       resultado = resultado.filter(show => {
         const data = new Date(show.dataEvento);
         const showMes = String(data.getMonth() + 1).padStart(2, '0');
@@ -98,7 +78,7 @@ export class Inicio implements OnInit {
 
     // Ordenação
     resultado.sort((a, b) => {
-      if (this.ordenacao() === 'nome') {
+      if (filtros.ordenacao === 'nome') {
         return a.nome.localeCompare(b.nome);
       } else {
         return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
@@ -110,11 +90,8 @@ export class Inicio implements OnInit {
 
   temResultados = computed(() => this.showsFiltrados().length > 0);
 
-  limparFiltros() {
-    this.termoBusca.set('');
-    this.filtroLocalizacao.set('');
-    this.filtroGenero.set('');
-    this.filtroMes.set('');
+  onFiltrosChange(filtros: FiltrosState) {
+    this.filtrosAtivos.set(filtros);
   }
 
   ngOnInit() {
