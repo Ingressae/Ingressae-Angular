@@ -30,6 +30,10 @@ export class Inicio implements OnInit {
   filtroGenero = signal<string>('');
   filtroMes = signal<string>('');
 
+  temFiltrosAtivos = computed(() => {
+    return !!this.termoBusca() || !!this.filtroLocalizacao() || !!this.filtroGenero() || !!this.filtroMes();
+  });
+
   estados = computed(() => {
     const estadosSet = new Set<string>();
     this.shows().forEach(show => {
@@ -100,6 +104,13 @@ export class Inicio implements OnInit {
   });
 
   temResultados = computed(() => this.showsFiltrados().length > 0);
+
+  limparFiltros() {
+    this.termoBusca.set('');
+    this.filtroLocalizacao.set('');
+    this.filtroGenero.set('');
+    this.filtroMes.set('');
+  }
 
   ngOnInit() {
     this.shows.set(this.showService.buscarTodos());
