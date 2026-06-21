@@ -9,5 +9,10 @@ import { Component, Input } from '@angular/core';
 })
 export class Avatar {
 
-  @Input() iniciais = 'MS';
+  @Input()
+  iniciais = 'MS';
+
+  @Input()
+  fotoUrl?: string;
+
 }

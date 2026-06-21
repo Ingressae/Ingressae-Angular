@@ -1,3 +1,14 @@
-<div class="avatar">
-  {{ iniciais }}
-</div>
+@if (fotoUrl) {
+
+  <img
+    [src]="fotoUrl"
+    alt="Avatar"
+    class="avatar-imagem">
+
+} @else {
+
+  <div class="avatar">
+    {{ iniciais }}
+  </div>
+
+}

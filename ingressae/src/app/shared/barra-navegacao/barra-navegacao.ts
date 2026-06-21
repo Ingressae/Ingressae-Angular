@@ -1,6 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  HostListener
+} from '@angular/core';
+
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive
+} from '@angular/router';
+
 import { Avatar } from '../avatar/avatar';
 import { ToastService } from '../../services/toast';
 import { AuthService } from '../../services/auth';
@@ -25,10 +35,9 @@ export class BarraNavegacaoComponent {
   constructor(
     private router: Router,
     private toast: ToastService,
-    private authService: AuthService
-  ) {
-    console.log(this.authService.usuario());
-  }
+    private authService: AuthService,
+    private elementRef: ElementRef
+  ) {}
 
   get iniciaisUsuario(): string {
 
@@ -44,30 +53,43 @@ export class BarraNavegacaoComponent {
       .slice(0, 2)
       .join('')
       .toUpperCase();
+
   }
 
+  get fotoUsuario(): string | undefined {
+
+    return this.authService.usuario()?.fotoUrl;
+
+  }
 
   get nomeUsuario(): string {
+
     return this.authService.usuario()?.nome ?? 'Usuário';
+
   }
- get fotoUsuario(): string | undefined {
-  return this.authService.usuario()?.fotoUrl;
-}
 
   get estaLogado(): boolean {
+
     return this.authService.estaLogado();
+
   }
 
   toggleMenu(): void {
+
     this.menuAberto = !this.menuAberto;
+
   }
 
   toggleMobileMenu(): void {
+
     this.mobileMenuAberto = !this.mobileMenuAberto;
+
   }
 
   fecharMenu(): void {
+
     this.menuAberto = false;
+
   }
 
   logout(): void {
@@ -79,6 +101,20 @@ export class BarraNavegacaoComponent {
     this.fecharMenu();
 
     this.router.navigate(['/inicio']);
+
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickFora(event: MouseEvent): void {
+
+    if (
+      !this.elementRef.nativeElement.contains(event.target)
+    ) {
+
+      this.menuAberto = false;
+
+    }
+
   }
 
 }
