@@ -63,13 +63,21 @@
 .title {
   font-size: 1.3rem;
   font-weight: 600;
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
   line-height: 1.2;
   min-height: 2.8rem; /* Mantém a proporção e tamanho idêntico dos cards */
   
   // SOLUÇÃO: Transforma em flex para centralizar verticalmente títulos menores
   display: flex;
   align-items: center; 
+}
+
+.artist {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #cfcfd6;
+  margin: 0 0 12px 0;
+  opacity: 0.95;
 }
 
 .info-row {
