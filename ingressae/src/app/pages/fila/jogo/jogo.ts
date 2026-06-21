@@ -22,6 +22,8 @@ export class JogoComponent {
 
   movimentos = 0;
 
+  jogoFinalizado = false;
+
   constructor(
     private toast: ToastService
   ) {
@@ -97,6 +99,10 @@ export class JogoComponent {
   selecionarTorre(
     indice: number
   ): void {
+
+    if (this.jogoFinalizado) {
+      return;
+    }
 
     if (
       this.torreSelecionada === null
@@ -188,6 +194,8 @@ export class JogoComponent {
       this.quantidadeDiscos
     ) {
 
+      this.jogoFinalizado = true;
+
       const minimo =
         Math.pow(
           2,
@@ -221,6 +229,8 @@ export class JogoComponent {
     this.movimentos = 0;
 
     this.torreSelecionada = null;
+
+    this.jogoFinalizado = false;
 
     this.toast.aviso(
       'Jogo reiniciado.'

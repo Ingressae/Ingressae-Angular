@@ -38,6 +38,14 @@
 
 </div>
 
+@if (jogoFinalizado) {
+
+  <div style="text-align:center; margin-bottom:16px; color:#22c55e; font-weight:bold;">
+    🏆 Jogo concluído!
+  </div>
+
+}
+
 <div class="board">
 
   @for (torre of torres; track $index) {
@@ -45,6 +53,7 @@
     <div
       class="tower"
       [class.selected]="torreSelecionada === $index"
+      [style.pointer-events]="jogoFinalizado ? 'none' : 'auto'"
       (click)="selecionarTorre($index)">
 
       <div class="pole"></div>
