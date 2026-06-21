@@ -1,9 +1,10 @@
 <div class="card">
-  <div class="card-gradient" [ngClass]="gradientClass"></div>
+  <div class="card-image">
+    <img [src]="show.imagemCapaUrl" [alt]="show.nome" class="show-image">
+    <span class="badge-show">SHOW</span>
+  </div>
 
   <div class="card-content">
-    <span class="badge-show">SHOW</span>
-
     <h3 class="title">{{ show.nome }}</h3>
 
     <h4 class="artist">{{ show.artista }}</h4>
