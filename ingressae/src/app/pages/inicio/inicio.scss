@@ -135,17 +135,40 @@
     flex-wrap: wrap;
     justify-content: center;
 
+    .filtro-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 180px;
+      max-width: 250px;
+
+      .filtro-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #a0a0a8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+
+        i {
+          font-size: 1rem;
+          color: #00c6ff;
+        }
+      }
+    }
+
     .select-filtro {
-      padding: 8px 16px;
+      padding: 10px 16px;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
       color: white;
       font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-width: 180px;
-      flex: 1;
+      width: 100%;
       min-height: 40px;
 
       &:hover {

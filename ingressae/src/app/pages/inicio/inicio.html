@@ -32,22 +32,40 @@
     <!-- Filtros em Dropdowns -->
     <div class="filtros-dropdowns mt-4">
       <!-- Localização -->
-      <select [(ngModel)]="filtroLocalizacao" class="select-filtro">
-        <option value="">Localização</option>
-        <option *ngFor="let estado of estados()" [value]="estado">{{ estado }}</option>
-      </select>
+      <div class="filtro-wrapper">
+        <label class="filtro-label">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>Localização</span>
+        </label>
+        <select [(ngModel)]="filtroLocalizacao" class="select-filtro">
+          <option value="">Todos os estados</option>
+          <option *ngFor="let estado of estados()" [value]="estado">{{ estado }}</option>
+        </select>
+      </div>
 
       <!-- Gênero -->
-      <select [(ngModel)]="filtroGenero" class="select-filtro">
-        <option value="">Gênero</option>
-        <option *ngFor="let genero of generos()" [value]="genero">{{ genero }}</option>
-      </select>
+      <div class="filtro-wrapper">
+        <label class="filtro-label">
+          <i class="bi bi-music-note-beamed"></i>
+          <span>Gênero</span>
+        </label>
+        <select [(ngModel)]="filtroGenero" class="select-filtro">
+          <option value="">Todos os gêneros</option>
+          <option *ngFor="let genero of generos()" [value]="genero">{{ genero }}</option>
+        </select>
+      </div>
 
       <!-- Período (Mês/Ano) -->
-      <select [(ngModel)]="filtroMes" class="select-filtro">
-        <option value="">Período</option>
-        <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
-      </select>
+      <div class="filtro-wrapper">
+        <label class="filtro-label">
+          <i class="bi bi-calendar-event"></i>
+          <span>Período</span>
+        </label>
+        <select [(ngModel)]="filtroMes" class="select-filtro">
+          <option value="">Todos os períodos</option>
+          <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
+        </select>
+      </div>
     </div>
 
     <!-- Estado Vazio -->
