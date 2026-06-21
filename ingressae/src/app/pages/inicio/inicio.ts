@@ -29,6 +29,7 @@ export class Inicio implements OnInit {
   filtroLocalizacao = signal<string>('');
   filtroGenero = signal<string>('');
   filtroMes = signal<string>('');
+  ordenacao = signal<'data' | 'nome'>('data');
 
   temFiltrosAtivos = computed(() => {
     return !!this.termoBusca() || !!this.filtroLocalizacao() || !!this.filtroGenero() || !!this.filtroMes();
@@ -95,9 +96,13 @@ export class Inicio implements OnInit {
       });
     }
 
-    // Ordenar por data
+    // Ordenação
     resultado.sort((a, b) => {
-      return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
+      if (this.ordenacao() === 'nome') {
+        return a.nome.localeCompare(b.nome);
+      } else {
+        return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
+      }
     });
 
     return resultado;

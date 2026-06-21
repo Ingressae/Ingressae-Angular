@@ -57,6 +57,15 @@
           <option *ngFor="let mes of mesesDisponiveis()" [value]="mes">{{ mes }}</option>
         </select>
       </div>
+
+      <!-- Ordenação -->
+      <div class="filtro-wrapper">
+        <i class="bi bi-arrow-down-up"></i>
+        <select [(ngModel)]="ordenacao" class="select-filtro">
+          <option value="data">Por Data</option>
+          <option value="nome">Por Nome</option>
+        </select>
+      </div>
     </div>
 
     <!-- Estado Vazio -->
