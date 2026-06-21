@@ -35,7 +35,7 @@ export class Filtros {
     this.shows.forEach(show => {
       if (show.estado) estadosSet.add(show.estado);
     });
-    return Array.from(estadosSet).sort();
+    return Array.from(estadosSet).sort((a, b) => a.localeCompare(b));
   });
 
   generos = computed(() => {
@@ -43,7 +43,7 @@ export class Filtros {
     this.shows.forEach(show => {
       if (show.genero) generosSet.add(show.genero);
     });
-    return Array.from(generosSet).sort();
+    return Array.from(generosSet).sort((a, b) => a.localeCompare(b));
   });
 
   mesesDisponiveis = computed(() => {
@@ -54,7 +54,7 @@ export class Filtros {
       const ano = data.getFullYear();
       mesesSet.add(`${mes}/${ano}`);
     });
-    return Array.from(mesesSet).sort().reverse();
+    return Array.from(mesesSet).sort((a, b) => a.localeCompare(b)).reverse();
   });
 
   constructor() {

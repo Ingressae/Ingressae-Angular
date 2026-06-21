@@ -41,51 +41,62 @@ export class Inicio implements OnInit {
     ordenacao: 'data',
   });
 
-  showsFiltrados = computed(() => {
-    let resultado = this.shows();
-    const filtros = this.filtrosAtivos();
+showsFiltrados = computed(() => {
+    const todosOsShows = this.shows(); // Evita mutação direta do Signal
+    const filtros = this.filtrosAtivos(); //
 
-    // Filtro por busca
-    if (filtros.termo) {
-      const termo = filtros.termo.toLowerCase().trim();
-      resultado = resultado.filter(show =>
-        show.nome.toLowerCase().includes(termo) ||
-        show.local.toLowerCase().includes(termo) ||
-        show.artista.toLowerCase().includes(termo)
-      );
-    }
+    // Função utilitária interna para remover acentos e padronizar o texto
+    const normalizar = (texto: string) => 
+      texto ? texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim() : '';
 
-    // Filtro por localização
-    if (filtros.localizacao) {
-      resultado = resultado.filter(show => show.estado === filtros.localizacao);
-    }
+    // Prepara o termo de busca uma única vez fora do loop (ganho de performance)
+    const termoFormatado = normalizar(filtros.termo); //
 
-    // Filtro por gênero
-    if (filtros.genero) {
-      resultado = resultado.filter(show => show.genero === filtros.genero);
-    }
+    // Filtros combinados em uma única varredura O(N)
+    let resultado = todosOsShows.filter(show => {
+      // 1. Filtro por busca (agora ignorando acentos)
+      if (termoFormatado) {
+        const nomeShow = normalizar(show.nome); //
+        const localShow = normalizar(show.local); //
+        const artistaShow = normalizar(show.artista); //
 
-    // Filtro por mês/ano
-    if (filtros.mes) {
-      const [mes, ano] = filtros.mes.split('/');
-      resultado = resultado.filter(show => {
-        const data = new Date(show.dataEvento);
-        const showMes = String(data.getMonth() + 1).padStart(2, '0');
-        const showAno = data.getFullYear();
-        return showMes === mes && showAno === parseInt(ano);
-      });
-    }
-
-    // Ordenação
-    resultado.sort((a, b) => {
-      if (filtros.ordenacao === 'nome') {
-        return a.nome.localeCompare(b.nome);
-      } else {
-        return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime();
+        const atendeTermo = nomeShow.includes(termoFormatado) ||
+                            localShow.includes(termoFormatado) ||
+                            artistaShow.includes(termoFormatado);
+                            
+        if (!atendeTermo) return false;
       }
+
+      // 2. Filtro por localização
+      if (filtros.localizacao && show.estado !== filtros.localizacao) { //
+        return false;
+      }
+
+      // 3. Filtro por gênero
+      if (filtros.genero && show.genero !== filtros.genero) { //
+        return false;
+      }
+
+      // 4. Filtro por mês/ano
+      if (filtros.mes) { //
+        const [mes, ano] = filtros.mes.split('/'); //
+        const data = new Date(show.dataEvento); //
+        const showMes = String(data.getMonth() + 1).padStart(2, '0'); //
+        const showAno = data.getFullYear(); //
+        if (showMes !== mes || showAno !== parseInt(ano, 10)) return false; //
+      }
+
+      return true;
     });
 
-    return resultado;
+    // Ordenação segura (usando localeCompare para strings com acento na ordenação por nome)
+    return resultado.sort((a, b) => {
+      if (filtros.ordenacao === 'nome') { //
+        return a.nome.localeCompare(b.nome);
+      } else {
+        return new Date(a.dataEvento).getTime() - new Date(b.dataEvento).getTime(); //
+      }
+    });
   });
 
   temResultados = computed(() => this.showsFiltrados().length > 0);
