@@ -22,21 +22,25 @@ export class Login {
     private toast: ToastService,
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]],
+      email: ['joao@gmail.com', [Validators.required, Validators.email]],
+      senha: ['123456', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   entrar(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      this.mensagemErro('Login ou senha inválidos');
+      this.toast.erro('Preencha os campos corretamente');
       return;
+    }
+
+    const valido = this.authService.autenticar(this.email?.value, this.senha?.value);
+
+    if (valido) {
+      this.toast.sucesso('Usuário logado com sucesso');
+      this.router.navigate(['/inicio']);
     } else {
-      let valido: boolean = this.authService.autenticar(this.email?.value, this.senha?.value);
-      if (valido) {
-        this.router.navigate(['/inicio']);
-      }
+      this.toast.erro('Email ou senha inválidos');
     }
   }
 

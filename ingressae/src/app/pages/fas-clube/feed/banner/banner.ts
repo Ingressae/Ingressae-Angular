@@ -4,6 +4,7 @@ import { FasClubeService } from '../../../../services/fas-clube';
 import { FasClube } from '../../../../models/fas-clube';
 import { ImagemClubeService } from '../../../../services/imagem-clube';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../../../services/toast';
 
 @Component({
   selector: 'app-banner',
@@ -22,6 +23,7 @@ export class Banner implements OnInit {
     private AuthService: AuthService,
     private fasClubeService: FasClubeService,
     private imagemClubeService: ImagemClubeService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -37,10 +39,12 @@ export class Banner implements OnInit {
       this.AuthService.adicionarAoFasClube(this.idFaClube);
       this.fasClubeService.adicionarMembro(this.idFaClube);
       this.isMembro = true;
+      this.toastService.sucesso(`Você entrou no fã-clube ${this.clube?.nome}!`);
     } else {
       this.AuthService.removerDoFasClube(this.idFaClube);
       this.fasClubeService.removerMembro(this.idFaClube);
       this.isMembro = false;
+      this.toastService.sucesso(`Você saiu do fã-clube ${this.clube?.nome}.`);
     }
     this.atualizarClube();
   }

@@ -7,7 +7,8 @@ import { Comentario } from '../../../models/comentario';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FasClubeService } from '../../../services/fas-clube';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ToastService } from '../../../services/toast';
 
 @Component({
   selector: 'app-feed',
@@ -28,18 +29,14 @@ export class Feed implements OnInit {
 
   constructor(
     private fasClubeService: FasClubeService,
-    private AuthService: AuthService,
+    private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
+    private toast: ToastService,
   ) {}
   listaComentarios: Comentario[] = [];
   ngOnInit(): void {
     this.buscarLista();
     this.idFaClube = this.route.snapshot.paramMap.get('id') ?? '0';
-  }
-
-  voltarParaTodos(): void {
-    this.router.navigate(['/fas-clubes']);
   }
 
   adicionarFormatacao(marcador: string): void {
@@ -51,12 +48,13 @@ export class Feed implements OnInit {
     if (!this.novoComentario.trim()) {
       return;
     }
+    const usuario = this.authService.usuario();
 
     const comentario: Comentario = {
       id: crypto.randomUUID(),
-      autorId: '999',
-      nomeAutor: 'Fulano',
-      fotoAutorUrl: 'https://i.pravatar.cc/150?img=10',
+      autorId: usuario?.id ?? '1',
+      nomeAutor: usuario?.nome ?? 'Sem nome',
+      fotoAutorUrl: usuario?.fotoUrl ?? 'https://i.pravatar.cc/150?img=10',
       conteudo: this.novoComentario,
       criadoEm: new Date(),
       qtdlike: 0,
@@ -65,6 +63,7 @@ export class Feed implements OnInit {
     this.isEditandoNovoPost = !this.isEditandoNovoPost;
     this.buscarLista();
     this.novoComentario = '';
+    this.toast.sucesso('Publicado');
   }
 
   buscarLista() {
@@ -84,10 +83,9 @@ export class Feed implements OnInit {
   }
 
   isUsuarioFa() {
-    return this.AuthService.participaDoFasClube(this.idFaClube);
+    return this.authService.participaDoFasClube(this.idFaClube);
   }
 
-  // TODO: arrumar o toast funcional
   mostrarToast() {
     this.toast.erro('    Participe do fã clube para comentar');
   }
