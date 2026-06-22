@@ -65,24 +65,24 @@ export class Inicio implements OnInit {
     // 1. Filtro por busca usando a classe BuscaSequencial
     if (filtros.termo) {
       // Realiza a filtragem sequencial priorizando o nome do show
-      let filtradoPorNome = BuscaSequencial.filtrar(resultado, filtros.termo, 'nome');
+      let filtradoPorNome = BuscaSequencial.filtrar(resultado, filtros.termo, ['nome']);
       
       if (filtradoPorNome.length > 0) {
         resultado = filtradoPorNome;
       } else {
         // Se não achar por nome, busca sequencialmente pelo artista
-        resultado = BuscaSequencial.filtrar(resultado, filtros.termo, 'artista');
+        resultado = BuscaSequencial.filtrar(resultado, filtros.termo, ['artista']);
       }
     }
 
     // 2. Filtro por localização usando a BuscaSequencial (Exata por ID/Estado)
     if (filtros.localizacao) {
-      resultado = BuscaSequencial.filtrar(resultado, filtros.localizacao, 'estado');
+      resultado = BuscaSequencial.filtrar(resultado, filtros.localizacao, ['estado']);
     }
 
     // 3. Filtro por gênero usando a BuscaSequencial
     if (filtros.genero) {
-      resultado = BuscaSequencial.filtrar(resultado, filtros.genero, 'genero');
+      resultado = BuscaSequencial.filtrar(resultado, filtros.genero, ['genero']);
     }
 
     // 4. Filtro por mês/ano (Mantido manualmente por necessitar de cálculo/conversão de objeto Date)
