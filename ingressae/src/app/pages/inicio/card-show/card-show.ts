@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { Show } from '../../../models/show';
+import { AuthService } from '../../../services/auth';
+import { ToastService } from '../../../services/toast';
 
 @Component({
   selector: 'app-card-show',
@@ -13,6 +15,10 @@ import { Show } from '../../../models/show';
 export class CardShow {
   @Input({ required: true }) show!: Show;
   @Output() abrirModal = new EventEmitter<Show>();
+
+  private authService = inject(AuthService);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
 
   // Emite o evento passando as informações do show clicado para o componente Pai (inicio)
   dispararModal() {
@@ -41,5 +47,28 @@ export class CardShow {
 
   get normalAvailable(): boolean {
     return new Date() >= this.show.dataFilaNormal;
+  }
+
+  // Verifica se o usuário tem 5+ anos de plataforma para acessar a fila preferencial
+  get elegivelPreferencial(): boolean {
+    return (this.authService.usuario()?.anosNaPlataforma ?? 0) >= 5;
+  }
+
+  // Verifica elegibilidade antes de redirecionar para a fila preferencial
+  entrarFilaPreferencial(): void {
+    if (!this.prefAvailable) return;
+
+    if (!this.elegivelPreferencial) {
+      this.toastService.aviso('Você precisa ter no mínimo 5 anos de plataforma para acessar a fila preferencial.');
+      return;
+    }
+
+    this.router.navigate(['/fila', this.show.id, 'preferencial']);
+  }
+
+  // Redireciona direto para a fila normal, sem restrições
+  entrarFilaNormal(): void {
+    if (!this.normalAvailable) return;
+    this.router.navigate(['/fila', this.show.id, 'normal']);
   }
 }

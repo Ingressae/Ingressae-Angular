@@ -67,7 +67,6 @@ export class AuthService {
     return usuario.fasClubes.includes(fasClubeId);
   }
 
-   // NOVA FUNÇÃO CORRIGIDA: Valida o limite de 6
   atualizarInscricoes(novasInscricoes: string[]) {
     const usuario = this.usuarioAtual();
 

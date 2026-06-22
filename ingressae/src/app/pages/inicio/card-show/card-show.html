@@ -35,14 +35,14 @@
     <div class="queue-section">
       <span class="queue-label">ENTRAR NA FILA</span>
 
-      <button class="btn-queue btn-pref" [disabled]="!prefAvailable" [routerLink]="['/fila', show.id, 'preferencial']">
+      <button class="btn-queue btn-pref" [disabled]="!prefAvailable" (click)="entrarFilaPreferencial()">
         <span class="queue-name"><i class="bi bi-gem"></i> Fila Preferencial</span>
         <span class="badge-status">
           {{ prefAvailable ? 'Disponível' : 'Indisponível' }}
         </span>
       </button>
 
-      <button class="btn-queue btn-normal" [disabled]="!normalAvailable" [routerLink]="['/fila', show.id, 'normal']">
+      <button class="btn-queue btn-normal" [disabled]="!normalAvailable" (click)="entrarFilaNormal()">
         <span class="queue-name"><i class="bi bi-person"></i> Fila Normal</span>
         <span class="badge-status">
           {{ normalAvailable ? 'Disponível' : 'Indisponível' }}

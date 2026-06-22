@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FasClubeService } from '../../../services/fas-clube';
 
 @Component({
   selector: 'app-chips-fas-clubes',
@@ -10,10 +11,16 @@ import { RouterLink } from '@angular/router';
 })
 export class ChipsFasClubes {
 
+  private fasClubeService = inject(FasClubeService);
+
   @Input() fasClubes: string[] = [];
 
   get limiteAtingido(): boolean {
     return this.fasClubes.length >= 6;
+  }
+
+  get nomesFasClubes(): string[] {
+    return this.fasClubes.map((id) => this.fasClubeService.buscarPorId(id)?.nome ?? id);
   }
 
 }
