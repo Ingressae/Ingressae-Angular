@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {  JogoComponent } from './jogo/jogo';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { FilaPreferencial } from '../../shared/estruturas/fila-preferencial';
-import { FilaNormal } from '../../shared/estruturas/fila-normal';
+import { FilaService } from '../../services/fila';
 import { ShowService } from '../../services/show';
 import { Show } from '../../models/show';
 import { TipoFilaPipe } from '../../shared/pipes/tipo-fila-pipe';
@@ -30,8 +29,7 @@ export class Fila implements OnInit, OnDestroy {
   mostrarModal = false;
 
   private interval: any;
-  private filaPreferencial = new FilaPreferencial();
-  private filaNormal = new FilaNormal();
+  private filaService = inject(FilaService);
 
   get isPreferencial(): boolean {
     return this.tipo === 'preferencial';
@@ -69,20 +67,26 @@ export class Fila implements OnInit, OnDestroy {
 
   private iniciarFila(): void {
     if (this.isPreferencial) {
-      this.filaPreferencial.entrar({ usuarioId: 'u1', anosNaPlataforma: 9, entradaEm: new Date() });
-      this.filaPreferencial.entrar({ usuarioId: 'u2', anosNaPlataforma: 8, entradaEm: new Date() });
-      this.filaPreferencial.entrar({ usuarioId: 'u3', anosNaPlataforma: 7, entradaEm: new Date() });
-      this.filaPreferencial.entrar({ usuarioId: 'u4', anosNaPlataforma: 6, entradaEm: new Date() });
-      this.filaPreferencial.entrar({ usuarioId: 'atual', anosNaPlataforma: 7, entradaEm: new Date() });
+      // popular via service para manter padrão centralizado
+      this.filaService.popularDemoPreferencial([
+        { usuarioId: 'u1', anosNaPlataforma: 9, entradaEm: new Date() },
+        { usuarioId: 'u2', anosNaPlataforma: 8, entradaEm: new Date() },
+        { usuarioId: 'u3', anosNaPlataforma: 7, entradaEm: new Date() },
+        { usuarioId: 'u4', anosNaPlataforma: 6, entradaEm: new Date() },
+        { usuarioId: 'atual', anosNaPlataforma: 7, entradaEm: new Date() },
+      ]);
 
-      this.posicaoInicial = Math.floor(this.filaPreferencial.tamanho() / 2);
+      this.posicaoInicial = Math.floor(this.filaService.tamanhoPreferencial() / 2);
       this.posicaoAtual = this.posicaoInicial;
     } else {
+      const demo: any[] = [];
       for (let i = 1; i <= 3250; i++) {
-        this.filaNormal.entrar({ usuarioId: `u${i}`, entradaEm: new Date() });
+        demo.push({ usuarioId: `u${i}`, entradaEm: new Date() });
       }
-      this.filaNormal.entrar({ usuarioId: 'atual', entradaEm: new Date() });
-      this.posicaoInicial = this.filaNormal.posicao('atual');
+      demo.push({ usuarioId: 'atual', entradaEm: new Date() });
+      this.filaService.popularDemoNormal(demo);
+
+      this.posicaoInicial = this.filaService.posicaoNormal('atual');
       this.posicaoAtual = this.posicaoInicial;
     }
 
