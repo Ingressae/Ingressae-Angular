@@ -37,27 +37,13 @@ export class Lista {
 
   atingiuLimiteInscricoes = computed(() => this.quantidadeInscricoes() >= 6);
 
-  fasClubesFiltrados = computed(() => {
-    const termo = this.termoBusca();
-
-    if (!termo) {
-      return this.fasClubes();
-    }
-
-    const porArtista = BuscaSequencial.filtrar(this.fasClubes(), termo, 'nomeArtista');
-
-    const porNome = BuscaSequencial.filtrar(this.fasClubes(), termo, 'nome');
-
-    const todos = [...porArtista];
-
-    porNome.forEach((clube: FasClubeModel) => {
-      if (!todos.some((c) => c.id === clube.id)) {
-        todos.push(clube);
-      }
-    });
-
-    return todos;
-  });
+fasClubesFiltrados = computed(() => {
+  return BuscaSequencial.filtrar(
+    this.fasClubes(),
+    this.termoBusca(),
+    ['nome', 'nomeArtista']
+  );
+}); 
 
   temResultados = computed(() => this.fasClubesFiltrados().length > 0);
 
