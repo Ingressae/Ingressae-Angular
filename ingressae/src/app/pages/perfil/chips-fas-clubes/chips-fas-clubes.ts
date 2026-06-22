@@ -13,7 +13,7 @@ export class ChipsFasClubes {
   @Input() fasClubes: string[] = [];
 
   get limiteAtingido(): boolean {
-    return this.fasClubes.length >= 6;
+    return this.fasClubes.length >= 5;
   }
 
 }

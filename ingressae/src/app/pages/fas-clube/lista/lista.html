@@ -18,14 +18,14 @@
         class="search-input">
     </div>
 
-    <!-- Indicador de Limite (0/6) -->
+    <!-- Indicador de Limite (0/5) -->
     <div class="limit-indicator mt-3" *ngIf="usuarioAtual()">
       <div class="d-flex justify-content-between mb-1">
         <span class="limit-label">Seus Clubes</span>
-        <span class="limit-value text-white">{{ quantidadeInscricoes() }}/6</span>
+        <span class="limit-value text-white">{{ quantidadeInscricoes() }}/5</span>
       </div>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" [style.width.%]="(quantidadeInscricoes() / 6) * 100"></div>
+        <div class="progress-bar-fill" [style.width.%]="(quantidadeInscricoes() / 5) * 100"></div>
       </div>
     </div>
 
