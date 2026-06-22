@@ -35,7 +35,7 @@ export class Lista {
 
   quantidadeInscricoes = computed(() => this.fasClubesDoUsuario().length);
 
-  atingiuLimiteInscricoes = computed(() => this.quantidadeInscricoes() >= 6);
+  atingiuLimiteInscricoes = computed(() => this.quantidadeInscricoes() >= 5);
 
 fasClubesFiltrados = computed(() => {
   return BuscaSequencial.filtrar(
@@ -43,7 +43,7 @@ fasClubesFiltrados = computed(() => {
     this.termoBusca(),
     ['nome', 'nomeArtista']
   );
-}); 
+});
 
   temResultados = computed(() => this.fasClubesFiltrados().length > 0);
 
@@ -64,8 +64,8 @@ fasClubesFiltrados = computed(() => {
       return;
     }
 
-    if (inscricoesAtuais.length >= 6) {
-      this.toastService.erro('Limite de 6 fã-clubes atingido!');
+    if (inscricoesAtuais.length >= 5) {
+      this.toastService.erro('Limite de 5 fã-clubes atingido!');
       return;
     }
 
