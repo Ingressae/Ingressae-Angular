@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Show } from '../../../models/show';
@@ -12,6 +12,12 @@ import { Show } from '../../../models/show';
 })
 export class CardShow {
   @Input({ required: true }) show!: Show;
+  @Output() abrirModal = new EventEmitter<Show>();
+
+  // Emite o evento passando as informações do show clicado para o componente Pai (inicio)
+  dispararModal() {
+    this.abrirModal.emit(this.show);
+  }
 
   // Lista de gradientes para alternar visualmente entre os cards
   private gradientes = ['grad-purple', 'grad-blue', 'grad-redPurple', 'grad-cyan', 'grad-orange'];

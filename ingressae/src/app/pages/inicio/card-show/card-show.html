@@ -20,7 +20,9 @@
     </div>
 
     <div class="action-buttons">
-      <button class="btn-outline btn-saibaMais"><i class="bi bi-search"></i> Saiba Mais</button>
+      <button class="btn-outline btn-saibaMais" (click)="dispararModal()">
+        <i class="bi bi-search"></i> Saiba Mais
+      </button>
       <button class="btn-outline btn-faClube" [routerLink]="['/feed', show.id]">
         <i class="bi bi-star"></i> Fã Clube
       </button>
@@ -40,9 +42,8 @@
         </span>
       </button>
 
-      <button class="bi-queue btn-queue btn-normal" [disabled]="!normalAvailable"
-        [routerLink]="['/fila', show.id, 'normal']">
-        <span class="queue-name"><i class="bi bi-ticket-perforated"></i> Fila Normal</span>
+      <button class="btn-queue btn-normal" [disabled]="!normalAvailable" [routerLink]="['/fila', show.id, 'normal']">
+        <span class="queue-name"><i class="bi bi-person"></i> Fila Normal</span>
         <span class="badge-status">
           {{ normalAvailable ? 'Disponível' : 'Indisponível' }}
         </span>

@@ -1,0 +1,52 @@
+<div class="modal-backdrop" (click)="fechar.emit()">
+  
+  <div class="modal-content" (click)="stopPropagation($event)">
+    
+    <button class="btn-close" (click)="fechar.emit()" aria-label="Fechar">
+      <i class="bi bi-x-lg"></i>
+    </button>
+
+    <div class="modal-header">
+      <img [src]="show.imagemCapaUrl" [alt]="show.nome" class="modal-image">
+      <div class="header-overlay"></div>
+    </div>
+
+    <div class="modal-body">
+      <h2 class="title">{{ show.nome }}</h2>
+      <h3 class="artist">{{ show.artista }}</h3>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="icon-wrapper blue">
+            <i class="bi bi-calendar-event"></i>
+          </div>
+          <div class="info-text">
+            <span class="label">Data do Evento</span>
+            <span class="value">{{ dataFormatadaDetalhada }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-wrapper pink">
+            <i class="bi bi-geo-alt-fill"></i>
+          </div>
+          <div class="info-text">
+            <span class="label">Localização</span>
+            <span class="value">{{ show.local }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="about-section">
+        <h4>Sobre o Evento</h4>
+        <p>
+          Prepare-se para uma experiência inesquecível com <strong>{{ show.artista }}</strong>. 
+          Os portões abrem 2 horas antes do início do espetáculo. Chegue cedo para evitar filas e aproveitar as ativações no local.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</div>

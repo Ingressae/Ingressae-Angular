@@ -22,9 +22,16 @@
     <app-estado-vazio *ngIf="!carregando() && !temResultados()"></app-estado-vazio>
   </div>
 
-  <section class="shows-grid" *ngIf="!carregando()">
-    <app-card-show *ngFor="let show of showsFiltrados()" [show]="show">
+<section class="shows-grid" *ngIf="!carregando()">
+    <app-card-show 
+      *ngFor="let show of showsFiltrados()" 
+      [show]="show"
+      (abrirModal)="onAbrirModal($event)">
     </app-card-show>
   </section>
 
-</main>
+</main> <app-saiba-mais 
+  *ngIf="showSelecionado() as showSel" 
+  [show]="showSel" 
+  (fechar)="onFecharModal()">
+</app-saiba-mais>
