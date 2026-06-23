@@ -37,7 +37,7 @@ export class ShowService {
     },
     {
       id: '3',
-      nome: 'Legacy of the Beast: Infernal Reign',
+      nome: 'Legacy of the Beast',
       artista: 'Iron Maiden',
       local: 'MorumBIS, São Paulo',
       estado: 'SP',
@@ -47,7 +47,7 @@ export class ShowService {
       dataFilaPreferencial: new Date('2026-08-01'),
       dataFilaNormal: new Date('2026-08-02'),
       fasClubeId: '3',
-      descricao: 'Uma experiência épica e sombria, trazendo o peso do heavy metal com cenários grandiosos, riffs lendários e a presença icônica de Eddie em uma batalha entre caos e eternidade.'
+      descricao: 'A lendária banda de Heavy Metal Iron Maiden trás uma experiencia imersiva inédita para Brasil, palcos grandiosos, pirotecnias e a presença do mascote Eddie the Head! Uma experiência grandiosa!.'
     },
     {
       id: '4',
