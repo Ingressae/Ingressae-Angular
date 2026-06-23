@@ -38,14 +38,14 @@
       <button class="btn-queue btn-pref" [disabled]="!prefAvailable" (click)="entrarFilaPreferencial()">
         <span class="queue-name"><i class="bi bi-gem"></i> Fila Preferencial</span>
         <span class="badge-status">
-          {{ prefAvailable ? 'Disponível' : 'Indisponível' }}
+          {{ prefAvailable ? 'Disponível' : 'Disponível em: ' + dataFilaPreferencialFormatada }}
         </span>
       </button>
 
       <button class="btn-queue btn-normal" [disabled]="!normalAvailable" (click)="entrarFilaNormal()">
         <span class="queue-name"><i class="bi bi-person"></i> Fila Normal</span>
         <span class="badge-status">
-          {{ normalAvailable ? 'Disponível' : 'Indisponível' }}
+          {{ normalAvailable ? 'Disponível' : 'Disponível em: ' + dataFilaNormalFormatada }}
         </span>
       </button>
     </div>

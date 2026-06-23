@@ -45,8 +45,24 @@ export class CardShow {
     return new Date() >= this.show.dataFilaPreferencial;
   }
 
+  get dataFilaPreferencialFormatada(): string {
+    return this.show.dataFilaPreferencial.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+  }
+
   get normalAvailable(): boolean {
     return new Date() >= this.show.dataFilaNormal;
+  }
+
+  get dataFilaNormalFormatada(): string {
+    return this.show.dataFilaNormal.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
   }
 
   // Verifica se o usuário tem 5+ anos de plataforma para acessar a fila preferencial
