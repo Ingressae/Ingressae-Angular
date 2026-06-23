@@ -12,7 +12,7 @@ export class FasClubeService {
       nome: 'Armys',
       nomeArtista: 'BTS',
       imagemCapaUrl: 'assets/images/fa-clubes/bts.jpg',
-      bannerGradient: 'linear-gradient(135deg, rgba(53, 0, 122, 0.95), rgba(56, 32, 66, 0.85))',
+      bannerGradient: 'linear-gradient(135deg, rgba(112, 0, 122, 0.95), rgba(179, 0, 255, 0.85))',
       totalMembros: 524585,
       showId: '1',
     },
@@ -22,7 +22,7 @@ export class FasClubeService {
       nomeArtista: 'Twice',
       imagemCapaUrl: 'assets/images/fa-clubes/twice.jpg',
       bannerGradient:
-        'linear-gradient(135deg, rgba(242, 122, 153, 0.95), rgba(255, 218, 200, 0.85))',
+        'linear-gradient(135deg, rgba(242, 122, 153, 0.95), rgba(251, 216, 112, 0.85))',
       totalMembros: 814521,
       showId: '2',
     },
