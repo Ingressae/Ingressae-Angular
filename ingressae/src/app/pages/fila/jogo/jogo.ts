@@ -22,6 +22,7 @@ export class JogoComponent {
 
   movimentos = 0;
 
+
   jogoFinalizado = false;
 
   constructor(
