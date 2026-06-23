@@ -7,6 +7,7 @@ import { Detalhe } from './pages/fas-clube/detalhe/detalhe';
 import { Compra } from './pages/compra/compra';
 import { Feed } from './pages/fas-clube/feed/feed';
 import { Login } from './pages/login/login';
+import { Lostpage } from './pages/lostpage/lostpage';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'inicio',
+    component: Lostpage,
   },
 ];
